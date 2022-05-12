@@ -4,12 +4,10 @@ object Deps {
      * FPhoenixCorneaE
      */
     object FPhoenixCorneaE {
-        private const val common = "com.github.FPhoenixCorneaE:Common:2.0.4"
-        private const val jetpackMvvm = "com.github.FPhoenixCorneaE:JetpackMvvm:1.3.1"
-        private const val coRetrofit = "com.github.FPhoenixCorneaE:CoRetrofit:1.0.4"
+        private const val jetpackMvvm = "com.github.FPhoenixCorneaE:JetpackMvvm:1.3.3"
         private const val easyNavigation = "com.github.FPhoenixCorneaE.EasyNavigation:easyNavigation:1.0.8"
 
-        fun dependencies() = listOf(common, jetpackMvvm, coRetrofit, easyNavigation)
+        fun dependencies() = listOf(jetpackMvvm, easyNavigation)
     }
 
     /**
