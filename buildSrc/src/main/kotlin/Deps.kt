@@ -4,7 +4,7 @@ object Deps {
      * FPhoenixCorneaE
      */
     object FPhoenixCorneaE {
-        private const val jetpackMvvm = "com.github.FPhoenixCorneaE:JetpackMvvm:1.3.3"
+        private const val jetpackMvvm = "com.github.FPhoenixCorneaE:JetpackMvvm:1.3.4"
         private const val easyNavigation = "com.github.FPhoenixCorneaE.EasyNavigation:easyNavigation:1.0.8"
 
         fun dependencies() = listOf(jetpackMvvm, easyNavigation)

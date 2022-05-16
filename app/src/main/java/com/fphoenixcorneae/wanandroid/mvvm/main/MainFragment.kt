@@ -30,7 +30,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             .iconScale(iconActiveScale = 1.1f, iconInactiveScale = 0.9f)
             .textSize(textActiveSize = 16.dp.toFloat(), textInactiveSize = 14.dp.toFloat())
             .itemColor(getColor(resId = R.color.purple_500), getColor(R.color.purple_200))
-            .textFont(font = Typeface.defaultFromStyle(Typeface.ITALIC))
+            .textFont(font = Typeface.defaultFromStyle(Typeface.BOLD))
             .setTabs(
                 items = listOf(
                     NavigationItem(

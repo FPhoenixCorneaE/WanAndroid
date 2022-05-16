@@ -7,7 +7,6 @@ import androidx.lifecycle.lifecycleScope
 import com.fphoenixcorneae.common.ext.screenHeight
 import com.fphoenixcorneae.common.ext.screenWidth
 import com.fphoenixcorneae.jetpackmvvm.base.dialog.BaseDialog
-import com.fphoenixcorneae.jetpackmvvm.ext.parseResult
 import com.fphoenixcorneae.wanandroid.R
 import com.fphoenixcorneae.wanandroid.constant.UrlConstants
 import com.fphoenixcorneae.wanandroid.databinding.DialogSplashBinding
@@ -32,8 +31,8 @@ class SplashDialog : BaseDialog<DialogSplashBinding>() {
             viewModel = mViewModel
         }
         viewLifecycleOwner.lifecycleScope.launch {
-//            delay(5_000)
-//            dismiss()
+            delay(5_000)
+            dismiss()
         }
     }
 
@@ -44,13 +43,11 @@ class SplashDialog : BaseDialog<DialogSplashBinding>() {
     override fun initObserver() {
         viewLifecycleOwner.lifecycleScope.launch {
             mViewModel.splashResult.collect {
-                it.parseResult(
-                    dialog = this@SplashDialog,
-                    onSuccess = {
-                        val bingImgUrl = "${UrlConstants.BING_IMG}${it?.images?.getOrNull(0)?.urlbase}_1080x1920.jpg"
-                        mViewModel.setSplashImg(data = bingImgUrl)
-                    }
-                )
+                var bingImgUrl: String? = null
+                it?.images?.getOrNull(0)?.urlbase?.run {
+                    bingImgUrl = "${UrlConstants.BING_IMG}${this}_1080x1920.jpg"
+                }
+                mViewModel.setSplashImg(data = bingImgUrl)
             }
         }
     }
