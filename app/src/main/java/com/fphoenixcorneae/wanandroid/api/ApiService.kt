@@ -1,6 +1,7 @@
 package com.fphoenixcorneae.wanandroid.api
 
 import com.fphoenixcorneae.wanandroid.constant.UrlConstants
+import com.fphoenixcorneae.wanandroid.mvvm.home.HomeBannerBean
 import com.fphoenixcorneae.wanandroid.mvvm.splash.SplashBean
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager
 import retrofit2.http.GET
@@ -20,4 +21,10 @@ interface ApiService {
     @Headers(RetrofitUrlManager.DOMAIN_NAME_HEADER.plus(UrlConstants.Domain.BING))
     @GET("/HPImageArchive.aspx?format=js&idx=0&n=1")
     suspend fun getDailyImage(): SplashBean?
+
+    /**
+     * 获取首页Banner
+     */
+    @GET("banner/json")
+    suspend fun getHomeBanner(): ApiResponse<ArrayList<HomeBannerBean>>
 }

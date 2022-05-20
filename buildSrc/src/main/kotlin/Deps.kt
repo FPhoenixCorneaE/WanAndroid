@@ -6,8 +6,9 @@ object Deps {
     object FPhoenixCorneaE {
         private const val jetpackMvvm = "com.github.FPhoenixCorneaE:JetpackMvvm:1.3.4"
         private const val easyNavigation = "com.github.FPhoenixCorneaE.EasyNavigation:easyNavigation:1.0.8"
+        private const val viewPagerAdapter = "com.github.FPhoenixCorneaE:ViewPagerAdapter:1.0.0"
 
-        fun dependencies() = listOf(jetpackMvvm, easyNavigation)
+        fun dependencies() = listOf(jetpackMvvm, easyNavigation, viewPagerAdapter)
     }
 
     /**
@@ -22,9 +23,20 @@ object Deps {
         private const val material = "com.google.android.material:material:1.4.0"
         private const val recyclerView = "androidx.recyclerview:recyclerview:1.2.1"
         private const val cardView = "androidx.cardview:cardview:1.0.0"
+        private const val swipeRefreshLayout = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
         fun dependencies() =
-            listOf(multiDex, appcompat, coreKtx, coreSplashScreen, constraintLayout, material, recyclerView, cardView)
+            listOf(
+                multiDex,
+                appcompat,
+                coreKtx,
+                coreSplashScreen,
+                constraintLayout,
+                material,
+                recyclerView,
+                cardView,
+                swipeRefreshLayout
+            )
     }
 
     /**
@@ -44,6 +56,19 @@ object Deps {
         private const val android = "com.squareup.leakcanary:leakcanary-android:2.5"
 
         fun dependencies() = listOf(android)
+    }
+
+    /**
+     * 第三方库
+     */
+    object ThirdParty {
+        // https://github.com/zhpanvip/BannerViewPager
+        private const val banner = "com.github.zhpanvip:bannerviewpager:3.5.5"
+
+        // https://github.com/hackware1993/MagicIndicator
+        private const val magicIndicator = "com.github.hackware1993:MagicIndicator:1.7.0"
+
+        fun dependencies() = listOf(banner, magicIndicator)
     }
 
     /**

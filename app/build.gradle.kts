@@ -1,6 +1,7 @@
 plugins {
     id(PluginId.application)
     id(PluginId.kotlin)
+    id(PluginId.kotlinParcelize)
     id(PluginId.navigation)
 }
 
@@ -99,6 +100,8 @@ dependencies {
     addBuglyDependencies()
     // leakcanary
     addLeakCanaryDependencies()
+    // thirdparty
+    addThirdPartyDependencies()
     // test
     addTestDependencies()
 }

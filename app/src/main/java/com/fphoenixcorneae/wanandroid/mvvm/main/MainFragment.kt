@@ -5,6 +5,7 @@ import android.view.View
 import com.fphoenixcorneae.common.ext.dp
 import com.fphoenixcorneae.common.ext.getColor
 import com.fphoenixcorneae.common.ext.getRandomColor
+import com.fphoenixcorneae.common.ext.navigate
 import com.fphoenixcorneae.jetpackmvvm.base.fragment.BaseFragment
 import com.fphoenixcorneae.navigation.NavigationItem
 import com.fphoenixcorneae.wanandroid.R
@@ -61,8 +62,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                 )
             )
             .navigationHeight(navigationHeight = 60.dp)
-            .onItemClickListener {
-
+            .onItemClickListener { position ->
+                when (position) {
+                    0 -> navigate(R.id.homeFragment)
+                }
             }
     }
 }

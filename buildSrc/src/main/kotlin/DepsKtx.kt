@@ -37,6 +37,15 @@ fun DependencyHandler.addLeakCanaryDependencies() {
 }
 
 /**
+ * 添加 第三方 依赖库
+ */
+fun DependencyHandler.addThirdPartyDependencies() {
+    Deps.ThirdParty.dependencies().forEach {
+        add("implementation", it)
+    }
+}
+
+/**
  * 添加 Test 依赖库
  */
 fun DependencyHandler.addTestDependencies() {
