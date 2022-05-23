@@ -33,6 +33,7 @@
                 android:padding="6dp"
                 android:src="@drawable/ic_search"
                 android:transitionName="@string/search"
+                app:tint="?attr/colorAccent"
                 tools:ignore="ContentDescription" />
         </FrameLayout>
 
