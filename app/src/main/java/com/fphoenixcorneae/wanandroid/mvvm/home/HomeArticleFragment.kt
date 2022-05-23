@@ -2,6 +2,7 @@ package com.fphoenixcorneae.wanandroid.mvvm.home
 
 import android.graphics.Color
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -10,6 +11,7 @@ import com.fphoenixcorneae.jetpackmvvm.base.fragment.BaseFragment
 import com.fphoenixcorneae.jetpackmvvm.ext.parseResult
 import com.fphoenixcorneae.wanandroid.databinding.FragmentHomeArticleBinding
 import com.zhpan.bannerview.BaseBannerAdapter
+import com.zhpan.bannerview.constants.IndicatorGravity
 import com.zhpan.bannerview.constants.PageStyle
 import com.zhpan.indicator.enums.IndicatorSlideMode
 import com.zhpan.indicator.enums.IndicatorStyle
@@ -38,18 +40,19 @@ class HomeArticleFragment : BaseFragment<FragmentHomeArticleBinding>() {
                 .setAdapter(mBannerAdapter as BaseBannerAdapter<Any>)
                 .setInterval(3000)
                 .setScrollDuration(1500)
+                .setIndicatorGravity(IndicatorGravity.CENTER)
+                .setIndicatorMargin(0, 0, 0, 20.dp)
                 .setIndicatorStyle(IndicatorStyle.ROUND_RECT)
-                .setIndicatorSliderGap(4.dp)
+                .setIndicatorSliderGap(8.dp)
                 .setIndicatorSlideMode(IndicatorSlideMode.SCALE)
-                .setIndicatorHeight(4.dp)
                 .setIndicatorSliderColor(Color.WHITE, Color.RED)
-                .setIndicatorSliderWidth(10.dp, 20.dp)
                 .setIndicatorSliderRadius(4.dp)
+                .setIndicatorHeight(4.dp)
+                .setIndicatorSliderWidth(10.dp, 20.dp)
                 .setPageMargin(20.dp)
                 .setPageStyle(PageStyle.MULTI_PAGE_SCALE)
-                .setRevealWidth(10.dp)
+                .setRevealWidth(0.dp, 100.dp)
                 .create()
-            homeBanner.removeDefaultPageTransformer()
         }
     }
 
