@@ -1,15 +1,15 @@
 package com.fphoenixcorneae.wanandroid.mvvm.home
 
-import android.graphics.Color
 import android.os.Bundle
-import android.view.Gravity
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.fphoenixcorneae.common.ext.dp
 import com.fphoenixcorneae.jetpackmvvm.base.fragment.BaseFragment
 import com.fphoenixcorneae.jetpackmvvm.ext.parseResult
+import com.fphoenixcorneae.wanandroid.R
 import com.fphoenixcorneae.wanandroid.databinding.FragmentHomeArticleBinding
+import com.fphoenixcorneae.wanandroid.ext.getThemeAttr
 import com.zhpan.bannerview.BaseBannerAdapter
 import com.zhpan.bannerview.constants.IndicatorGravity
 import com.zhpan.bannerview.constants.PageStyle
@@ -45,7 +45,7 @@ class HomeArticleFragment : BaseFragment<FragmentHomeArticleBinding>() {
                 .setIndicatorStyle(IndicatorStyle.ROUND_RECT)
                 .setIndicatorSliderGap(8.dp)
                 .setIndicatorSlideMode(IndicatorSlideMode.SCALE)
-                .setIndicatorSliderColor(Color.WHITE, Color.RED)
+                .setIndicatorSliderColor(getThemeAttr(R.attr.colorAccent), getThemeAttr(R.attr.colorPrimary))
                 .setIndicatorSliderRadius(4.dp)
                 .setIndicatorHeight(4.dp)
                 .setIndicatorSliderWidth(10.dp, 20.dp)

@@ -1,14 +1,27 @@
 package com.fphoenixcorneae.wanandroid.ext
 
-import android.graphics.Color
+import android.content.Context
+import android.util.TypedValue
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
-import com.fphoenixcorneae.common.ext.applicationContext
+import androidx.fragment.app.Fragment
 
 @ColorInt
-fun getThemeColor(@AttrRes themeAttrId: Int) = run {
-    val typedArray = applicationContext.theme.obtainStyledAttributes(intArrayOf(themeAttrId))
-    val color = typedArray.getColor(0, Color.TRANSPARENT)
-    typedArray.recycle()
-    color
+fun Context.getThemeAttr(
+    @AttrRes themeAttrId: Int,
+    typedValue: TypedValue = TypedValue(),
+    resolveRefs: Boolean = true,
+) = run {
+    theme.resolveAttribute(themeAttrId, typedValue, resolveRefs)
+    typedValue.data
+}
+
+@ColorInt
+fun Fragment.getThemeAttr(
+    @AttrRes themeAttrId: Int,
+    typedValue: TypedValue = TypedValue(),
+    resolveRefs: Boolean = true,
+) = run {
+    requireContext().theme.resolveAttribute(themeAttrId, typedValue, resolveRefs)
+    typedValue.data
 }
