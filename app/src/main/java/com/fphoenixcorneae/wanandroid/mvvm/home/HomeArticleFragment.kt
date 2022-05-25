@@ -101,20 +101,6 @@ class HomeArticleFragment : BaseFragment<FragmentHomeArticleBinding>() {
                     })
             }
         }
-        // 首页置顶文章
-        launchRepeatOnLifecycle {
-            mViewModel.homeTopArticle.collect {
-                if (it?.isSuccess() == true) {
-                    it.getResponseData()?.let {
-                        if (it.isNotNullOrEmpty()) {
-                            val data = mArticleAdapter.data
-                            data.addAll(0, it)
-                            mArticleAdapter.setDiffNewData(data)
-                        }
-                    }
-                }
-            }
-        }
         // 首页文章列表
         launchRepeatOnLifecycle {
             mViewModel.homeArticle.collect {
@@ -127,7 +113,18 @@ class HomeArticleFragment : BaseFragment<FragmentHomeArticleBinding>() {
                             } else {
                                 showContent()
                                 if (it.isFirstPage()) {
-                                    mArticleAdapter.setDiffNewData(it.datas)
+                                    mArticleAdapter.setDiffNewData(it.datas?.apply {
+                                        // 首页置顶文章
+                                        mViewModel.homeTopArticle.value?.let {
+                                            if (it.isSuccess()) {
+                                                it.getResponseData()?.let {
+                                                    if (it.isNotNullOrEmpty()) {
+                                                        addAll(0, it)
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    })
                                 } else {
                                     it.datas?.let {
                                         val data = mArticleAdapter.data
