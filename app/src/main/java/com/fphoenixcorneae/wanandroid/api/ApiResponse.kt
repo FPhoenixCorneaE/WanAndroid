@@ -7,9 +7,9 @@ import com.fphoenixcorneae.coretrofit.model.BaseResponse
  * @date：2022/05/20 14:00
  */
 data class ApiResponse<T>(
-    val errorCode: Int,
-    val errorMsg: String?,
-    val data: T?
+    private val errorCode: Int,
+    private val errorMsg: String?,
+    private val data: T?
 ) : BaseResponse<T>() {
     override fun getResponseCode(): Int = errorCode
 

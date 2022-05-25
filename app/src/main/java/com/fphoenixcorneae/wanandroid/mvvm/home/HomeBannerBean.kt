@@ -11,10 +11,10 @@ import kotlinx.parcelize.Parcelize
 @Keep
 @Parcelize
 data class HomeBannerBean(
-    var id: Int = 0,
-    var title: String = "",
-    var desc: String = "",
-    var type: Int = 0,
-    var url: String = "",
-    var imagePath: String = ""
+    var id: Int,
+    var title: String?,
+    var desc: String?,
+    var type: Int,
+    var url: String?,
+    var imagePath: String?
 ) : Parcelable

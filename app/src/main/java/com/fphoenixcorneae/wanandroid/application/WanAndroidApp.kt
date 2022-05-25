@@ -1,8 +1,7 @@
 package com.fphoenixcorneae.wanandroid.application
 
+import com.fphoenixcorneae.common.ext.*
 import com.fphoenixcorneae.common.ext.algorithm.md5
-import com.fphoenixcorneae.common.ext.androidID
-import com.fphoenixcorneae.common.ext.isDebuggable
 import com.fphoenixcorneae.coretrofit.RetrofitFactory
 import com.fphoenixcorneae.jetpackmvvm.base.application.BaseApplication
 import com.fphoenixcorneae.wanandroid.constant.UrlConstants
@@ -32,7 +31,14 @@ class WanAndroidApp : BaseApplication() {
         RetrofitUrlManager.getInstance().setGlobalDomain(UrlConstants.WAN_ANDROID)
 
         // 设置公共请求头
-        RetrofitFactory.headers = hashMapOf("platform" to "Android", "androidID" to androidID)
+        RetrofitFactory.headers = hashMapOf(
+            "platform" to "Android",
+            "deviceId" to androidID,
+            "deviceModel" to deviceModel,
+            "versionCode" to appVersionCode.toString(),
+            "versionName" to appVersionName,
+            "sign" to appSignatureMD5,
+        )
         // 设置公共请求参数
         RetrofitFactory.commonParams = hashMapOf("token" to androidID.md5())
     }

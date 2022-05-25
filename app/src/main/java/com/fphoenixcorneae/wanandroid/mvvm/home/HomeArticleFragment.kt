@@ -2,19 +2,24 @@ package com.fphoenixcorneae.wanandroid.mvvm.home
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.fphoenixcorneae.common.ext.dp
+import com.fphoenixcorneae.common.ext.isNotNullOrEmpty
 import com.fphoenixcorneae.jetpackmvvm.base.fragment.BaseFragment
 import com.fphoenixcorneae.jetpackmvvm.ext.parseResult
 import com.fphoenixcorneae.wanandroid.R
 import com.fphoenixcorneae.wanandroid.databinding.FragmentHomeArticleBinding
 import com.fphoenixcorneae.wanandroid.ext.getThemeAttr
-import com.zhpan.bannerview.BaseBannerAdapter
+import com.fphoenixcorneae.wanandroid.ext.launchRepeatOnLifecycle
+import com.fphoenixcorneae.wanandroid.widget.recyclerview.OnScrollLoadMoreListener
+import com.zhpan.bannerview.BannerViewPager
 import com.zhpan.bannerview.constants.IndicatorGravity
 import com.zhpan.bannerview.constants.PageStyle
 import com.zhpan.indicator.enums.IndicatorSlideMode
 import com.zhpan.indicator.enums.IndicatorStyle
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 /**
@@ -24,22 +29,17 @@ import kotlinx.coroutines.launch
 class HomeArticleFragment : BaseFragment<FragmentHomeArticleBinding>() {
 
     private val mViewModel by viewModels<HomeViewModel>()
-    private val mBannerAdapter by lazy { HomeBannerAdapter() }
-
-    override fun initViewBinding(): FragmentHomeArticleBinding {
-        return FragmentHomeArticleBinding.inflate(layoutInflater)
-    }
-
-    override fun initToolbar(): View? {
-        return null
-    }
-
-    override fun initView() {
-        mViewBinding.apply {
-            homeBanner.setLifecycleRegistry(lifecycle)
-                .setAdapter(mBannerAdapter as BaseBannerAdapter<Any>)
+    private val mBannerViewPager by lazy {
+        BannerViewPager<HomeBannerBean>(mContext).apply {
+            layoutParams = ViewGroup.MarginLayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 128.dp).apply {
+                topMargin = 20.dp
+            }
+            setLifecycleRegistry(lifecycle)
+                .setAdapter(mBannerAdapter)
                 .setInterval(3000)
                 .setScrollDuration(1500)
+                .disallowParentInterceptDownEvent(true)
+                .setAutoPlay(true)
                 .setIndicatorGravity(IndicatorGravity.CENTER)
                 .setIndicatorMargin(0, 0, 0, 20.dp)
                 .setIndicatorStyle(IndicatorStyle.ROUND_RECT)
@@ -55,21 +55,100 @@ class HomeArticleFragment : BaseFragment<FragmentHomeArticleBinding>() {
                 .create()
         }
     }
+    private val mBannerAdapter by lazy { HomeBannerAdapter() }
+    private val mArticleAdapter by lazy {
+        HomeArticleAdapter().apply { setDiffCallback(diffCallback = ArticleItemCallback()) }
+    }
 
-    override fun initObserver() {
-        // 首页Banner
-        viewLifecycleOwner.lifecycleScope.launch {
-            mViewModel.homeBanner.collect {
-                it.parseResult(fragment = this@HomeArticleFragment, onSuccess = {
-                    it?.getResponseData()?.let {
-                        mViewBinding.homeBanner.refreshData(it)
+    override fun initViewBinding(): FragmentHomeArticleBinding {
+        return FragmentHomeArticleBinding.inflate(layoutInflater)
+    }
+
+    override fun initToolbar(): View? {
+        return null
+    }
+
+    override fun initView() {
+        mViewBinding.apply {
+            srlRefresh.setOnRefreshListener {
+                initData(null)
+                viewLifecycleOwner.lifecycleScope.launch {
+                    delay(1_500)
+                    srlRefresh.isRefreshing = false
+                }
+            }
+            rvArticle.apply {
+                adapter = mArticleAdapter
+                setHasFixedSize(true)
+                addOnScrollListener(object : OnScrollLoadMoreListener() {
+                    override fun onLoadMore() {
+                        mViewModel.getHomeArticle(isRefresh = false)
                     }
                 })
             }
         }
     }
 
+    override fun initObserver() {
+        // 首页Banner
+        launchRepeatOnLifecycle {
+            mViewModel.homeBanner.collect {
+                it.parseResult(
+                    fragment = this@HomeArticleFragment,
+                    onSuccess = { homeBanners ->
+                        mBannerViewPager.refreshData(homeBanners)
+                        mArticleAdapter.setHeaderView(mBannerViewPager)
+                    })
+            }
+        }
+        // 首页置顶文章
+        launchRepeatOnLifecycle {
+            mViewModel.homeTopArticle.collect {
+                if (it?.isSuccess() == true) {
+                    it.getResponseData()?.let {
+                        if (it.isNotNullOrEmpty()) {
+                            val data = mArticleAdapter.data
+                            data.addAll(0, it)
+                            mArticleAdapter.setDiffNewData(data)
+                        }
+                    }
+                }
+            }
+        }
+        // 首页文章列表
+        launchRepeatOnLifecycle {
+            mViewModel.homeArticle.collect {
+                it.parseResult(
+                    fragment = this@HomeArticleFragment,
+                    onSuccess = { pageBean ->
+                        pageBean?.let {
+                            if (it.isEmpty()) {
+                                showEmpty(null)
+                            } else {
+                                showContent()
+                                if (it.isFirstPage()) {
+                                    mArticleAdapter.setDiffNewData(it.datas)
+                                } else {
+                                    it.datas?.let {
+                                        val data = mArticleAdapter.data
+                                        val oldSize = data.size
+                                        data.addAll(it)
+                                        mArticleAdapter.setDiffNewData(data)
+                                        mViewBinding.rvArticle.scrollToPosition(oldSize)
+                                    }
+                                }
+                            }
+                        }
+                    })
+            }
+        }
+    }
+
     override fun initData(savedInstanceState: Bundle?) {
-        mViewModel.getHomeBanner()
+        mViewModel.apply {
+            getHomeBanner()
+            getHomeTopArticle()
+            getHomeArticle(isRefresh = true)
+        }
     }
 }

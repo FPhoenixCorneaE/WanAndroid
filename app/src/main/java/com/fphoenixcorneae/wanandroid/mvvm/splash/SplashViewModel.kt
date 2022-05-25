@@ -28,13 +28,17 @@ class SplashViewModel : BaseViewModel() {
      * 获取每日一图
      */
     fun getDailyImage() {
-        requestNoCheck(block = {
-            apiService.getDailyImage()
-        }, success = {
-            _splashResult.value = it
-        }, error = {
-            _splashResult.value = null
-        })
+        requestNoCheck(
+            block = {
+                apiService.getDailyImage()
+            },
+            success = {
+                _splashResult.value = it
+            },
+            error = {
+                _splashResult.value = null
+            }
+        )
     }
 
     fun setSplashImg(data: String?) {

@@ -10,7 +10,7 @@ object UrlConstants {
     const val BING_IMG = "http://s.cn.bing.net"
 
     // 玩安卓
-    const val WAN_ANDROID = "https://www.wanandroid.com/"
+    const val WAN_ANDROID = "https://www.wanandroid.com"
     const val WAN_ANDROID_INTEGRAL_RULE = "https://www.wanandroid.com/blog/show/2653"
 
     /**

@@ -3,4 +3,7 @@
     <string name="search">Search</string>
     <string name="title_fragment_home_article">推荐</string>
     <string name="title_fragment_home_qa">每日一问</string>
+    <string name="top">置顶</string>
+    <string name="newest">新</string>
+    <string name="ask">问答</string>
 </resources>
