@@ -2,10 +2,9 @@ package com.fphoenixcorneae.wanandroid.mvvm.splash
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.fphoenixcorneae.common.ext.screenHeight
-import com.fphoenixcorneae.common.ext.screenWidth
 import com.fphoenixcorneae.jetpackmvvm.base.dialog.BaseDialog
 import com.fphoenixcorneae.wanandroid.R
 import com.fphoenixcorneae.wanandroid.constant.UrlConstants
@@ -22,14 +21,11 @@ class SplashDialog : BaseDialog<DialogSplashBinding>() {
 
     private val mViewModel by viewModels<SplashViewModel>()
 
-    override fun initViewBinding(): DialogSplashBinding {
-        return DialogSplashBinding.inflate(layoutInflater)
+    override fun DialogSplashBinding.initViewBinding() {
+        viewModel = mViewModel
     }
 
-    override fun initView() {
-        mViewBinding.apply {
-            viewModel = mViewModel
-        }
+    override fun DialogSplashBinding.initView() {
         viewLifecycleOwner.lifecycleScope.launch {
             delay(5_000)
             dismiss()
@@ -40,7 +36,7 @@ class SplashDialog : BaseDialog<DialogSplashBinding>() {
         mViewModel.getDailyImage()
     }
 
-    override fun initObserver() {
+    override fun DialogSplashBinding.initObserver() {
         viewLifecycleOwner.lifecycleScope.launch {
             mViewModel.splashResult.collect {
                 var bingImgUrl: String? = null
@@ -57,9 +53,9 @@ class SplashDialog : BaseDialog<DialogSplashBinding>() {
         dialog?.setCancelable(false)
     }
 
-    override fun getWidth() = screenWidth
+    override fun getWidth() = WindowManager.LayoutParams.MATCH_PARENT
 
-    override fun getHeight() = screenHeight
+    override fun getHeight() = WindowManager.LayoutParams.MATCH_PARENT
 
     override fun getWindowAnimations(): Int = R.style.DialogAnimation_Splash
 }

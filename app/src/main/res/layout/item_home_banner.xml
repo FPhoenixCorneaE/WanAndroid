@@ -14,11 +14,11 @@
         android:layout_height="match_parent">
 
         <ImageView
-            bottomLeftRadius="@{20}"
-            bottomRightRadius="@{20}"
+            bottomLeftRadius="@{20f}"
+            bottomRightRadius="@{20f}"
             imgData="@{imgData}"
-            topLeftRadius="@{20}"
-            topRightRadius="@{20}"
+            topLeftRadius="@{20f}"
+            topRightRadius="@{20f}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"

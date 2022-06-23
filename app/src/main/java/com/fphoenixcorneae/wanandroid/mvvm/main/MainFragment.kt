@@ -17,17 +17,15 @@ import com.fphoenixcorneae.wanandroid.databinding.FragmentMainBinding
  */
 class MainFragment : BaseFragment<FragmentMainBinding>() {
 
-    override fun initViewBinding(): FragmentMainBinding {
-        return FragmentMainBinding.inflate(layoutInflater)
+    override fun FragmentMainBinding.initViewBinding() {
     }
 
     override fun initToolbar(): View? {
         return null
     }
 
-    override fun initView() {
-        mViewBinding.easyNavigation
-            .coloredBackground(coloredBackground = true)
+    override fun FragmentMainBinding.initView() {
+        easyNavigation.coloredBackground(coloredBackground = true)
             .iconScale(iconActiveScale = 1.1f, iconInactiveScale = 0.9f)
             .textSize(textActiveSize = 16.dp.toFloat(), textInactiveSize = 14.dp.toFloat())
             .itemColor(getColor(resId = R.color.purple_500), getColor(R.color.purple_200))

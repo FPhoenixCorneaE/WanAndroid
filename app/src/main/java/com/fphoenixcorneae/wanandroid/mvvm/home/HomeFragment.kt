@@ -38,52 +38,49 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         )
     }
 
-    override fun initViewBinding(): FragmentHomeBinding {
-        return FragmentHomeBinding.inflate(layoutInflater)
+    override fun FragmentHomeBinding.initViewBinding() {
     }
 
     override fun initToolbar(): View? {
         return null
     }
 
-    override fun initView() {
-        mViewBinding.apply {
-            StatusBarUtil.setSmartPadding(mContext, flTopLayout)
-            vpHome.adapter = mFragmentStateAdapter
-            flMagicIndicator.apply {
-                navigator = CommonNavigator(mContext).apply {
-                    isAdjustMode = false
-                    isSkimOver = true
-                    adapter = object : CommonNavigatorAdapter() {
-                        override fun getCount(): Int = mFragmentStateAdapter.itemCount
+    override fun FragmentHomeBinding.initView() {
+        StatusBarUtil.setSmartPadding(mContext, flTopLayout)
+        vpHome.adapter = mFragmentStateAdapter
+        flMagicIndicator.apply {
+            navigator = CommonNavigator(mContext).apply {
+                isAdjustMode = false
+                isSkimOver = true
+                adapter = object : CommonNavigatorAdapter() {
+                    override fun getCount(): Int = mFragmentStateAdapter.itemCount
 
-                        override fun getTitleView(context: Context, index: Int): IPagerTitleView {
-                            return ScaleTransitionPagerTitleView(context = context).apply {
-                                minScale = 0.8f
-                                text = mFragmentStateAdapter.getPageTitle(position = index).toString()
-                                textSize = 18f
-                                normalColor = getThemeAttr(R.attr.colorPrimary)
-                                selectedColor = getThemeAttr(R.attr.colorOnPrimary)
-                                typeface = Typeface.defaultFromStyle(Typeface.BOLD)
-                                setOnClickListener { vpHome.setCurrentItem(index, true) }
-                            }
+                    override fun getTitleView(context: Context, index: Int): IPagerTitleView {
+                        return ScaleTransitionPagerTitleView(context = context).apply {
+                            minScale = 0.8f
+                            text = mFragmentStateAdapter.getPageTitle(position = index).toString()
+                            textSize = 18f
+                            normalColor = getThemeAttr(R.attr.colorPrimary)
+                            selectedColor = getThemeAttr(R.attr.colorOnPrimary)
+                            typeface = Typeface.defaultFromStyle(Typeface.BOLD)
+                            setOnClickListener { vpHome.setCurrentItem(index, true) }
                         }
+                    }
 
-                        override fun getIndicator(context: Context): IPagerIndicator {
-                            return LinePagerIndicator(context).apply {
-                                mode = LinePagerIndicator.MODE_EXACTLY
-                                lineHeight = 4.dp.toFloat()
-                                lineWidth = 40.dp.toFloat()
-                                roundRadius = 8.dp.toFloat()
-                                startInterpolator = AccelerateInterpolator()
-                                endInterpolator = DecelerateInterpolator(2.0f)
-                                setColors(getThemeAttr(themeAttrId = R.attr.colorAccent))
-                            }
+                    override fun getIndicator(context: Context): IPagerIndicator {
+                        return LinePagerIndicator(context).apply {
+                            mode = LinePagerIndicator.MODE_EXACTLY
+                            lineHeight = 4.dp.toFloat()
+                            lineWidth = 40.dp.toFloat()
+                            roundRadius = 8.dp.toFloat()
+                            startInterpolator = AccelerateInterpolator()
+                            endInterpolator = DecelerateInterpolator(2.0f)
+                            setColors(getThemeAttr(themeAttrId = R.attr.colorAccent))
                         }
                     }
                 }
-                bindViewPager2(viewPager2 = vpHome)
             }
+            bindViewPager2(viewPager2 = vpHome)
         }
     }
 

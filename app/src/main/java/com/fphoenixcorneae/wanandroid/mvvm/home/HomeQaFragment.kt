@@ -10,8 +10,7 @@ import com.fphoenixcorneae.wanandroid.databinding.FragmentHomeQaBinding
  */
 class HomeQaFragment : BaseFragment<FragmentHomeQaBinding>() {
 
-    override fun initViewBinding(): FragmentHomeQaBinding {
-        return FragmentHomeQaBinding.inflate(layoutInflater)
+    override fun FragmentHomeQaBinding.initViewBinding() {
     }
 
 
@@ -19,7 +18,7 @@ class HomeQaFragment : BaseFragment<FragmentHomeQaBinding>() {
         return null
     }
 
-    override fun initView() {
+    override fun FragmentHomeQaBinding.initView() {
 
     }
 }

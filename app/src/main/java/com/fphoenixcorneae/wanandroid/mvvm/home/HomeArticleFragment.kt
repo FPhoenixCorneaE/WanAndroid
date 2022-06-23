@@ -60,36 +60,33 @@ class HomeArticleFragment : BaseFragment<FragmentHomeArticleBinding>() {
         HomeArticleAdapter().apply { setDiffCallback(diffCallback = ArticleItemCallback()) }
     }
 
-    override fun initViewBinding(): FragmentHomeArticleBinding {
-        return FragmentHomeArticleBinding.inflate(layoutInflater)
+    override fun FragmentHomeArticleBinding.initViewBinding() {
+        articleAdapter = mArticleAdapter
     }
 
     override fun initToolbar(): View? {
         return null
     }
 
-    override fun initView() {
-        mViewBinding.apply {
-            srlRefresh.setOnRefreshListener {
-                initData(null)
-                viewLifecycleOwner.lifecycleScope.launch {
-                    delay(1_500)
-                    srlRefresh.isRefreshing = false
+    override fun FragmentHomeArticleBinding.initView() {
+        srlRefresh.setOnRefreshListener {
+            initData(null)
+            viewLifecycleOwner.lifecycleScope.launch {
+                delay(1_500)
+                srlRefresh.isRefreshing = false
+            }
+        }
+        rvArticle.apply {
+            setHasFixedSize(true)
+            addOnScrollListener(object : OnScrollLoadMoreListener() {
+                override fun onLoadMore() {
+                    mViewModel.getHomeArticle(isRefresh = false)
                 }
-            }
-            rvArticle.apply {
-                adapter = mArticleAdapter
-                setHasFixedSize(true)
-                addOnScrollListener(object : OnScrollLoadMoreListener() {
-                    override fun onLoadMore() {
-                        mViewModel.getHomeArticle(isRefresh = false)
-                    }
-                })
-            }
+            })
         }
     }
 
-    override fun initObserver() {
+    override fun FragmentHomeArticleBinding.initObserver() {
         // 首页Banner
         launchRepeatOnLifecycle {
             mViewModel.homeBanner.collect {
@@ -131,7 +128,7 @@ class HomeArticleFragment : BaseFragment<FragmentHomeArticleBinding>() {
                                         val oldSize = data.size
                                         data.addAll(it)
                                         mArticleAdapter.setDiffNewData(data)
-                                        mViewBinding.rvArticle.scrollToPosition(oldSize)
+                                        rvArticle.scrollToPosition(oldSize)
                                     }
                                 }
                             }

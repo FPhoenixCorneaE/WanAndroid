@@ -15,15 +15,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         SplashDialog()
     }
 
-    override fun initViewBinding(): ActivityMainBinding {
-        return ActivityMainBinding.inflate(layoutInflater)
+    override fun ActivityMainBinding.initViewBinding() {
     }
 
     override fun initToolbar(): View? {
         return null
     }
 
-    override fun initView() {
-        mSplashDialog.show(activity = this)
+    override fun ActivityMainBinding.initView() {
+        mSplashDialog.show(activity = mContext)
     }
 }
