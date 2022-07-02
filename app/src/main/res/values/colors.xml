@@ -10,4 +10,5 @@
     <color name="color_black_0x10000000">#10000000</color>
     <color name="color_black_0x333333">#333333</color>
     <color name="color_gray_0x999999">#999999</color>
+    <color name="color_gray_0xaaeeeeee">#aaeeeeee</color>
 </resources>

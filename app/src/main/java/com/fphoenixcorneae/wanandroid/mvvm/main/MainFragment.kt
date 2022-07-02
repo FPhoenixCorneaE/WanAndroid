@@ -1,11 +1,10 @@
 package com.fphoenixcorneae.wanandroid.mvvm.main
 
 import android.graphics.Typeface
+import android.graphics.drawable.ColorDrawable
 import android.view.View
-import com.fphoenixcorneae.common.ext.dp
-import com.fphoenixcorneae.common.ext.getColor
-import com.fphoenixcorneae.common.ext.getRandomColor
-import com.fphoenixcorneae.common.ext.navigate
+import androidx.fragment.app.viewModels
+import com.fphoenixcorneae.common.ext.*
 import com.fphoenixcorneae.jetpackmvvm.base.fragment.BaseFragment
 import com.fphoenixcorneae.navigation.NavigationItem
 import com.fphoenixcorneae.wanandroid.R
@@ -17,7 +16,10 @@ import com.fphoenixcorneae.wanandroid.databinding.FragmentMainBinding
  */
 class MainFragment : BaseFragment<FragmentMainBinding>() {
 
+    private val mViewModel by viewModels<MainViewModel>()
+
     override fun FragmentMainBinding.initViewBinding() {
+        viewModel = mViewModel
     }
 
     override fun initToolbar(): View? {
@@ -25,6 +27,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     }
 
     override fun FragmentMainBinding.initView() {
+        mViewModel.setNavigationBlurBackground(ColorDrawable(getColor(R.color.color_gray_0xaaeeeeee)))
         easyNavigation.coloredBackground(coloredBackground = true)
             .iconScale(iconActiveScale = 1.1f, iconInactiveScale = 0.9f)
             .textSize(textActiveSize = 16.dp.toFloat(), textInactiveSize = 14.dp.toFloat())
@@ -34,32 +37,33 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                 items = listOf(
                     NavigationItem(
                         title = "首页",
-                        bgColor = getRandomColor(supportAlpha = true),
+                        bgColor = getRandomColor().setColorAlpha(.1f),
                         imgRes = R.mipmap.ic_tab_main_home
                     ),
                     NavigationItem(
                         title = "项目",
-                        bgColor = getRandomColor(supportAlpha = true),
+                        bgColor = getRandomColor().setColorAlpha(.1f),
                         imgRes = R.mipmap.ic_tab_main_project
                     ),
                     NavigationItem(
                         title = "广场",
-                        bgColor = getRandomColor(supportAlpha = true),
+                        bgColor = getRandomColor().setColorAlpha(.1f),
                         imgRes = R.mipmap.ic_tab_main_square
                     ),
                     NavigationItem(
                         title = "公众号",
-                        bgColor = getRandomColor(supportAlpha = true),
+                        bgColor = getRandomColor().setColorAlpha(.1f),
                         imgRes = R.mipmap.ic_tab_main_vipcn
                     ),
                     NavigationItem(
                         title = "我的",
-                        bgColor = getRandomColor(supportAlpha = true),
+                        bgColor = getRandomColor().setColorAlpha(.1f),
                         imgRes = R.mipmap.ic_tab_main_mine
                     )
                 )
             )
             .navigationHeight(navigationHeight = 60.dp)
+            .disableShowShadow()
             .onItemClickListener { position ->
                 when (position) {
                     0 -> navigate(R.id.homeFragment)

@@ -33,7 +33,10 @@ class SplashDialog : BaseDialog<DialogSplashBinding>() {
     }
 
     override fun initData(savedInstanceState: Bundle?) {
-        mViewModel.getDailyImage()
+        viewLifecycleOwner.lifecycleScope.launch {
+            delay(1_000)
+            mViewModel.getDailyImage()
+        }
     }
 
     override fun DialogSplashBinding.initObserver() {
