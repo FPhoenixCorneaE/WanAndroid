@@ -37,27 +37,27 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                 items = listOf(
                     NavigationItem(
                         title = "首页",
-                        bgColor = getRandomColor().setColorAlpha(.1f),
+                        bgColor = getRandomColor().setColorAlpha(.4f),
                         imgRes = R.mipmap.ic_tab_main_home
                     ),
                     NavigationItem(
                         title = "项目",
-                        bgColor = getRandomColor().setColorAlpha(.1f),
+                        bgColor = getRandomColor().setColorAlpha(.4f),
                         imgRes = R.mipmap.ic_tab_main_project
                     ),
                     NavigationItem(
                         title = "广场",
-                        bgColor = getRandomColor().setColorAlpha(.1f),
+                        bgColor = getRandomColor().setColorAlpha(.4f),
                         imgRes = R.mipmap.ic_tab_main_square
                     ),
                     NavigationItem(
                         title = "公众号",
-                        bgColor = getRandomColor().setColorAlpha(.1f),
+                        bgColor = getRandomColor().setColorAlpha(.4f),
                         imgRes = R.mipmap.ic_tab_main_vipcn
                     ),
                     NavigationItem(
                         title = "我的",
-                        bgColor = getRandomColor().setColorAlpha(.1f),
+                        bgColor = getRandomColor().setColorAlpha(.4f),
                         imgRes = R.mipmap.ic_tab_main_mine
                     )
                 )
