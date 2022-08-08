@@ -6,9 +6,11 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.fphoenixcorneae.common.ext.*
 import com.fphoenixcorneae.jetpackmvvm.base.fragment.BaseFragment
+import com.fphoenixcorneae.jetpackmvvm.ext.launchRepeatOnLifecycle
 import com.fphoenixcorneae.navigation.NavigationItem
 import com.fphoenixcorneae.wanandroid.R
 import com.fphoenixcorneae.wanandroid.databinding.FragmentMainBinding
+import com.fphoenixcorneae.wanandroid.theme.appThemeViewModel
 
 /**
  * @desc：主页Fragment
@@ -31,7 +33,6 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         easyNavigation.coloredBackground(coloredBackground = true)
             .iconScale(iconActiveScale = 1.1f, iconInactiveScale = 0.9f)
             .textSize(textActiveSize = 16.dp.toFloat(), textInactiveSize = 14.dp.toFloat())
-            .itemColor(getColor(resId = R.color.purple_500), getColor(R.color.purple_200))
             .textFont(font = Typeface.defaultFromStyle(Typeface.BOLD))
             .setTabs(
                 items = listOf(
@@ -69,5 +70,15 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                     0 -> navigate(R.id.homeFragment)
                 }
             }
+    }
+
+    override fun FragmentMainBinding.initObserver() {
+        with(appThemeViewModel) {
+            launchRepeatOnLifecycle {
+                theme.collect {
+                    easyNavigation.itemColor(itemActiveColor = it.onPrimary, itemInactiveColor = it.onSurface)
+                }
+            }
+        }
     }
 }

@@ -4,6 +4,9 @@
 
     <data>
 
+        <variable
+            name="themeViewModel"
+            type="com.fphoenixcorneae.wanandroid.theme.AppThemeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,6 +18,7 @@
             android:name="com.fphoenixcorneae.jetpackmvvm.navigation.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@{themeViewModel.theme.background}"
             app:defaultNavHost="true"
             app:navGraph="@navigation/nav_graph_wan_android" />
     </androidx.constraintlayout.widget.ConstraintLayout>

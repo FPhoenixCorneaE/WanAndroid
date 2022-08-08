@@ -4,6 +4,7 @@ import android.view.View
 import com.fphoenixcorneae.jetpackmvvm.base.activity.BaseActivity
 import com.fphoenixcorneae.wanandroid.databinding.ActivityMainBinding
 import com.fphoenixcorneae.wanandroid.mvvm.splash.SplashDialog
+import com.fphoenixcorneae.wanandroid.theme.appThemeViewModel
 
 /**
  * @desc：首页
@@ -16,6 +17,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun ActivityMainBinding.initViewBinding() {
+        themeViewModel = appThemeViewModel
     }
 
     override fun initToolbar(): View? {

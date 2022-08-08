@@ -6,8 +6,11 @@ import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.fragment.app.Fragment
 
+/**
+ * 获取主题属性颜色
+ */
 @ColorInt
-fun Context.getThemeAttr(
+fun Context.getThemeAttrColor(
     @AttrRes themeAttrId: Int,
     typedValue: TypedValue = TypedValue(),
     resolveRefs: Boolean = true,
@@ -16,8 +19,11 @@ fun Context.getThemeAttr(
     typedValue.data
 }
 
+/**
+ * 获取主题属性颜色
+ */
 @ColorInt
-fun Fragment.getThemeAttr(
+fun Fragment.getThemeAttrColor(
     @AttrRes themeAttrId: Int,
     typedValue: TypedValue = TypedValue(),
     resolveRefs: Boolean = true,

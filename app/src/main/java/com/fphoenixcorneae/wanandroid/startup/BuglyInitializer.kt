@@ -23,6 +23,7 @@ class BuglyInitializer : Initializer<Unit> {
     }
 
     override fun dependencies(): MutableList<Class<out Initializer<*>>> {
+        // 自定义 Startup Initializer, 必须依赖于 CommonInitializer
         return mutableListOf(CommonInitializer::class.java)
     }
 }

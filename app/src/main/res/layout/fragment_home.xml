@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="themeViewModel"
+            type="com.fphoenixcorneae.wanandroid.theme.AppThemeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,7 +18,7 @@
             android:id="@+id/flTopLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?android:attr/statusBarColor"
+            android:background="@{themeViewModel.theme.primary}"
             app:layout_constraintTop_toTopOf="parent">
 
             <net.lucode.hackware.magicindicator.MagicIndicator
@@ -33,7 +36,7 @@
                 android:padding="6dp"
                 android:src="@drawable/ic_search"
                 android:transitionName="@string/search"
-                app:tint="?attr/colorAccent"
+                app:tint="@{themeViewModel.theme.surface}"
                 tools:ignore="ContentDescription" />
         </FrameLayout>
 

@@ -9,13 +9,15 @@ import android.view.animation.DecelerateInterpolator
 import com.fphoenixcorneae.common.ext.dp
 import com.fphoenixcorneae.common.util.statusbar.StatusBarUtil
 import com.fphoenixcorneae.jetpackmvvm.base.fragment.BaseFragment
+import com.fphoenixcorneae.jetpackmvvm.ext.launchRepeatOnLifecycle
 import com.fphoenixcorneae.wanandroid.R
 import com.fphoenixcorneae.wanandroid.databinding.FragmentHomeBinding
-import com.fphoenixcorneae.wanandroid.ext.getThemeAttr
+import com.fphoenixcorneae.wanandroid.theme.appThemeViewModel
 import com.fphoenixcorneae.wanandroid.widget.magicindicator.helper.bindViewPager2
 import com.fphoenixcorneae.wanandroid.widget.magicindicator.titles.ScaleTransitionPagerTitleView
 import com.fphoenixcorneae.widget.viewpager.FragmentPagerItems
 import com.fphoenixcorneae.widget.viewpager.FragmentStatePager2ItemAdapter
+import net.lucode.hackware.magicindicator.MagicIndicator
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator
@@ -39,6 +41,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     override fun FragmentHomeBinding.initViewBinding() {
+        themeViewModel = appThemeViewModel
     }
 
     override fun initToolbar(): View? {
@@ -49,42 +52,55 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         StatusBarUtil.setSmartPadding(mContext, flTopLayout)
         vpHome.adapter = mFragmentStateAdapter
         flMagicIndicator.apply {
-            navigator = CommonNavigator(mContext).apply {
-                isAdjustMode = false
-                isSkimOver = true
-                adapter = object : CommonNavigatorAdapter() {
-                    override fun getCount(): Int = mFragmentStateAdapter.itemCount
+            bindViewPager2(viewPager2 = vpHome)
+        }
+    }
 
-                    override fun getTitleView(context: Context, index: Int): IPagerTitleView {
-                        return ScaleTransitionPagerTitleView(context = context).apply {
-                            minScale = 0.8f
-                            text = mFragmentStateAdapter.getPageTitle(position = index).toString()
-                            textSize = 18f
-                            normalColor = getThemeAttr(R.attr.colorPrimary)
-                            selectedColor = getThemeAttr(R.attr.colorOnPrimary)
-                            typeface = Typeface.defaultFromStyle(Typeface.BOLD)
-                            setOnClickListener { vpHome.setCurrentItem(index, true) }
-                        }
-                    }
-
-                    override fun getIndicator(context: Context): IPagerIndicator {
-                        return LinePagerIndicator(context).apply {
-                            mode = LinePagerIndicator.MODE_EXACTLY
-                            lineHeight = 4.dp.toFloat()
-                            lineWidth = 40.dp.toFloat()
-                            roundRadius = 8.dp.toFloat()
-                            startInterpolator = AccelerateInterpolator()
-                            endInterpolator = DecelerateInterpolator(2.0f)
-                            setColors(getThemeAttr(themeAttrId = R.attr.colorAccent))
-                        }
-                    }
+    override fun FragmentHomeBinding.initObserver() {
+        with(appThemeViewModel) {
+            launchRepeatOnLifecycle {
+                theme.collect {
+                    flMagicIndicator.setNavigator()
                 }
             }
-            bindViewPager2(viewPager2 = vpHome)
         }
     }
 
     override fun initData(savedInstanceState: Bundle?) {
 
+    }
+
+    private fun MagicIndicator.setNavigator() {
+        navigator = CommonNavigator(mContext).apply {
+            isAdjustMode = false
+            isSkimOver = true
+            adapter = object : CommonNavigatorAdapter() {
+                override fun getCount(): Int = mFragmentStateAdapter.itemCount
+
+                override fun getTitleView(context: Context, index: Int): IPagerTitleView {
+                    return ScaleTransitionPagerTitleView(context = mContext).apply {
+                        minScale = 0.8f
+                        textSize = 18f
+                        typeface = Typeface.defaultFromStyle(Typeface.BOLD)
+                        text = mFragmentStateAdapter.getPageTitle(position = index).toString()
+                        normalColor = appThemeViewModel.theme.value.surface
+                        selectedColor = appThemeViewModel.theme.value.secondary
+                        setOnClickListener { mViewBinding.vpHome.setCurrentItem(index, true) }
+                    }
+                }
+
+                override fun getIndicator(context: Context): IPagerIndicator {
+                    return LinePagerIndicator(mContext).apply {
+                        mode = LinePagerIndicator.MODE_EXACTLY
+                        lineHeight = 4.dp.toFloat()
+                        lineWidth = 40.dp.toFloat()
+                        roundRadius = 8.dp.toFloat()
+                        startInterpolator = AccelerateInterpolator()
+                        endInterpolator = DecelerateInterpolator(2.0f)
+                        setColors(appThemeViewModel.theme.value.surface)
+                    }
+                }
+            }
+        }
     }
 }

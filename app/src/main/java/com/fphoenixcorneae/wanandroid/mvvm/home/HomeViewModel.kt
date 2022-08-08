@@ -82,6 +82,13 @@ class HomeViewModel : BaseViewModel() {
     }
 
     /**
+     * 加载更多文章
+     */
+    fun loadMoreHomeArticle() {
+        getHomeArticle(isRefresh = false)
+    }
+
+    /**
      * 首页问答列表
      */
     fun getHomeQa(isRefresh: Boolean) {

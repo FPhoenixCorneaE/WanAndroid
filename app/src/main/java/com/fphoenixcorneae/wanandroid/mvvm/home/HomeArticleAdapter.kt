@@ -5,6 +5,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.fphoenixcorneae.wanandroid.R
 import com.fphoenixcorneae.wanandroid.databinding.ItemHomeArticleBinding
+import com.fphoenixcorneae.wanandroid.theme.appThemeViewModel
 
 /**
  * @desc：HomeArticleAdapter
@@ -25,6 +26,7 @@ class HomeArticleAdapter :
     override fun convert(holder: BaseViewHolder, item: ArticleBean) {
         // 获取 Binding
         DataBindingUtil.getBinding<ItemHomeArticleBinding>(holder.itemView)?.apply {
+            themeViewModel = appThemeViewModel
             // 设置数据
             article = item
             executePendingBindings()
