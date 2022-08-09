@@ -4,7 +4,7 @@ import com.fphoenixcorneae.jetpackmvvm.base.viewmodel.BaseViewModel
 import com.fphoenixcorneae.jetpackmvvm.ext.requestNoCheck
 import com.fphoenixcorneae.wanandroid.api.apiService
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 /**
  * @desc：SplashViewModel
@@ -13,16 +13,13 @@ import kotlinx.coroutines.flow.StateFlow
 class SplashViewModel : BaseViewModel() {
 
     private val _splashResult = MutableStateFlow<SplashBean?>(null)
-    val splashResult: StateFlow<SplashBean?>
-        get() = _splashResult
+    val splashResult = _splashResult.asStateFlow()
 
     private val _splashImg = MutableStateFlow<String?>(null)
-    val splashImg: StateFlow<String?>
-        get() = _splashImg
+    val splashImg = _splashImg.asStateFlow()
 
     private val _logoVisible = MutableStateFlow(true)
-    val logoVisible: StateFlow<Boolean>
-        get() = _logoVisible
+    val logoVisible = _logoVisible.asStateFlow()
 
     /**
      * 获取每日一图
