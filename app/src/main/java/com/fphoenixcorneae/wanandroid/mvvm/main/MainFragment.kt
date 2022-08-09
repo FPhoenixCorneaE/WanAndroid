@@ -10,6 +10,7 @@ import com.fphoenixcorneae.jetpackmvvm.ext.launchRepeatOnLifecycle
 import com.fphoenixcorneae.navigation.NavigationItem
 import com.fphoenixcorneae.wanandroid.R
 import com.fphoenixcorneae.wanandroid.databinding.FragmentMainBinding
+import com.fphoenixcorneae.wanandroid.theme.Theme
 import com.fphoenixcorneae.wanandroid.theme.appThemeViewModel
 
 /**
@@ -68,6 +69,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             .onItemClickListener { position ->
                 when (position) {
                     0 -> navigate(R.id.homeFragment)
+                    4 -> appThemeViewModel.switchTheme(Theme.DarkBlue)
                 }
             }
     }
@@ -77,6 +79,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             launchRepeatOnLifecycle {
                 theme.collect {
                     easyNavigation.itemColor(itemActiveColor = it.onPrimary, itemInactiveColor = it.onSurface)
+                        .refreshLayout(100)
                 }
             }
         }
