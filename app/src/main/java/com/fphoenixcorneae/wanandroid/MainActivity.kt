@@ -27,4 +27,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun ActivityMainBinding.initView() {
         mSplashDialog.show(activity = mContext)
     }
+
+    override fun onBackPressed() {
+        finish()
+    }
 }
