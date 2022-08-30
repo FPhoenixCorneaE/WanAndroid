@@ -52,6 +52,9 @@
             <meta-data
                 android:name="com.fphoenixcorneae.wanandroid.startup.BuglyInitializer"
                 android:value="androidx.startup" />
+            <meta-data
+                android:name="com.fphoenixcorneae.wanandroid.startup.RetrofitUrlManagerInitializer"
+                android:value="androidx.startup" />
         </provider>
     </application>
 </manifest>
