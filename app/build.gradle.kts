@@ -2,6 +2,7 @@ plugins {
     id(PluginId.application)
     id(PluginId.kotlin)
     id(PluginId.kotlinParcelize)
+    id(PluginId.kotlinKapt)
     id(PluginId.navigation)
 }
 
