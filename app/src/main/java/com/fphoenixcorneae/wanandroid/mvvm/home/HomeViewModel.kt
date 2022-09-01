@@ -16,11 +16,11 @@ import kotlinx.coroutines.flow.asStateFlow
 class HomeViewModel : BaseViewModel() {
 
     /** 首页Banner */
-    private val _homeBanner = MutableStateFlow<Result<MutableList<HomeBannerBean>>?>(null)
+    private val _homeBanner = MutableStateFlow<MutableList<HomeBannerBean>?>(null)
     val homeBanner = _homeBanner.asStateFlow()
 
     /** 首页置顶文章 */
-    private val _homeTopArticle = MutableStateFlow<ApiResponse<MutableList<ArticleBean>>?>(null)
+    private val _homeTopArticle = MutableStateFlow<MutableList<ArticleBean>?>(null)
     val homeTopArticle = _homeTopArticle.asStateFlow()
 
     /** 首页文章列表 */
@@ -45,7 +45,9 @@ class HomeViewModel : BaseViewModel() {
             block = {
                 apiService.getHomeBanner()
             },
-            result = _homeBanner
+            success = {
+                _homeBanner.value = it
+            }
         )
     }
 
@@ -53,7 +55,7 @@ class HomeViewModel : BaseViewModel() {
      * 获取首页置顶文章
      */
     fun getHomeTopArticle() {
-        requestNoCheck(
+        request(
             block = {
                 apiService.getHomeTopArticle()
             },
