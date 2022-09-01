@@ -4,6 +4,7 @@ import com.fphoenixcorneae.wanandroid.constant.UrlConstants
 import com.fphoenixcorneae.wanandroid.mvvm.home.ArticleBean
 import com.fphoenixcorneae.wanandroid.mvvm.home.HomeBannerBean
 import com.fphoenixcorneae.wanandroid.mvvm.home.PageBean
+import com.fphoenixcorneae.wanandroid.mvvm.project.ClassifyBean
 import com.fphoenixcorneae.wanandroid.mvvm.splash.SplashBean
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager
 import retrofit2.http.GET
@@ -43,7 +44,7 @@ interface ApiService {
      */
     @GET("/article/list/{page}/json")
     suspend fun getHomeArticle(
-        @Path("page") page: Int
+        @Path("page") page: Int,
     ): ApiResponse<PageBean<ArticleBean>>
 
     /**
@@ -52,6 +53,21 @@ interface ApiService {
     @GET("/article/list/{page}/json")
     suspend fun getHomeQa(
         @Path("page") page: Int,
-        @Query("cid") cid: Int
+        @Query("cid") cid: Int,
     ): ApiResponse<PageBean<ArticleBean>>
+
+    /**
+     * 项目分类
+     */
+    @GET("/project/tree/json")
+    suspend fun getProjectClassify(): ApiResponse<MutableList<ClassifyBean>>
+
+    /**
+     * 根据分类id获取项目数据
+     */
+    @GET("/project/list/{page}/json")
+    suspend fun getProjectDataByClassifyId(
+        @Path("page") page: Int,
+        @Query("cid") cid: Int,
+    ): ApiResponse<PageBean<MutableList<ArticleBean>>>
 }

@@ -3,10 +3,11 @@ package com.fphoenixcorneae.wanandroid.mvvm.main
 import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.fphoenixcorneae.common.ext.*
 import com.fphoenixcorneae.jetpackmvvm.base.fragment.BaseFragment
-import com.fphoenixcorneae.jetpackmvvm.ext.launchRepeatOnLifecycle
+import com.fphoenixcorneae.jetpackmvvm.ext.collectWithLifecycle
 import com.fphoenixcorneae.navigation.NavigationItem
 import com.fphoenixcorneae.wanandroid.R
 import com.fphoenixcorneae.wanandroid.databinding.FragmentMainBinding
@@ -68,7 +69,8 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             .disableShowShadow()
             .onItemClickListener { position ->
                 when (position) {
-                    0 -> navigate(R.id.fragmentHome)
+                    0 -> fragmentNavMain.getFragment<Fragment>().navigate(R.id.fragmentHome)
+                    1 -> fragmentNavMain.getFragment<Fragment>().navigate(R.id.fragmentProject)
                     4 -> appThemeViewModel.switchTheme(Theme.DarkBlue)
                 }
             }
@@ -76,11 +78,9 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     override fun FragmentMainBinding.initObserver() {
         with(appThemeViewModel) {
-            launchRepeatOnLifecycle {
-                theme.collect {
-                    easyNavigation.itemColor(itemActiveColor = it.onPrimary, itemInactiveColor = it.onSurface)
-                        .refreshLayout(100)
-                }
+            theme.collectWithLifecycle(this@MainFragment) {
+                easyNavigation.itemColor(itemActiveColor = it.onPrimary, itemInactiveColor = it.onSurface)
+                    .refreshLayout(100)
             }
         }
     }
