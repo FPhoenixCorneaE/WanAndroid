@@ -53,7 +53,7 @@ object Deps {
      * 性能优化工具
      */
     object LeakCanary {
-        private const val android = "com.squareup.leakcanary:leakcanary-android:2.5"
+        private const val android = "com.squareup.leakcanary:leakcanary-android:2.9.1"
 
         fun dependencies() = listOf(android)
     }
