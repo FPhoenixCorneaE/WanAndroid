@@ -2,6 +2,7 @@ package com.fphoenixcorneae.wanandroid.mvvm.home
 
 import android.os.Parcelable
 import androidx.annotation.Keep
+import com.fphoenixcorneae.common.ext.toHtml
 import com.fphoenixcorneae.wanandroid.R
 import kotlinx.parcelize.Parcelize
 
@@ -31,12 +32,12 @@ data class ArticleBean(
     var superChapterId: Int,
     var superChapterName: String?,
     var shareUser: String?,
-    var tags: List<TagsBean>?,
+    var tags: List<TagsBean?>?,
     var title: String?,
-    var type: Int,
-    var userId: Int,
-    var visible: Int,
-    var zan: Int
+    var type: Int?,
+    var userId: Int?,
+    var visible: Int?,
+    var zan: Int?,
 ) : Parcelable {
 
     /**
@@ -46,7 +47,7 @@ data class ArticleBean(
     @Parcelize
     data class TagsBean(
         var name: String?,
-        var url: String?
+        var url: String?,
     ) : Parcelable
 
     fun getIcon(link: String?) = link?.run {
@@ -59,4 +60,8 @@ data class ArticleBean(
             else -> R.mipmap.ic_logo_other
         }
     }
+
+    fun titleToHtml() = title?.toHtml()
+
+    fun descToHtml() = desc?.toHtml()
 }

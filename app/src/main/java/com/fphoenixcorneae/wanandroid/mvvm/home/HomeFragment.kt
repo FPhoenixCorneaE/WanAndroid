@@ -13,7 +13,6 @@ import com.fphoenixcorneae.jetpackmvvm.ext.launchRepeatOnLifecycle
 import com.fphoenixcorneae.wanandroid.R
 import com.fphoenixcorneae.wanandroid.databinding.FragmentHomeBinding
 import com.fphoenixcorneae.wanandroid.theme.appThemeViewModel
-import com.fphoenixcorneae.wanandroid.widget.magicindicator.helper.bindViewPager2
 import com.fphoenixcorneae.wanandroid.widget.magicindicator.titles.ScaleTransitionPagerTitleView
 import com.fphoenixcorneae.widget.viewpager.FragmentPagerItems
 import com.fphoenixcorneae.widget.viewpager.FragmentStatePager2ItemAdapter
@@ -42,6 +41,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun FragmentHomeBinding.initViewBinding() {
         themeViewModel = appThemeViewModel
+        homeAdapter = mFragmentStateAdapter
     }
 
     override fun initToolbar(): View? {
@@ -50,10 +50,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun FragmentHomeBinding.initView() {
         StatusBarUtil.setSmartPadding(mContext, flTopLayout)
-        vpHome.adapter = mFragmentStateAdapter
-        flMagicIndicator.apply {
-            bindViewPager2(viewPager2 = vpHome)
-        }
     }
 
     override fun FragmentHomeBinding.initObserver() {

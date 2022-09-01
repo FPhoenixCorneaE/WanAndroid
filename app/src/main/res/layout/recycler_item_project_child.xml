@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="onClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="article"
+            type="com.fphoenixcorneae.wanandroid.mvvm.home.ArticleBean" />
+
+        <variable
+            name="envelopePlaceholder"
+            type="android.graphics.drawable.Drawable" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cvItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?selectableItemBackground">
+
+            <TextView
+                android:id="@+id/tvAuthor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="?selectableItemBackground"
+                android:text="@{article.author ?? article.shareUser}"
+                android:textColor="@color/color_gray_666666"
+                android:textSize="13sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@tools:sample/first_names" />
+
+            <TextView
+                android:id="@+id/tvNiceDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="@{article.niceDate}"
+                android:textColor="@color/color_gray_999999"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvAuthor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvAuthor"
+                tools:text="@tools:sample/date/mmddyy" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/thin_gold"
+                android:maxLines="2"
+                android:text="@{article.titleToHtml()}"
+                android:textColor="@color/color_black_333333"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvAuthor"
+                tools:text="@tools:sample/lorem/random" />
+
+            <com.fphoenixcorneae.wanandroid.widget.MixtureTextView
+                android:id="@+id/tvDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@{article.descToHtml()}"
+                android:textColor="@color/color_gray_aaaaaa"
+                android:textSize="13sp"
+                app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+                tools:text="@tools:sample/lorem/random">
+
+                <ImageView
+                    android:id="@+id/ivEnvelope"
+                    imgData="@{article.envelopePic}"
+                    placeholderDrawable="@{envelopePlaceholder}"
+                    roundedCornerRadius="@{4f}"
+                    android:layout_width="60dp"
+                    android:layout_height="80dp"
+                    android:paddingEnd="8dp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="ContentDescription,RtlSymmetry"
+                    tools:src="@tools:sample/backgrounds/scenic" />
+            </com.fphoenixcorneae.wanandroid.widget.MixtureTextView>
+
+            <TextView
+                android:id="@+id/tvSuperChapterName"
+                drawable_radius="@{4f}"
+                drawable_solidColor="@{@color/color_black_10000000}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:paddingStart="4dp"
+                android:paddingTop="2dp"
+                android:paddingEnd="4dp"
+                android:paddingBottom="2dp"
+                android:text="@{article.superChapterName}"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDesc"
+                tools:ignore="MissingPrefix"
+                tools:text="@tools:sample/first_names" />
+
+            <TextView
+                android:id="@+id/tvChapterName"
+                drawable_radius="@{4f}"
+                drawable_solidColor="@{@color/color_black_10000000}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:paddingStart="4dp"
+                android:paddingTop="2dp"
+                android:paddingEnd="4dp"
+                android:paddingBottom="2dp"
+                android:text="@{article.chapterName}"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvSuperChapterName"
+                app:layout_constraintStart_toEndOf="@+id/tvSuperChapterName"
+                app:layout_constraintTop_toTopOf="@+id/tvSuperChapterName"
+                tools:ignore="MissingPrefix"
+                tools:text="@tools:sample/last_names" />
+
+            <ImageView
+                onSingleClick="@{onClick}"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_margin="16dp"
+                android:src="@{article.collect ? @android:drawable/star_on : @android:drawable/star_off}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="ContentDescription"
+                tools:src="@android:drawable/star_off" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

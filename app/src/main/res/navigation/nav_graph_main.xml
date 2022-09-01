@@ -3,9 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_main"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/fragmentHome">
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/fragmentHome"
         android:name="com.fphoenixcorneae.wanandroid.mvvm.home.HomeFragment"
         tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/fragmentProject"
+        android:name="com.fphoenixcorneae.wanandroid.mvvm.project.ProjectFragment"
+        tools:layout="@layout/fragment_project" />
 </navigation>

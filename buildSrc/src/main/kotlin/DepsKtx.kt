@@ -1,4 +1,7 @@
+import org.gradle.api.artifacts.ModuleDependency
 import org.gradle.api.artifacts.dsl.DependencyHandler
+import org.gradle.kotlin.dsl.delegateClosureOf
+import org.gradle.kotlin.dsl.exclude
 
 /**
  * 添加 FPhoenixCorneaE 依赖库
@@ -41,7 +44,13 @@ fun DependencyHandler.addLeakCanaryDependencies() {
  */
 fun DependencyHandler.addThirdPartyDependencies() {
     Deps.ThirdParty.dependencies().forEach {
-        add("implementation", it)
+        if (it.contains("BaseRecyclerViewAdapterHelper")) {
+            add("implementation", it, delegateClosureOf<ModuleDependency> {
+                exclude(group = "androidx.recyclerview")
+            })
+        } else {
+            add("implementation", it)
+        }
     }
 }
 

@@ -17,7 +17,7 @@
         tools:ignore="AllowBackup">
 
         <activity
-            android:name=".MainActivity"
+            android:name=".mvvm.MainActivity"
             android:configChanges="orientation|keyboardHidden|screenSize|screenLayout|uiMode"
             android:exported="true"
             android:launchMode="singleTop"
@@ -35,7 +35,7 @@
         <activity-alias
             android:name="SplashActivity"
             android:exported="true"
-            android:targetActivity="com.fphoenixcorneae.wanandroid.MainActivity"
+            android:targetActivity="com.fphoenixcorneae.wanandroid.mvvm.MainActivity"
             tools:replace="android:targetActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

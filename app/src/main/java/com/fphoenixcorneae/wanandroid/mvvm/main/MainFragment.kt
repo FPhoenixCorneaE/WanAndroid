@@ -30,7 +30,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     }
 
     override fun FragmentMainBinding.initView() {
-        mViewModel.setNavigationBlurBackground(ColorDrawable(getColor(R.color.color_gray_0xaaeeeeee)))
+        mViewModel.setNavigationBlurBackground(ColorDrawable(getColor(R.color.color_gray_aaeeeeee)))
         easyNavigation.coloredBackground(coloredBackground = true)
             .iconScale(iconActiveScale = 1.1f, iconInactiveScale = 0.9f)
             .textSize(textActiveSize = 16.dp.toFloat(), textInactiveSize = 14.dp.toFloat())
@@ -68,7 +68,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             .disableShowShadow()
             .onItemClickListener { position ->
                 when (position) {
-                    0 -> navigate(R.id.homeFragment)
+                    0 -> navigate(R.id.fragmentHome)
                     4 -> appThemeViewModel.switchTheme(Theme.DarkBlue)
                 }
             }

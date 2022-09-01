@@ -8,6 +8,10 @@
         <variable
             name="themeViewModel"
             type="com.fphoenixcorneae.wanandroid.theme.AppThemeViewModel" />
+
+        <variable
+            name="homeAdapter"
+            type="androidx.viewpager2.adapter.FragmentStateAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,6 +27,7 @@
 
             <net.lucode.hackware.magicindicator.MagicIndicator
                 android:id="@+id/flMagicIndicator"
+                bindViewPager2="@{vpHome}"
                 android:layout_width="wrap_content"
                 android:layout_height="?android:attr/actionBarSize"
                 android:layout_gravity="center" />
@@ -42,6 +47,7 @@
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vpHome"
+            adapter="@{homeAdapter}"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"

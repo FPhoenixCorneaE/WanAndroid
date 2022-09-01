@@ -7,8 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="color_black_0x10000000">#10000000</color>
-    <color name="color_black_0x333333">#333333</color>
-    <color name="color_gray_0x999999">#999999</color>
-    <color name="color_gray_0xaaeeeeee">#aaeeeeee</color>
+    <color name="color_black_10000000">#10000000</color>
+    <color name="color_black_333333">#333333</color>
+    <color name="color_gray_666666">#666666</color>
+    <color name="color_gray_999999">#999999</color>
+    <color name="color_gray_aaeeeeee">#AAEEEEEE</color>
+    <color name="color_gray_aaaaaa">#AAAAAA</color>
 </resources>

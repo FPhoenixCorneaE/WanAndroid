@@ -4,7 +4,7 @@ object Deps {
      * FPhoenixCorneaE
      */
     object FPhoenixCorneaE {
-        private const val jetpackMvvm = "com.github.FPhoenixCorneaE:JetpackMvvm:2.0.4"
+        private const val jetpackMvvm = "com.github.FPhoenixCorneaE:JetpackMvvm:2.0.5"
         private const val easyNavigation = "com.github.FPhoenixCorneaE.EasyNavigation:easyNavigation:1.1.0"
         private const val viewPagerAdapter = "com.github.FPhoenixCorneaE:ViewPagerAdapter:1.0.0"
 
@@ -62,13 +62,16 @@ object Deps {
      * 第三方库
      */
     object ThirdParty {
-        // https://github.com/zhpanvip/BannerViewPager
-        private const val banner = "com.github.zhpanvip:bannerviewpager:3.5.5"
+        /** https://github.com/zhpanvip/BannerViewPager */
+        private const val bannerViewPager = "com.github.zhpanvip:bannerviewpager:3.5.5"
 
-        // https://github.com/hackware1993/MagicIndicator
+        /** https://github.com/hackware1993/MagicIndicator */
         private const val magicIndicator = "com.github.hackware1993:MagicIndicator:1.7.0"
 
-        fun dependencies() = listOf(banner, magicIndicator)
+        /** https://github.com/CymChad/BaseRecyclerViewAdapterHelper */
+        private const val baseRecyclerViewAdapterHelper = "io.github.cymchad:BaseRecyclerViewAdapterHelper:4.0.0-beta01"
+
+        fun dependencies() = listOf(bannerViewPager, magicIndicator, baseRecyclerViewAdapterHelper)
     }
 
     /**
