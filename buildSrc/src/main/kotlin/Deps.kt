@@ -4,7 +4,7 @@ object Deps {
      * FPhoenixCorneaE
      */
     object FPhoenixCorneaE {
-        private const val jetpackMvvm = "com.github.FPhoenixCorneaE:JetpackMvvm:2.0.5"
+        private const val jetpackMvvm = "com.github.FPhoenixCorneaE:JetpackMvvm:2.0.6"
         private const val easyNavigation = "com.github.FPhoenixCorneaE.EasyNavigation:easyNavigation:1.1.0"
         private const val viewPagerAdapter = "com.github.FPhoenixCorneaE:ViewPagerAdapter:1.0.0"
 
