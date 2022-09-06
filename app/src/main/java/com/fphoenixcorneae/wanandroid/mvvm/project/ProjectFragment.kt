@@ -49,14 +49,20 @@ class ProjectFragment : BaseFragment<FragmentProjectBinding>() {
             projectClassify.collectWithLifecycle(this@ProjectFragment) {
                 it?.let {
                     mFragmentPagerCreator.create().clear()
-                    listOf(ClassifyBean(name = getString(R.string.project_newest)), *it.toTypedArray()).forEach {
-                        mFragmentPagerCreator.add(it.name.toHtml(), ProjectChildFragment::class.java, Bundle().apply {
-                            putInt(Constants.Key.CLASSIFY_ID, it.id)
-                            putBoolean(Constants.Key.NEWEST_PROJECT, it.id == 0)
-                        })
+                    listOf(
+                        ClassifyBean(name = getString(R.string.project_newest)),
+                        *it.toTypedArray()
+                    ).forEach {
+                        mFragmentPagerCreator.add(
+                            it.name.toHtml(),
+                            ProjectChildFragment::class.java,
+                            Bundle().apply {
+                                putInt(Constants.Key.CLASSIFY_ID, it.id)
+                                putBoolean(Constants.Key.NEWEST_PROJECT, it.id == 0)
+                            })
                     }
                     flMagicIndicator.navigator?.notifyDataSetChanged()
-                    vpProject.adapter?.notifyDataSetChanged()
+                    vpProject.adapter?.notifyItemRangeChanged(0, mFragmentStateAdapter.itemCount)
                     vpProject.offscreenPageLimit = mFragmentStateAdapter.itemCount
                 }
             }
