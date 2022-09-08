@@ -19,6 +19,8 @@ android {
         versionCode = DefaultConfig.versionCode
         versionName = DefaultConfig.versionName
         multiDexEnabled = true
+        // 以Proguard的方式手动加入要放到主Dex中的类，必须设置isMinifyEnabled为true时才会起作用
+        multiDexKeepProguard = file("multiDexKeep.pro")
         testInstrumentationRunner = DefaultConfig.testInstrumentationRunner
     }
 
@@ -32,7 +34,7 @@ android {
         }
         getByName(BuildType.debug) {
             // 执行proguard混淆
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             // 移除无用的resource文件
             isShrinkResources = false
             proguardFiles(getDefaultProguardFile(BuildType.proguardAndroidOptimize), BuildType.proguardRules)

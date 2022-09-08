@@ -12,10 +12,6 @@ import com.fphoenixcorneae.wanandroid.theme.appThemeViewModel
  */
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
-    private val mSplashDialog by lazy {
-        SplashDialog()
-    }
-
     override fun ActivityMainBinding.initViewBinding() {
         themeViewModel = appThemeViewModel
     }
@@ -25,7 +21,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun ActivityMainBinding.initView() {
-        mSplashDialog.show(activity = mContext)
+        SplashDialog().show(activity = mContext)
     }
 
     override fun onBackPressed() {
