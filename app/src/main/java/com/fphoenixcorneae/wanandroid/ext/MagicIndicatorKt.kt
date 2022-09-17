@@ -5,7 +5,7 @@ import android.graphics.Typeface
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import androidx.viewpager2.widget.ViewPager2
-import com.fphoenixcorneae.common.ext.dp
+import com.fphoenixcorneae.common.ext.Dp
 import com.fphoenixcorneae.wanandroid.theme.appThemeViewModel
 import com.fphoenixcorneae.wanandroid.widget.magicindicator.helper.bindViewPager2
 import com.fphoenixcorneae.wanandroid.widget.magicindicator.titles.ScaleTransitionPagerTitleView
@@ -50,9 +50,9 @@ fun MagicIndicator.setNavigator(
             override fun getIndicator(context: Context): IPagerIndicator {
                 return LinePagerIndicator(context).apply {
                     mode = LinePagerIndicator.MODE_EXACTLY
-                    lineHeight = 4.dp.toFloat()
-                    lineWidth = 40.dp.toFloat()
-                    roundRadius = 8.dp.toFloat()
+                    lineHeight = 4.Dp
+                    lineWidth = 40.Dp
+                    roundRadius = 8.Dp
                     startInterpolator = AccelerateInterpolator()
                     endInterpolator = DecelerateInterpolator(2.0f)
                     setColors(appThemeViewModel.theme.value.surface)

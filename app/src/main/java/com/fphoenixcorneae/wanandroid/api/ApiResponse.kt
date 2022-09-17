@@ -1,11 +1,13 @@
 package com.fphoenixcorneae.wanandroid.api
 
+import androidx.annotation.Keep
 import com.fphoenixcorneae.coretrofit.model.BaseResponse
 
 /**
  * @desc：封装返回的数据
  * @date：2022/05/20 14:00
  */
+@Keep
 data class ApiResponse<T>(
     private val errorCode: Int,
     private val errorMsg: String?,

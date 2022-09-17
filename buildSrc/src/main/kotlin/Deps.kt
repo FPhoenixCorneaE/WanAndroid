@@ -43,10 +43,9 @@ object Deps {
      * 腾讯Bugly异常上报
      */
     object Bugly {
-        private const val crashReport = "com.tencent.bugly:crashreport:3.4.4"
-        private const val nativeCrashReport = "com.tencent.bugly:nativecrashreport:3.9.2"
+        private const val crashReport = "com.tencent.bugly:crashreport:4.1.9"
 
-        fun dependencies() = listOf(crashReport, nativeCrashReport)
+        fun dependencies() = listOf(crashReport)
     }
 
     /**

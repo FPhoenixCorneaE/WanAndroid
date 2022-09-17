@@ -4,10 +4,7 @@ import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
 import android.view.View
 import androidx.fragment.app.viewModels
-import com.fphoenixcorneae.common.ext.dp
-import com.fphoenixcorneae.common.ext.getColor
-import com.fphoenixcorneae.common.ext.getRandomColor
-import com.fphoenixcorneae.common.ext.setColorAlpha
+import com.fphoenixcorneae.common.ext.*
 import com.fphoenixcorneae.jetpackmvvm.base.fragment.BaseFragment
 import com.fphoenixcorneae.jetpackmvvm.ext.collectWithLifecycle
 import com.fphoenixcorneae.navigation.NavigationItem
@@ -50,7 +47,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         mViewModel.setNavigationBlurBackground(ColorDrawable(getColor(R.color.color_gray_aaeeeeee)))
         easyNavigation.coloredBackground(coloredBackground = true)
             .iconScale(iconActiveScale = 1.1f, iconInactiveScale = 0.9f)
-            .textSize(textActiveSize = 16.dp.toFloat(), textInactiveSize = 14.dp.toFloat())
+            .textSize(textActiveSize = 16.Dp, textInactiveSize = 14.Dp)
             .textFont(font = Typeface.defaultFromStyle(Typeface.BOLD))
             .setTabs(
                 items = listOf(
