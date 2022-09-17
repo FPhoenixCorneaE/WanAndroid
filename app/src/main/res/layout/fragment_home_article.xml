@@ -23,6 +23,7 @@
             android:id="@+id/rvArticle"
             adapter="@{articleAdapter}"
             hasFixedSize="@{true}"
+            itemViewCacheSize="@{200}"
             onLoadMore="@{() -> viewModel.loadMoreHomeArticle()}"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

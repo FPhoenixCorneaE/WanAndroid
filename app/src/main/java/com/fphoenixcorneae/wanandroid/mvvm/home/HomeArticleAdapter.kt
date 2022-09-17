@@ -15,6 +15,10 @@ import com.fphoenixcorneae.wanandroid.theme.appThemeViewModel
 class HomeArticleAdapter :
     BaseDifferAdapter<ArticleBean, DataBindingHolder<RecyclerItemHomeArticleBinding>>(ArticleItemCallback()) {
 
+    init {
+        setItemAnimation(AnimationType.ScaleIn)
+    }
+
     override fun onCreateViewHolder(
         context: Context,
         parent: ViewGroup,
