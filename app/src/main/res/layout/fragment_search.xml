@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="themeViewModel"
+            type="com.fphoenixcorneae.wanandroid.theme.AppThemeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.fphoenixcorneae.toolbar.CommonToolbar
+            android:id="@+id/mTbTitleBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:centerSearchBgRes="@drawable/shape_bg_toolbar_search"
+            app:centerSearchHintText="@string/search_hint_text"
+            app:centerSearchHintTextColor="@{themeViewModel.theme.subtitle1}"
+            app:centerSearchLeftIconTint="@{themeViewModel.theme.surface}"
+            app:centerSearchRightDeleteTint="@{themeViewModel.theme.surface}"
+            app:centerSearchRightVoiceTint="@{themeViewModel.theme.surface}"
+            app:centerSearchTextColor="@{themeViewModel.theme.surface}"
+            app:centerSearchTextSize="16sp"
+            app:centerType="searchView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:leftType="none"
+            app:rightText="@string/cancel"
+            app:rightTextColor="@{themeViewModel.theme.surface}"
+            app:rightTextSize="16sp"
+            app:rightType="textView"
+            app:statusBarColor="@{themeViewModel.theme.primary}"
+            app:toolbarColor="@{themeViewModel.theme.primary}"
+            app:toolbarHeight="?android:attr/actionBarSize" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

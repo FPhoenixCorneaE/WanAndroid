@@ -8,6 +8,10 @@
         <variable
             name="themeViewModel"
             type="com.fphoenixcorneae.wanandroid.theme.AppThemeViewModel" />
+
+        <variable
+            name="onClick"
+            type="android.view.View.OnClickListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,6 +33,7 @@
 
             <ImageView
                 android:id="@+id/ivSearch"
+                onSingleClick="@{onClick}"
                 android:layout_width="36dp"
                 android:layout_height="36dp"
                 android:layout_gravity="end|center_vertical"

@@ -8,4 +8,8 @@
         android:id="@+id/fragmentMain"
         android:name="com.fphoenixcorneae.wanandroid.mvvm.main.MainFragment"
         tools:layout="@layout/fragment_main" />
+    <fragment
+        android:id="@+id/fragmentSearch"
+        android:name="com.fphoenixcorneae.wanandroid.mvvm.search.SearchFragment"
+        tools:layout="@layout/fragment_search" />
 </navigation>

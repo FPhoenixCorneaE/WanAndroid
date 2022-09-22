@@ -7,6 +7,7 @@ import com.fphoenixcorneae.jetpackmvvm.base.fragment.BaseFragment
 import com.fphoenixcorneae.jetpackmvvm.ext.collectWithLifecycle
 import com.fphoenixcorneae.wanandroid.R
 import com.fphoenixcorneae.wanandroid.databinding.FragmentHomeBinding
+import com.fphoenixcorneae.wanandroid.ext.eventViewModel
 import com.fphoenixcorneae.wanandroid.ext.setNavigator
 import com.fphoenixcorneae.wanandroid.theme.appThemeViewModel
 import com.fphoenixcorneae.widget.viewpager.FragmentPagerItems
@@ -16,7 +17,7 @@ import com.fphoenixcorneae.widget.viewpager.FragmentStatePager2ItemAdapter
  * @desc：首页Fragment
  * @date：2022/05/06 10:04
  */
-class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListener {
 
     private val mFragmentStateAdapter by lazy {
         FragmentStatePager2ItemAdapter(
@@ -30,6 +31,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun FragmentHomeBinding.initViewBinding() {
         themeViewModel = appThemeViewModel
+        onClick = this@HomeFragment
     }
 
     override fun initToolbar(): View? {
@@ -50,5 +52,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun initData(savedInstanceState: Bundle?) {
 
+    }
+
+    override fun onClick(p0: View?) {
+        with(mViewBinding) {
+            when (p0) {
+                ivSearch -> {
+                    eventViewModel.setSearchIconClicked(true)
+                }
+                else -> {}
+            }
+        }
     }
 }

@@ -10,12 +10,14 @@ import com.fphoenixcorneae.jetpackmvvm.ext.collectWithLifecycle
 import com.fphoenixcorneae.navigation.NavigationItem
 import com.fphoenixcorneae.wanandroid.R
 import com.fphoenixcorneae.wanandroid.databinding.FragmentMainBinding
+import com.fphoenixcorneae.wanandroid.ext.eventViewModel
 import com.fphoenixcorneae.wanandroid.mvvm.home.HomeFragment
 import com.fphoenixcorneae.wanandroid.mvvm.project.ProjectFragment
 import com.fphoenixcorneae.wanandroid.theme.Theme
 import com.fphoenixcorneae.wanandroid.theme.appThemeViewModel
 import com.fphoenixcorneae.widget.viewpager.FragmentPagerItems
 import com.fphoenixcorneae.widget.viewpager.FragmentStatePager2ItemAdapter
+import kotlinx.coroutines.flow.consumeAsFlow
 
 /**
  * @desc：主页Fragment
@@ -95,8 +97,12 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                 easyNavigation.itemColor(
                     itemActiveColor = it.onPrimary,
                     itemInactiveColor = it.onSurface
-                )
-                    .refreshLayout(100)
+                ).refreshLayout(100)
+            }
+        }
+        with(eventViewModel) {
+            searchIconClicked.consumeAsFlow().collectWithLifecycle(this@MainFragment) {
+                navigate(R.id.fragmentSearch)
             }
         }
     }
