@@ -14,7 +14,7 @@
         android:layout_height="match_parent">
 
         <com.fphoenixcorneae.toolbar.CommonToolbar
-            android:id="@+id/mTbTitleBar"
+            android:id="@+id/rlToolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:centerSearchBgRes="@drawable/shape_bg_toolbar_search"
