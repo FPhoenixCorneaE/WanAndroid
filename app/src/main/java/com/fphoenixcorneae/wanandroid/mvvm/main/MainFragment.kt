@@ -26,19 +26,17 @@ import kotlinx.coroutines.flow.consumeAsFlow
 class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     private val mViewModel by viewModels<MainViewModel>()
-    private val mFragmentStateAdapter by lazy {
-        FragmentStatePager2ItemAdapter(
+
+    override fun FragmentMainBinding.initViewBinding() {
+        viewModel = mViewModel
+        mainAdapter = FragmentStatePager2ItemAdapter(
             this@MainFragment,
             FragmentPagerItems.with(mContext)
                 .add(R.string.homepage, HomeFragment::class.java)
                 .add(R.string.project, ProjectFragment::class.java)
-                .create()
+                .create(),
+            viewLifecycleOwner.lifecycle
         )
-    }
-
-    override fun FragmentMainBinding.initViewBinding() {
-        viewModel = mViewModel
-        mainAdapter = mFragmentStateAdapter
     }
 
     override fun initToolbar(): View? {

@@ -23,9 +23,7 @@ class ProjectFragment : BaseFragment<FragmentProjectBinding>() {
 
     private val mViewModel by viewModels<ProjectViewModel>()
     private val mFragmentPagerCreator by lazy { FragmentPagerItems.with(mContext) }
-    private val mFragmentStateAdapter by lazy {
-        FragmentStatePager2ItemAdapter(this, mFragmentPagerCreator.create())
-    }
+    private lateinit var mFragmentStateAdapter: FragmentStatePager2ItemAdapter
 
     override fun FragmentProjectBinding.initViewBinding() {
         themeViewModel = appThemeViewModel
@@ -36,6 +34,11 @@ class ProjectFragment : BaseFragment<FragmentProjectBinding>() {
     }
 
     override fun FragmentProjectBinding.initView() {
+        mFragmentStateAdapter = FragmentStatePager2ItemAdapter(
+            this@ProjectFragment,
+            mFragmentPagerCreator.create(),
+            viewLifecycleOwner.lifecycle
+        )
         StatusBarUtil.setSmartPadding(mContext, flMagicIndicator)
     }
 

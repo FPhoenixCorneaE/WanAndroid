@@ -19,16 +19,6 @@ import com.fphoenixcorneae.widget.viewpager.FragmentStatePager2ItemAdapter
  */
 class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListener {
 
-    private val mFragmentStateAdapter by lazy {
-        FragmentStatePager2ItemAdapter(
-            this@HomeFragment,
-            FragmentPagerItems.with(mContext)
-                .add(R.string.title_fragment_home_article, HomeArticleFragment::class.java)
-                .add(R.string.title_fragment_home_qa, HomeQaFragment::class.java)
-                .create()
-        )
-    }
-
     override fun FragmentHomeBinding.initViewBinding() {
         themeViewModel = appThemeViewModel
         onClick = this@HomeFragment
@@ -45,7 +35,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListener {
     override fun FragmentHomeBinding.initObserver() {
         with(appThemeViewModel) {
             theme.collectWithLifecycle(this@HomeFragment) {
-                flMagicIndicator.setNavigator(vpHome, mFragmentStateAdapter)
+                flMagicIndicator.setNavigator(vpHome, FragmentStatePager2ItemAdapter(
+                    this@HomeFragment,
+                    FragmentPagerItems.with(mContext)
+                        .add(R.string.title_fragment_home_article, HomeArticleFragment::class.java)
+                        .add(R.string.title_fragment_home_qa, HomeQaFragment::class.java)
+                        .create(),
+                    viewLifecycleOwner.lifecycle
+                ))
             }
         }
     }

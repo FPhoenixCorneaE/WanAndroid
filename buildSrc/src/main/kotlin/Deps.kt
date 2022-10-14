@@ -6,7 +6,7 @@ object Deps {
     object FPhoenixCorneaE {
         private const val jetpackMvvm = "com.github.FPhoenixCorneaE:JetpackMvvm:3.0.1"
         private const val easyNavigation = "com.github.FPhoenixCorneaE.EasyNavigation:easyNavigation:1.1.0"
-        private const val viewPagerAdapter = "com.github.FPhoenixCorneaE:ViewPagerAdapter:1.0.0"
+        private const val viewPagerAdapter = "com.github.FPhoenixCorneaE:ViewPagerAdapter:1.0.1-beta01"
 
         fun dependencies() = listOf(jetpackMvvm, easyNavigation, viewPagerAdapter)
     }
