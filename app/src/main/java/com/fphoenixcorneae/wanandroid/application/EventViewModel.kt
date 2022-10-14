@@ -1,9 +1,8 @@
 package com.fphoenixcorneae.wanandroid.application
 
-import androidx.lifecycle.viewModelScope
 import com.fphoenixcorneae.jetpackmvvm.base.viewmodel.BaseViewModel
+import com.fphoenixcorneae.jetpackmvvm.ext.launch
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.launch
 
 /**
  * @desc：EventViewModel
@@ -14,7 +13,7 @@ class EventViewModel : BaseViewModel() {
     val searchIconClicked = Channel<Boolean>(Channel.CONFLATED)
 
     fun setSearchIconClicked(clicked: Boolean) {
-        viewModelScope.launch {
+        launch {
             searchIconClicked.send(clicked)
         }
     }

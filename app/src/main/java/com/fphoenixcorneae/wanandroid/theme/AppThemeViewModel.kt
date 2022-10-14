@@ -1,10 +1,9 @@
 package com.fphoenixcorneae.wanandroid.theme
 
-import androidx.lifecycle.viewModelScope
 import com.fphoenixcorneae.jetpackmvvm.base.viewmodel.BaseViewModel
+import com.fphoenixcorneae.jetpackmvvm.ext.launch
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
 
 /**
  * @desc：ThemeViewModel
@@ -16,7 +15,7 @@ class AppThemeViewModel : BaseViewModel() {
     val theme = _theme.asStateFlow()
 
     fun switchTheme(theme: Theme) {
-        viewModelScope.launch {
+        launch {
             _theme.emit(theme)
         }
     }

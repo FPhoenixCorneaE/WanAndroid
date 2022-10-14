@@ -1,10 +1,9 @@
 package com.fphoenixcorneae.wanandroid.mvvm.main
 
-import androidx.lifecycle.viewModelScope
 import com.fphoenixcorneae.jetpackmvvm.base.viewmodel.BaseViewModel
+import com.fphoenixcorneae.jetpackmvvm.ext.launch
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
 
 /**
  * @desc：MainViewModel
@@ -16,7 +15,7 @@ class MainViewModel : BaseViewModel() {
     val navigationBlurBackground = _navigationBlurBackground.asStateFlow()
 
     fun setNavigationBlurBackground(background: Any?) {
-        viewModelScope.launch {
+        launch {
             _navigationBlurBackground.emit(background)
         }
     }
