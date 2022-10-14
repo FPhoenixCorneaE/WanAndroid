@@ -1,6 +1,7 @@
 package com.fphoenixcorneae.wanandroid.mvvm.splash
 
 import com.fphoenixcorneae.jetpackmvvm.base.viewmodel.BaseViewModel
+import com.fphoenixcorneae.jetpackmvvm.ext.launch
 import com.fphoenixcorneae.jetpackmvvm.ext.requestNoCheck
 import com.fphoenixcorneae.wanandroid.api.apiService
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -39,7 +40,9 @@ class SplashViewModel : BaseViewModel() {
     }
 
     fun setSplashImg(data: String?) {
-        _splashImg.value = data
-        _logoVisible.value = data.isNullOrEmpty()
+        launch {
+            _splashImg.value = data
+            _logoVisible.value = data.isNullOrEmpty()
+        }
     }
 }

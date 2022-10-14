@@ -1,6 +1,7 @@
 package com.fphoenixcorneae.wanandroid.mvvm
 
 import android.view.View
+import androidx.activity.addCallback
 import com.fphoenixcorneae.jetpackmvvm.base.activity.BaseActivity
 import com.fphoenixcorneae.wanandroid.databinding.ActivityMainBinding
 import com.fphoenixcorneae.wanandroid.mvvm.splash.SplashDialog
@@ -22,9 +23,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     override fun ActivityMainBinding.initView() {
         SplashDialog().show(activity = mContext)
-    }
 
-    override fun onBackPressed() {
-        finish()
+        onBackPressedDispatcher.addCallback(this@MainActivity) {
+            finish()
+        }
     }
 }

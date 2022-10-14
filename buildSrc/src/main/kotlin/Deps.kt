@@ -4,7 +4,7 @@ object Deps {
      * FPhoenixCorneaE
      */
     object FPhoenixCorneaE {
-        private const val jetpackMvvm = "com.github.FPhoenixCorneaE:JetpackMvvm:2.0.6"
+        private const val jetpackMvvm = "com.github.FPhoenixCorneaE:JetpackMvvm:3.0.1"
         private const val easyNavigation = "com.github.FPhoenixCorneaE.EasyNavigation:easyNavigation:1.1.0"
         private const val viewPagerAdapter = "com.github.FPhoenixCorneaE:ViewPagerAdapter:1.0.0"
 
@@ -15,19 +15,17 @@ object Deps {
      * AndroidX
      */
     object AndroidX {
-        private const val multiDex = "androidx.multidex:multidex:2.0.1"
-        private const val appcompat = "androidx.appcompat:appcompat:1.4.1"
-        private const val coreKtx = "androidx.core:core-ktx:1.7.0"
+        private const val appcompat = "androidx.appcompat:appcompat:1.5.1"
+        private const val coreKtx = "androidx.core:core-ktx:1.9.0"
         private const val coreSplashScreen = "androidx.core:core-splashscreen:1.0.0-beta02"
-        private const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.1.3"
-        private const val material = "com.google.android.material:material:1.4.0"
+        private const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.1.4"
+        private const val material = "com.google.android.material:material:1.5.0"
         private const val recyclerView = "androidx.recyclerview:recyclerview:1.2.1"
         private const val cardView = "androidx.cardview:cardview:1.0.0"
         private const val swipeRefreshLayout = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
 
         fun dependencies() =
             listOf(
-                multiDex,
                 appcompat,
                 coreKtx,
                 coreSplashScreen,
