@@ -3,6 +3,7 @@ package com.fphoenixcorneae.wanandroid.application
 import com.fphoenixcorneae.jetpackmvvm.base.viewmodel.BaseViewModel
 import com.fphoenixcorneae.jetpackmvvm.ext.launch
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.receiveAsFlow
 
 /**
  * @desc：EventViewModel
@@ -10,11 +11,12 @@ import kotlinx.coroutines.channels.Channel
  */
 class EventViewModel : BaseViewModel() {
     /** 搜索icon点击 */
-    val searchIconClicked = Channel<Boolean>(Channel.CONFLATED)
+    private val _searchIconClicked = Channel<Boolean>(Channel.CONFLATED)
+    val searchIconClicked = _searchIconClicked.receiveAsFlow()
 
     fun setSearchIconClicked(clicked: Boolean) {
         launch {
-            searchIconClicked.send(clicked)
+            _searchIconClicked.send(clicked)
         }
     }
 }

@@ -2,12 +2,12 @@ package com.fphoenixcorneae.wanandroid.mvvm.home
 
 import com.fphoenixcorneae.coretrofit.model.Result
 import com.fphoenixcorneae.jetpackmvvm.base.viewmodel.BaseViewModel
+import com.fphoenixcorneae.jetpackmvvm.ext.launch
 import com.fphoenixcorneae.jetpackmvvm.ext.request
-import com.fphoenixcorneae.jetpackmvvm.ext.requestNoCheck
-import com.fphoenixcorneae.wanandroid.api.ApiResponse
 import com.fphoenixcorneae.wanandroid.api.apiService
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 
 /**
  * @desc：HomeViewModel
@@ -69,18 +69,18 @@ class HomeViewModel : BaseViewModel() {
      * 首页文章列表
      */
     fun getHomeArticle(isRefresh: Boolean) {
-        homeArticlePageState.page.value = if (isRefresh) {
-            0
-        } else {
-            homeArticlePageState.page.value + 1
+        launch {
+            homeArticlePageState.isRefreshing.emit(isRefresh)
+            (if (isRefresh) 0 else homeArticlePageState.page.first() + 1).also {
+                homeArticlePageState.page.emit(it)
+                request(
+                    block = {
+                        apiService.getHomeArticle(page = it)
+                    },
+                    result = _homeArticle
+                )
+            }
         }
-        homeArticlePageState.isRefreshing.value = isRefresh
-        request(
-            block = {
-                apiService.getHomeArticle(page = homeArticlePageState.page.value)
-            },
-            result = _homeArticle
-        )
     }
 
     /**
@@ -94,17 +94,17 @@ class HomeViewModel : BaseViewModel() {
      * 首页问答列表
      */
     fun getHomeQa(isRefresh: Boolean) {
-        homeQaPageState.page.value = if (isRefresh) {
-            0
-        } else {
-            homeQaPageState.page.value + 1
+        launch {
+            homeQaPageState.isRefreshing.emit(isRefresh)
+            (if (isRefresh) 0 else homeQaPageState.page.first() + 1).also {
+                homeQaPageState.page.emit(it)
+                request(
+                    block = {
+                        apiService.getHomeQa(page = it, cid = 440)
+                    },
+                    result = _homeQa
+                )
+            }
         }
-        homeQaPageState.isRefreshing.value = isRefresh
-        request(
-            block = {
-                apiService.getHomeQa(page = homeQaPageState.page.value, cid = 440)
-            },
-            result = _homeQa
-        )
     }
 }

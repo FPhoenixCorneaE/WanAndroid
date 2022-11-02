@@ -99,7 +99,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             }
         }
         with(eventViewModel) {
-            searchIconClicked.consumeAsFlow().collectWithLifecycle(this@MainFragment) {
+            searchIconClicked.collectWithLifecycle(this@MainFragment) {
                 "searchIconClicked: $it".logd()
                 navigate(R.id.fragmentSearch)
             }

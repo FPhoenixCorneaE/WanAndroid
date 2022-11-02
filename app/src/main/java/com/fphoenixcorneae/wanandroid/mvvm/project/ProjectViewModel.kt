@@ -2,6 +2,7 @@ package com.fphoenixcorneae.wanandroid.mvvm.project
 
 import com.fphoenixcorneae.coretrofit.model.Result
 import com.fphoenixcorneae.jetpackmvvm.base.viewmodel.BaseViewModel
+import com.fphoenixcorneae.jetpackmvvm.ext.launch
 import com.fphoenixcorneae.jetpackmvvm.ext.request
 import com.fphoenixcorneae.wanandroid.api.apiService
 import com.fphoenixcorneae.wanandroid.mvvm.home.ArticleBean
@@ -9,6 +10,7 @@ import com.fphoenixcorneae.wanandroid.mvvm.home.PageBean
 import com.fphoenixcorneae.wanandroid.mvvm.home.PageState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 
 /**
  * @desc：ProjectViewModel
@@ -48,19 +50,19 @@ class ProjectViewModel : BaseViewModel() {
      * 项目数据
      */
     fun getProjectData(classifyId: Int, isRefresh: Boolean) {
-        mClassifyId = classifyId
-        pageState.page.value = if (isRefresh) {
-            0
-        } else {
-            pageState.page.value + 1
+        launch {
+            mClassifyId = classifyId
+            pageState.isRefreshing.emit(isRefresh)
+            (if (isRefresh) 0 else pageState.page.first() + 1).also {
+                pageState.page.emit(it)
+                request(
+                    block = {
+                        apiService.getProjectDataByClassifyId(page = it, cid = classifyId)
+                    },
+                    result = _projectData
+                )
+            }
         }
-        pageState.isRefreshing.value = isRefresh
-        request(
-            block = {
-                apiService.getProjectDataByClassifyId(page = pageState.page.value, cid = classifyId)
-            },
-            result = _projectData
-        )
     }
 
     /**

@@ -41,8 +41,8 @@ class SplashViewModel : BaseViewModel() {
 
     fun setSplashImg(data: String?) {
         launch {
-            _splashImg.value = data
-            _logoVisible.value = data.isNullOrEmpty()
+            _splashImg.emit(data)
+            _logoVisible.emit(data.isNullOrEmpty())
         }
     }
 }

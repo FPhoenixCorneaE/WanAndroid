@@ -5,6 +5,7 @@ import androidx.core.widget.doAfterTextChanged
 import com.fphoenixcorneae.common.ext.*
 import com.fphoenixcorneae.jetpackmvvm.base.fragment.BaseFragment
 import com.fphoenixcorneae.jetpackmvvm.ext.collectWithLifecycle
+import com.fphoenixcorneae.navigation.getActionbarSize
 import com.fphoenixcorneae.toolbar.CommonToolbar
 import com.fphoenixcorneae.wanandroid.R
 import com.fphoenixcorneae.wanandroid.databinding.FragmentSearchBinding
@@ -25,6 +26,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
 
     override fun initToolbar(): View? {
         return (super.initToolbar() as? CommonToolbar)?.apply {
+            toolbarHeight = getActionbarSize()
             fillStatusBar = true
             leftType = CommonToolbar.TYPE_LEFT_NONE
             rightType = CommonToolbar.TYPE_RIGHT_TEXT_VIEW
@@ -34,6 +36,11 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>() {
             centerSearchBgRes = R.drawable.shape_bg_toolbar_search
             centerSearchHintText = getString(R.string.search_hint_text)
             centerSearchTextSize = 16.Sp
+            centerSearchRightDeleteRes = R.drawable.ic_delete
+            centerSearchLeftImageView.scaleX = 1.382f
+            centerSearchLeftImageView.scaleY = 1.382f
+            centerSearchRightImageView.scaleX = 1.382f
+            centerSearchRightImageView.scaleY = 1.382f
         }
     }
 
