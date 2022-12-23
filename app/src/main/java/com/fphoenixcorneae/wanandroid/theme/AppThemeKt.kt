@@ -46,7 +46,7 @@ sealed interface Theme {
         override val surface: Int get() = Color.WHITE
         override val error: Int get() = "#B00020".hexString2ColorInt()
         override val onPrimary: Int get() = "#6200EE".hexString2ColorInt()
-        override val onSecondary: Int get() = Color.BLACK
+        override val onSecondary: Int get() = Color.YELLOW
         override val onBackground: Int get() = Color.BLACK
         override val onSurface: Int get() = "#BB86FC".hexString2ColorInt()
         override val onError: Int get() = error
@@ -73,7 +73,7 @@ sealed interface Theme {
         override val surface: Int get() = Color.BLACK
         override val error: Int get() = Color.RED
         override val onPrimary: Int get() = Color.BLACK
-        override val onSecondary: Int get() = Color.WHITE
+        override val onSecondary: Int get() = Color.YELLOW
         override val onBackground: Int get() = Color.WHITE
         override val onSurface: Int get() = Color.WHITE
         override val onError: Int get() = error

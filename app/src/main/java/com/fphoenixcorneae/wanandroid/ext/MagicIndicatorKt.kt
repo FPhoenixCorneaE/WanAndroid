@@ -38,7 +38,7 @@ fun MagicIndicator.setNavigator(
             override fun getTitleView(context: Context, index: Int): IPagerTitleView {
                 return ScaleTransitionPagerTitleView(context = context).apply {
                     minScale = 0.8f
-                    textSize = 18f
+                    textSize = 24f
                     typeface = Typeface.defaultFromStyle(Typeface.BOLD)
                     text = pagerAdapter.getPageTitle(position = index).toString()
                     normalColor = appThemeViewModel.theme.value.surface
@@ -49,13 +49,13 @@ fun MagicIndicator.setNavigator(
 
             override fun getIndicator(context: Context): IPagerIndicator {
                 return LinePagerIndicator(context).apply {
-                    mode = LinePagerIndicator.MODE_EXACTLY
-                    lineHeight = 4.Dp
-                    lineWidth = 40.Dp
+                    mode = LinePagerIndicator.MODE_WRAP_CONTENT
+                    lineHeight = 8.Dp
                     roundRadius = 8.Dp
                     startInterpolator = AccelerateInterpolator()
                     endInterpolator = DecelerateInterpolator(2.0f)
-                    setColors(appThemeViewModel.theme.value.surface)
+                    yOffset = 16.Dp
+                    setColors(appThemeViewModel.theme.value.onSecondary)
                 }
             }
         }
