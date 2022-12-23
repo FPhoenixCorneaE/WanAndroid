@@ -1,49 +1,49 @@
 plugins {
-    id(PluginId.application)
-    id(PluginId.kotlin)
-    id(PluginId.kotlinParcelize)
-    id(PluginId.kotlinKapt)
-    id(PluginId.navigation)
+    id(deps.plugins.android.application.get().pluginId)
+    id(deps.plugins.kotlin.android.get().pluginId)
+    id(deps.plugins.kotlin.parcelize.get().pluginId)
+    id(deps.plugins.kotlin.kapt.get().pluginId)
+    id(deps.plugins.navigation.safeargs.get().pluginId)
 }
 
 android {
     defaultConfig {
         // 每个 Android 模块都有一个命名空间，此命名空间用作其生成的 R 和 BuildConfig 类的 Java 软件包名称。
         // namespace 属性设置的名称应始终与项目的基础软件包名称匹配，建议您让命名空间与应用 ID 保持一致
-        namespace = DefaultConfig.applicationId
-        applicationId = DefaultConfig.applicationId
-        compileSdk = DefaultConfig.compileSdk
-        buildToolsVersion = DefaultConfig.buildToolsVersion
-        minSdk = DefaultConfig.minSdk
-        targetSdk = DefaultConfig.targetSdk
-        versionCode = DefaultConfig.versionCode
-        versionName = DefaultConfig.versionName
+        applicationId = "com.fphoenixcorneae.wanandroid"
+        namespace = applicationId
+        compileSdk = deps.versions.compileSdk.get().toIntOrNull()
+        buildToolsVersion = deps.versions.buildToolsVersion.get()
+        minSdk = deps.versions.minSdk.get().toIntOrNull()
+        targetSdk = deps.versions.targetSdk.get().toIntOrNull()
+        versionCode = 100
+        versionName = "1.0.0"
         multiDexEnabled = true
         // 以Proguard的方式手动加入要放到主Dex中的类，必须设置isMinifyEnabled为true时才会起作用
         multiDexKeepProguard = file("multiDexKeep.pro")
-        testInstrumentationRunner = DefaultConfig.testInstrumentationRunner
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
-        getByName(BuildType.release) {
+        getByName("release") {
             // 执行proguard混淆
             isMinifyEnabled = false
             // 移除无用的resource文件
             isShrinkResources = false
-            proguardFiles(getDefaultProguardFile(BuildType.proguardAndroidOptimize), BuildType.proguardRules)
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
-        getByName(BuildType.debug) {
+        getByName("debug") {
             // 执行proguard混淆
             isMinifyEnabled = true
             // 移除无用的resource文件
             isShrinkResources = false
-            proguardFiles(getDefaultProguardFile(BuildType.proguardAndroidOptimize), BuildType.proguardRules)
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
 
     sourceSets {
         val main by getting
-        main.java.srcDirs(SourceSet.mainDirs)
+        main.java.srcDirs("src/main/kotlin")
     }
 
     compileOptions {
@@ -76,14 +76,14 @@ android {
 
     flavorDimensions(*flavorDimensionList.toTypedArray(), project.name)
     productFlavors {
-        create(ProductFlavors.uc) {
+        create("uc") {
             dimension = project.name
-            applicationId = ProductFlavors.ApplicationId.uc
+            applicationIdSuffix = ".uc"
         }
 
-        create(ProductFlavors.yyb) {
+        create("yyb") {
             dimension = project.name
-            applicationId = ProductFlavors.ApplicationId.yyb
+            applicationIdSuffix = ".yyb"
         }
     }
 }
@@ -91,15 +91,26 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     // FPhoenixCorneaE
-    addFPhoenixCorneaEDependencies()
+    implementation(deps.bundles.fphoenixcorneae)
     // androidx
-    addAndroidXDependencies()
+    implementation(deps.androidx.appcompat)
+    implementation(deps.androidx.core.ktx)
+    implementation(deps.androidx.core.splashscreen)
+    implementation(deps.androidx.constraintlayout)
+    implementation(deps.androidx.recyclerview)
+    implementation(deps.androidx.cardview)
+    implementation(deps.androidx.swiperefreshlayout)
+    implementation(deps.material)
     // bugly
-    addBuglyDependencies()
+    implementation(deps.bugly)
     // leakcanary
-    addLeakCanaryDependencies()
+    implementation(deps.leakcanary)
     // thirdparty
-    addThirdPartyDependencies()
+    implementation(deps.bannerviewpager)
+    implementation(deps.magicIndicator)
+    implementation(deps.baserecyclerviewadapterhelper)
     // test
-    addTestDependencies()
+    testImplementation(deps.test.junit.junit)
+    androidTestImplementation(deps.test.junit.ktx)
+    androidTestImplementation(deps.test.espresso.core)
 }

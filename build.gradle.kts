@@ -8,10 +8,11 @@ plugins {
      * Applying external plugins with same version to subprojects.
      */
 
-    id(PluginId.application) version Version.agpVersion apply false
-    id(PluginId.library) version Version.agpVersion apply false
-    id(PluginId.kotlin) version Version.kotlinVersion apply false
-    id(PluginId.navigation) version Version.navigationVersion apply false
+    alias(deps.plugins.android.application) apply false
+    alias(deps.plugins.android.library) apply false
+    alias(deps.plugins.kotlin.android) apply false
+    alias(deps.plugins.kotlin.jvm) apply false
+    alias(deps.plugins.navigation.safeargs) apply false
 }
 
 tasks.create(name = "clean", type = Delete::class) {

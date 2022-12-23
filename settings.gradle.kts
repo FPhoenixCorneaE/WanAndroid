@@ -16,6 +16,10 @@ pluginManagement {
         mavenCentral()
     }
 }
+// 开启 VERSION_CATALOGS
+enableFeaturePreview("VERSION_CATALOGS")
+// 依赖 project 时提供类型安全的访问器
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 dependencyResolutionManagement {
     /**
      * The dependencyResolutionManagement { repositories {...}}
@@ -35,6 +39,12 @@ dependencyResolutionManagement {
         mavenCentral()
         maven("https://jitpack.io")
     }
+    versionCatalogs {
+        create("deps") {
+            from(files("libs.versions.toml"))
+        }
+    }
 }
 rootProject.name = "WanAndroid"
 include(":app")
+include(":version-catalog")
