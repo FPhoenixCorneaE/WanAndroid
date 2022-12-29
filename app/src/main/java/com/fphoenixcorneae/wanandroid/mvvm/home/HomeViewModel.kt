@@ -32,10 +32,10 @@ class HomeViewModel : BaseViewModel() {
     val homeQa = _homeQa.asStateFlow()
 
     /** 首页文章页面状态 */
-    private val homeArticlePageState by lazy { PageState() }
+    val homeArticlePageState by lazy { PageState() }
 
     /** 首页问答页面状态 */
-    private val homeQaPageState by lazy { PageState() }
+    val homeQaPageState by lazy { PageState() }
 
     /**
      * 获取首页Banner
@@ -69,10 +69,10 @@ class HomeViewModel : BaseViewModel() {
      * 首页文章列表
      */
     fun getHomeArticle(isRefresh: Boolean) {
+        setHomeArticleRefreshing(isRefreshing = isRefresh)
         launch {
-            homeArticlePageState.isRefreshing.emit(isRefresh)
             (if (isRefresh) 0 else homeArticlePageState.page.first() + 1).also {
-                homeArticlePageState.page.emit(it)
+                setHomeArticlePage(it)
                 request(
                     block = {
                         apiService.getHomeArticle(page = it)
@@ -105,6 +105,18 @@ class HomeViewModel : BaseViewModel() {
                     result = _homeQa
                 )
             }
+        }
+    }
+
+    fun setHomeArticlePage(page: Int) {
+        launch {
+            homeArticlePageState.page.emit(page)
+        }
+    }
+
+    fun setHomeArticleRefreshing(isRefreshing: Boolean) {
+        launch {
+            homeArticlePageState.isRefreshing.emit(isRefreshing)
         }
     }
 }
