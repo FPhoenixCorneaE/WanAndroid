@@ -1,6 +1,7 @@
 package com.fphoenixcorneae.wanandroid.ext
 
 import android.content.Context
+import android.graphics.Color
 import android.graphics.Typeface
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
@@ -8,6 +9,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.fphoenixcorneae.common.ext.Dp
 import com.fphoenixcorneae.wanandroid.theme.appThemeViewModel
 import com.fphoenixcorneae.wanandroid.widget.magicindicator.helper.bindViewPager2
+import com.fphoenixcorneae.wanandroid.widget.magicindicator.indicators.LinePagerIndicator
 import com.fphoenixcorneae.wanandroid.widget.magicindicator.titles.ScaleTransitionPagerTitleView
 import com.fphoenixcorneae.widget.viewpager.FragmentStatePager2ItemAdapter
 import net.lucode.hackware.magicindicator.MagicIndicator
@@ -15,7 +17,6 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigat
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView
-import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator
 
 /**
  * Set navigator
@@ -51,11 +52,12 @@ fun MagicIndicator.setNavigator(
                 return LinePagerIndicator(context).apply {
                     mode = LinePagerIndicator.MODE_WRAP_CONTENT
                     lineHeight = 8.Dp
-                    roundRadius = 8.Dp
+                    roundRadius = 4.Dp
                     startInterpolator = AccelerateInterpolator()
                     endInterpolator = DecelerateInterpolator(2.0f)
-                    yOffset = 16.Dp
-                    setColors(appThemeViewModel.theme.value.onSecondary)
+                    xOffset = 2.Dp
+                    yOffset = 12.Dp
+                    setColors(appThemeViewModel.theme.value.onSecondary, Color.TRANSPARENT)
                 }
             }
         }
