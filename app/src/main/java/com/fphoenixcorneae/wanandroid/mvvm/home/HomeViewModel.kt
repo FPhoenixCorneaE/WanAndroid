@@ -1,5 +1,6 @@
 package com.fphoenixcorneae.wanandroid.mvvm.home
 
+import com.fphoenixcorneae.common.ext.logd
 import com.fphoenixcorneae.coretrofit.model.Result
 import com.fphoenixcorneae.jetpackmvvm.base.viewmodel.BaseViewModel
 import com.fphoenixcorneae.jetpackmvvm.ext.launch
@@ -36,6 +37,13 @@ class HomeViewModel : BaseViewModel() {
 
     /** 首页问答页面状态 */
     val homeQaPageState by lazy { PageState() }
+
+    fun getHomeArticleData() {
+        "${javaClass.name}: getHomeArticleData()".logd()
+        getHomeBanner()
+        getHomeTopArticle()
+        getHomeArticle(isRefresh = true)
+    }
 
     /**
      * 获取首页Banner
@@ -94,10 +102,11 @@ class HomeViewModel : BaseViewModel() {
      * 首页问答列表
      */
     fun getHomeQa(isRefresh: Boolean) {
+        "${javaClass.name}: getHomeQa()".logd()
         launch {
-            homeQaPageState.isRefreshing.emit(isRefresh)
+            setHomeQaRefreshing(isRefreshing = isRefresh)
             (if (isRefresh) 0 else homeQaPageState.page.first() + 1).also {
-                homeQaPageState.page.emit(it)
+                setHomeQaPage(it)
                 request(
                     block = {
                         apiService.getHomeQa(page = it, cid = 440)
@@ -106,6 +115,13 @@ class HomeViewModel : BaseViewModel() {
                 )
             }
         }
+    }
+
+    /**
+     * 加载更多问答
+     */
+    fun loadMoreHomeQa() {
+        getHomeQa(isRefresh = false)
     }
 
     fun setHomeArticlePage(page: Int) {
@@ -117,6 +133,18 @@ class HomeViewModel : BaseViewModel() {
     fun setHomeArticleRefreshing(isRefreshing: Boolean) {
         launch {
             homeArticlePageState.isRefreshing.emit(isRefreshing)
+        }
+    }
+
+    fun setHomeQaPage(page: Int) {
+        launch {
+            homeQaPageState.page.emit(page)
+        }
+    }
+
+    fun setHomeQaRefreshing(isRefreshing: Boolean) {
+        launch {
+            homeQaPageState.isRefreshing.emit(isRefreshing)
         }
     }
 }

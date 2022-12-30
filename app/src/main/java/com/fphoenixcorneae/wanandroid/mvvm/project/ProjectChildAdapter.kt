@@ -7,26 +7,26 @@ import android.view.ViewGroup
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.DataBindingHolder
 import com.fphoenixcorneae.common.ext.getRandomColor
-import com.fphoenixcorneae.wanandroid.databinding.RecyclerItemProjectChildBinding
+import com.fphoenixcorneae.wanandroid.databinding.ItemProjectChildBinding
 import com.fphoenixcorneae.wanandroid.mvvm.home.ArticleBean
 
 /**
  * @desc：
  * @date：2022/08/30 17:37
  */
-class ProjectChildAdapter : BaseQuickAdapter<ArticleBean, DataBindingHolder<RecyclerItemProjectChildBinding>>() {
+class ProjectChildAdapter : BaseQuickAdapter<ArticleBean, DataBindingHolder<ItemProjectChildBinding>>() {
 
     override fun onCreateViewHolder(
         context: Context,
         parent: ViewGroup,
         viewType: Int,
-    ): DataBindingHolder<RecyclerItemProjectChildBinding> {
-        return DataBindingHolder(RecyclerItemProjectChildBinding.inflate(
+    ): DataBindingHolder<ItemProjectChildBinding> {
+        return DataBindingHolder(ItemProjectChildBinding.inflate(
             LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(
-        holder: DataBindingHolder<RecyclerItemProjectChildBinding>,
+        holder: DataBindingHolder<ItemProjectChildBinding>,
         position: Int,
         item: ArticleBean?,
     ) {

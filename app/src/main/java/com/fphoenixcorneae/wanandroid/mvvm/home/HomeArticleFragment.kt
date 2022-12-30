@@ -31,9 +31,6 @@ class HomeArticleFragment : BaseFragment<FragmentHomeArticleBinding>() {
     }
 
     override fun FragmentHomeArticleBinding.initView() {
-        srlRefresh.setOnRefreshListener {
-            initData(null)
-        }
     }
 
     override fun FragmentHomeArticleBinding.initObserver() {
@@ -76,10 +73,6 @@ class HomeArticleFragment : BaseFragment<FragmentHomeArticleBinding>() {
     }
 
     override fun initData(savedInstanceState: Bundle?) {
-        mViewModel.apply {
-            getHomeBanner()
-            getHomeTopArticle()
-            getHomeArticle(isRefresh = true)
-        }
+        mViewModel.getHomeArticleData()
     }
 }

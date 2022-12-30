@@ -8,7 +8,7 @@ import com.chad.library.adapter.base.BaseSingleItemAdapter
 import com.chad.library.adapter.base.viewholder.DataBindingHolder
 import com.fphoenixcorneae.common.ext.dp
 import com.fphoenixcorneae.wanandroid.R
-import com.fphoenixcorneae.wanandroid.databinding.RecyclerItemHomeArticleHeaderBinding
+import com.fphoenixcorneae.wanandroid.databinding.ItemHomeArticleHeaderBinding
 import com.fphoenixcorneae.wanandroid.ext.getThemeAttrColor
 import com.zhpan.bannerview.constants.IndicatorGravity
 import com.zhpan.bannerview.constants.PageStyle
@@ -21,18 +21,18 @@ import com.zhpan.indicator.enums.IndicatorStyle
  */
 class HomeArticleHeaderAdapter(
     private val lifecycle: Lifecycle,
-) : BaseSingleItemAdapter<List<HomeBannerBean>, DataBindingHolder<RecyclerItemHomeArticleHeaderBinding>>() {
+) : BaseSingleItemAdapter<List<HomeBannerBean>, DataBindingHolder<ItemHomeArticleHeaderBinding>>() {
     override fun onCreateViewHolder(
         context: Context,
         parent: ViewGroup,
         viewType: Int,
-    ): DataBindingHolder<RecyclerItemHomeArticleHeaderBinding> {
-        return DataBindingHolder(RecyclerItemHomeArticleHeaderBinding.inflate(
+    ): DataBindingHolder<ItemHomeArticleHeaderBinding> {
+        return DataBindingHolder(ItemHomeArticleHeaderBinding.inflate(
             LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(
-        holder: DataBindingHolder<RecyclerItemHomeArticleHeaderBinding>,
+        holder: DataBindingHolder<ItemHomeArticleHeaderBinding>,
         item: List<HomeBannerBean>?,
     ) {
         with(holder.binding) {

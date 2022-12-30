@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.chad.library.adapter.base.BaseDifferAdapter
 import com.chad.library.adapter.base.viewholder.DataBindingHolder
-import com.fphoenixcorneae.wanandroid.databinding.RecyclerItemHomeArticleBinding
+import com.fphoenixcorneae.wanandroid.databinding.ItemHomeArticleBinding
 import com.fphoenixcorneae.wanandroid.theme.appThemeViewModel
 
 /**
@@ -13,7 +13,7 @@ import com.fphoenixcorneae.wanandroid.theme.appThemeViewModel
  * @date：2022/05/23 17:47
  */
 class HomeArticleAdapter :
-    BaseDifferAdapter<ArticleBean, DataBindingHolder<RecyclerItemHomeArticleBinding>>(ArticleItemCallback()) {
+    BaseDifferAdapter<ArticleBean, DataBindingHolder<ItemHomeArticleBinding>>(ArticleItemCallback()) {
 
     init {
         setItemAnimation(AnimationType.ScaleIn)
@@ -23,13 +23,13 @@ class HomeArticleAdapter :
         context: Context,
         parent: ViewGroup,
         viewType: Int,
-    ): DataBindingHolder<RecyclerItemHomeArticleBinding> {
-        return DataBindingHolder(RecyclerItemHomeArticleBinding.inflate(
+    ): DataBindingHolder<ItemHomeArticleBinding> {
+        return DataBindingHolder(ItemHomeArticleBinding.inflate(
             LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(
-        holder: DataBindingHolder<RecyclerItemHomeArticleBinding>,
+        holder: DataBindingHolder<ItemHomeArticleBinding>,
         position: Int,
         item: ArticleBean?,
     ) {

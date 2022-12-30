@@ -17,6 +17,7 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/srlRefresh"
         isRefreshing="@{viewModel.homeArticlePageState.isRefreshing()}"
+        onRefresh="@{() -> viewModel.getHomeArticleData()}"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -30,6 +31,6 @@
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:itemCount="10"
-            tools:listitem="@layout/recycler_item_home_article" />
+            tools:listitem="@layout/item_home_article" />
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>

@@ -2,9 +2,11 @@ package com.fphoenixcorneae.wanandroid.mvvm.home
 
 import android.os.Parcelable
 import androidx.annotation.Keep
+import com.fphoenixcorneae.common.ext.getString
 import com.fphoenixcorneae.common.ext.toHtml
 import com.fphoenixcorneae.wanandroid.R
 import kotlinx.parcelize.Parcelize
+import java.util.regex.Pattern
 
 /**
  * @desc：文章数据
@@ -61,7 +63,15 @@ data class ArticleBean(
         }
     }
 
-    fun titleToHtml() = title?.toHtml()
+    fun titleToHtml() = title?.run {
+        val pattern = Pattern.compile("${getString(R.string.title_fragment_home_qa)}\\s*\\|?\\s*")
+        val matcher = pattern.matcher(this)
+        if (matcher.find()) {
+            replaceFirst(matcher.group(), "")
+        } else {
+            this
+        }
+    }?.toHtml()
 
     fun descToHtml() = desc?.toHtml()
 }

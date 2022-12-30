@@ -3,12 +3,12 @@ package com.fphoenixcorneae.wanandroid.databinding
 import androidx.databinding.BindingAdapter
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
-@BindingAdapter(value = ["isRefreshing"], requireAll = false)
+@BindingAdapter(value = ["isRefreshing", "onRefresh"], requireAll = false)
 fun configSwipeRefreshLayout(
     swipeRefreshLayout: SwipeRefreshLayout,
     isRefreshing: Boolean?,
+    onRefreshListener: SwipeRefreshLayout.OnRefreshListener?,
 ) {
-    isRefreshing?.let {
-        swipeRefreshLayout.isRefreshing = it
-    }
+    swipeRefreshLayout.isRefreshing = isRefreshing == true
+    swipeRefreshLayout.setOnRefreshListener(onRefreshListener)
 }
