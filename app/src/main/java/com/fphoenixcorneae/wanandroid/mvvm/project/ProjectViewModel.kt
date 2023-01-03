@@ -23,14 +23,11 @@ class ProjectViewModel : BaseViewModel() {
     val projectClassify = _projectClassify.asStateFlow()
 
     /** 项目数据 */
-    private val _projectData = MutableStateFlow<Result<PageBean<MutableList<ArticleBean>>>?>(null)
+    private val _projectData = MutableStateFlow<Result<PageBean<ArticleBean>>?>(null)
     val projectData = _projectData.asStateFlow()
 
     /** 页面状态 */
-    private val pageState by lazy { PageState() }
-
-    /** 项目分类id */
-    private var mClassifyId = 0
+    val pageState by lazy { PageState() }
 
     /**
      * 项目分类
@@ -41,7 +38,7 @@ class ProjectViewModel : BaseViewModel() {
                 apiService.getProjectClassify()
             },
             success = {
-                _projectClassify.value = it
+                launch { _projectClassify.emit(it) }
             }
         )
     }
@@ -49,15 +46,18 @@ class ProjectViewModel : BaseViewModel() {
     /**
      * 项目数据
      */
-    fun getProjectData(classifyId: Int, isRefresh: Boolean) {
+    fun getProjectData(isNewest: Boolean, classifyId: Int, isRefresh: Boolean = true) {
+        setRefreshing(isRefreshing = isRefresh)
         launch {
-            mClassifyId = classifyId
-            pageState.isRefreshing.emit(isRefresh)
             (if (isRefresh) 0 else pageState.page.first() + 1).also {
-                pageState.page.emit(it)
+                setPage(it)
                 request(
                     block = {
-                        apiService.getProjectDataByClassifyId(page = it, cid = classifyId)
+                        if (isNewest) {
+                            apiService.getProjectNewestData(page = it)
+                        } else {
+                            apiService.getProjectDataByClassifyId(page = it, cid = classifyId)
+                        }
                     },
                     result = _projectData
                 )
@@ -68,7 +68,19 @@ class ProjectViewModel : BaseViewModel() {
     /**
      * 加载更多项目
      */
-    fun loadMoreProjectData() {
-        getProjectData(classifyId = mClassifyId, isRefresh = false)
+    fun loadMoreProjectData(isNewest: Boolean, classifyId: Int) {
+        getProjectData(isNewest = isNewest, classifyId = classifyId, isRefresh = false)
+    }
+
+    fun setPage(page: Int) {
+        launch {
+            pageState.page.emit(page)
+        }
+    }
+
+    fun setRefreshing(isRefreshing: Boolean) {
+        launch {
+            pageState.isRefreshing.emit(isRefreshing)
+        }
     }
 }

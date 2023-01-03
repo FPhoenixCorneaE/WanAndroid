@@ -22,12 +22,8 @@ class HomeQaFragment : BaseFragment<FragmentHomeQaBinding>() {
         qaAdapter = mQaAdapter
     }
 
-
     override fun initToolbar(): View? {
         return null
-    }
-
-    override fun FragmentHomeQaBinding.initView() {
     }
 
     override fun FragmentHomeQaBinding.initObserver() {

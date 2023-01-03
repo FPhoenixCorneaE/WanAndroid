@@ -69,5 +69,13 @@ interface ApiService {
     suspend fun getProjectDataByClassifyId(
         @Path("page") page: Int,
         @Query("cid") cid: Int,
-    ): ApiResponse<PageBean<MutableList<ArticleBean>>>
+    ): ApiResponse<PageBean<ArticleBean>>
+
+    /**
+     * 获取最新项目数据
+     */
+    @GET("/article/listproject/{page}/json")
+    suspend fun getProjectNewestData(
+        @Path("page") page: Int,
+    ): ApiResponse<PageBean<ArticleBean>>
 }

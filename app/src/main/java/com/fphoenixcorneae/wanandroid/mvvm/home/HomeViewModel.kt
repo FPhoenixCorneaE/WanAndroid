@@ -1,6 +1,5 @@
 package com.fphoenixcorneae.wanandroid.mvvm.home
 
-import com.fphoenixcorneae.common.ext.logd
 import com.fphoenixcorneae.coretrofit.model.Result
 import com.fphoenixcorneae.jetpackmvvm.base.viewmodel.BaseViewModel
 import com.fphoenixcorneae.jetpackmvvm.ext.launch
@@ -39,7 +38,6 @@ class HomeViewModel : BaseViewModel() {
     val homeQaPageState by lazy { PageState() }
 
     fun getHomeArticleData() {
-        "${javaClass.name}: getHomeArticleData()".logd()
         getHomeBanner()
         getHomeTopArticle()
         getHomeArticle(isRefresh = true)
@@ -102,9 +100,8 @@ class HomeViewModel : BaseViewModel() {
      * 首页问答列表
      */
     fun getHomeQa(isRefresh: Boolean) {
-        "${javaClass.name}: getHomeQa()".logd()
+        setHomeQaRefreshing(isRefreshing = isRefresh)
         launch {
-            setHomeQaRefreshing(isRefreshing = isRefresh)
             (if (isRefresh) 0 else homeQaPageState.page.first() + 1).also {
                 setHomeQaPage(it)
                 request(

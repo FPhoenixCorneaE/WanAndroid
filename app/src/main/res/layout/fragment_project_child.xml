@@ -5,6 +5,21 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.fphoenixcorneae.wanandroid.mvvm.project.ProjectViewModel" />
+
+        <variable
+            name="projectAdapter"
+            type="androidx.recyclerview.widget.RecyclerView.Adapter" />
+
+        <variable
+            name="classifyId"
+            type="Integer" />
+
+        <variable
+            name="isNewest"
+            type="Boolean" />
     </data>
 
     <com.fphoenixcorneae.wanandroid.widget.FixDragLayout
@@ -14,11 +29,17 @@
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/srlRefresh"
+            isRefreshing="@{viewModel.pageState.isRefreshing()}"
+            onRefresh="@{() -> viewModel.getProjectData(isNewest, classifyId, true)}"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvProjectChild"
+                android:id="@+id/rvProject"
+                adapter="@{projectAdapter}"
+                hasFixedSize="@{true}"
+                itemViewCacheSize="@{200}"
+                onLoadMore="@{() -> viewModel.loadMoreProjectData(isNewest, classifyId)}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
