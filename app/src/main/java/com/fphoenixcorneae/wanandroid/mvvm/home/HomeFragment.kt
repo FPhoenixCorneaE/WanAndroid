@@ -38,8 +38,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(), View.OnClickListener {
                 flMagicIndicator.setNavigator(vpHome, FragmentStatePager2ItemAdapter(
                     this@HomeFragment,
                     FragmentPagerItems.with(mContext)
-                        .add(R.string.title_fragment_home_article, HomeArticleFragment::class.java)
-                        .add(R.string.title_fragment_home_qa, HomeQaFragment::class.java)
+                        .add(R.string.tab_home_article, HomeArticleFragment::class.java)
+                        .add(R.string.tab_home_qa, HomeQaFragment::class.java)
                         .create(),
                     viewLifecycleOwner.lifecycle
                 ))

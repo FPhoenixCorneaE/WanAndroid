@@ -1,17 +1,21 @@
 <resources>
     <string name="app_name">WanAndroid</string>
     <string name="search">Search</string>
-    <string name="title_fragment_home_article">推荐</string>
-    <string name="title_fragment_home_qa">每日一问</string>
+    <string name="tab_home_article">推荐</string>
+    <string name="tab_home_qa">每日一问</string>
     <string name="top">置顶</string>
     <string name="newest">新</string>
     <string name="ask">问答</string>
     <string name="project_newest">最新项目</string>
     <string name="homepage">首页</string>
     <string name="project">项目</string>
-    <string name="square">广场</string>
+    <string name="plaza">广场</string>
     <string name="vipcn">公众号</string>
     <string name="mine">我的</string>
     <string name="search_hint_text">请输入关键字搜索</string>
     <string name="cancel">取消</string>
+    <string name="tab_plaza_article">文章</string>
+    <string name="tab_plaza_ask">每日一问</string>
+    <string name="tab_plaza_system">体系</string>
+    <string name="tab_plaza_navigation">导航</string>
 </resources>

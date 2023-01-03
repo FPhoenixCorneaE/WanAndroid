@@ -64,7 +64,7 @@ data class ArticleBean(
     }
 
     fun titleToHtml() = title?.run {
-        val pattern = Pattern.compile("${getString(R.string.title_fragment_home_qa)}\\s*\\|?\\s*")
+        val pattern = Pattern.compile("${getString(R.string.tab_home_qa)}\\s*\\|?\\s*")
         val matcher = pattern.matcher(this)
         if (matcher.find()) {
             replaceFirst(matcher.group(), "")

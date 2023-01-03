@@ -13,7 +13,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 /**
- * @desc：SplashActivity
+ * @desc：SplashDialog
  * @date：2022/05/10 17:30
  */
 @SuppressLint("CustomSplashScreen")

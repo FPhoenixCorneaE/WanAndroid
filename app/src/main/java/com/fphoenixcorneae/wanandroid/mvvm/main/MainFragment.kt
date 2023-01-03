@@ -12,12 +12,12 @@ import com.fphoenixcorneae.wanandroid.R
 import com.fphoenixcorneae.wanandroid.databinding.FragmentMainBinding
 import com.fphoenixcorneae.wanandroid.ext.eventViewModel
 import com.fphoenixcorneae.wanandroid.mvvm.home.HomeFragment
+import com.fphoenixcorneae.wanandroid.mvvm.plaza.PlazaFragment
 import com.fphoenixcorneae.wanandroid.mvvm.project.ProjectFragment
 import com.fphoenixcorneae.wanandroid.theme.Theme
 import com.fphoenixcorneae.wanandroid.theme.appThemeViewModel
 import com.fphoenixcorneae.widget.viewpager.FragmentPagerItems
 import com.fphoenixcorneae.widget.viewpager.FragmentStatePager2ItemAdapter
-import kotlinx.coroutines.flow.consumeAsFlow
 
 /**
  * @desc：主页Fragment
@@ -34,6 +34,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             FragmentPagerItems.with(mContext)
                 .add(R.string.homepage, HomeFragment::class.java)
                 .add(R.string.project, ProjectFragment::class.java)
+                .add(R.string.plaza, PlazaFragment::class.java)
                 .create(),
             viewLifecycleOwner.lifecycle
         )
@@ -62,9 +63,9 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                         imgRes = R.mipmap.ic_tab_main_project
                     ),
                     NavigationItem(
-                        title = getString(R.string.square),
+                        title = getString(R.string.plaza),
                         bgColor = getRandomColor().setColorAlpha(.4f),
-                        imgRes = R.mipmap.ic_tab_main_square
+                        imgRes = R.mipmap.ic_tab_main_plaza
                     ),
                     NavigationItem(
                         title = getString(R.string.vipcn),
@@ -84,6 +85,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                 when (position) {
                     0 -> vpMain.setCurrentItem(position, false)
                     1 -> vpMain.setCurrentItem(position, false)
+                    2 -> vpMain.setCurrentItem(position, false)
                     4 -> appThemeViewModel.switchTheme(Theme.DarkBlue)
                 }
             }
