@@ -37,7 +37,7 @@ class PlazaFragment : BaseFragment<FragmentPlazaBinding>() {
                 flMagicIndicator.setNavigator(vpPlaza, FragmentStatePager2ItemAdapter(
                     this@PlazaFragment,
                     FragmentPagerItems.with(mContext)
-                        .add(R.string.tab_plaza_article, HomeArticleFragment::class.java)
+                        .add(R.string.tab_plaza_article, PlazaArticleFragment::class.java)
                         .add(R.string.tab_plaza_ask, HomeQaFragment::class.java)
                         .add(R.string.tab_plaza_system, HomeArticleFragment::class.java)
                         .add(R.string.tab_plaza_navigation, HomeQaFragment::class.java)

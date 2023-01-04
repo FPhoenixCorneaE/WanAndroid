@@ -4,6 +4,8 @@ import com.fphoenixcorneae.wanandroid.constant.UrlConstants
 import com.fphoenixcorneae.wanandroid.mvvm.home.ArticleBean
 import com.fphoenixcorneae.wanandroid.mvvm.home.HomeBannerBean
 import com.fphoenixcorneae.wanandroid.mvvm.home.PageBean
+import com.fphoenixcorneae.wanandroid.mvvm.plaza.NavigationBean
+import com.fphoenixcorneae.wanandroid.mvvm.plaza.SystemBean
 import com.fphoenixcorneae.wanandroid.mvvm.project.ClassifyBean
 import com.fphoenixcorneae.wanandroid.mvvm.splash.SplashBean
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager
@@ -78,4 +80,43 @@ interface ApiService {
     suspend fun getProjectNewestData(
         @Path("page") page: Int,
     ): ApiResponse<PageBean<ArticleBean>>
+
+    /**
+     * 获取广场文章列表数据
+     */
+    @GET("/user_article/list/{page}/json")
+    suspend fun getPlazaArticle(
+        @Path("page") page: Int,
+    ): ApiResponse<PageBean<ArticleBean>>
+
+    /**
+     * 获取广场每日一问列表数据
+     */
+    @GET("/wenda/list/{page}/json")
+    suspend fun getPlazaAsk(
+        @Path("page") page: Int,
+    ): ApiResponse<PageBean<ArticleBean>>
+
+
+    /**
+     * 获取广场体系数据
+     */
+    @GET("/tree/json")
+    suspend fun getPlazaSystem(): ApiResponse<MutableList<SystemBean>>
+
+    /**
+     * 获取广场体系文章数据
+     */
+    @GET("/article/list/{page}/json")
+    suspend fun getPlazaArticleById(
+        @Path("page") page: Int,
+        @Query("cid") cid: Int,
+    ): ApiResponse<PageBean<ArticleBean>>
+
+
+    /**
+     * 获取广场导航数据
+     */
+    @GET("/navi/json")
+    suspend fun getPlazaNavigation(): ApiResponse<MutableList<NavigationBean>>
 }
