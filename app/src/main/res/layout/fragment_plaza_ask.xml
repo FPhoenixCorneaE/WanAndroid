@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.fphoenixcorneae.wanandroid.mvvm.plaza.PlazaViewModel" />
+
+        <variable
+            name="askAdapter"
+            type="androidx.recyclerview.widget.RecyclerView.Adapter" />
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srlRefresh"
+        isRefreshing="@{viewModel.askPageState.isRefreshing()}"
+        onRefresh="@{() -> viewModel.getAsk(true)}"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvAsk"
+            adapter="@{askAdapter}"
+            hasFixedSize="@{true}"
+            itemViewCacheSize="@{200}"
+            onLoadMore="@{() -> viewModel.getAsk(false)}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="10"
+            tools:listitem="@layout/item_home_qa" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>

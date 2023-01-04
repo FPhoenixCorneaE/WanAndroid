@@ -18,9 +18,12 @@ import kotlinx.coroutines.flow.first
  */
 class PlazaViewModel : BaseViewModel() {
     val articlePageState by lazy { PageState() }
+    val askPageState by lazy { PageState() }
 
     private val _plazaArticle: MutableStateFlow<Result<PageBean<ArticleBean>>?> = MutableStateFlow(null)
     val plazaArticle = _plazaArticle.asStateFlow()
+    private val _plazaAsk: MutableStateFlow<Result<PageBean<ArticleBean>>?> = MutableStateFlow(null)
+    val plazaAsk = _plazaAsk.asStateFlow()
 
     fun getArticle(isRefresh: Boolean = true) {
         setArticleRefreshing(isRefresh = isRefresh)
@@ -37,6 +40,21 @@ class PlazaViewModel : BaseViewModel() {
         }
     }
 
+    fun getAsk(isRefresh: Boolean = true) {
+        setAskRefreshing(isRefresh = isRefresh)
+        launch {
+            (if (isRefresh) 1 else askPageState.page.first() + 1).also {
+                setAskPage(it)
+                request(
+                    block = {
+                        apiService.getPlazaAsk(it)
+                    },
+                    result = _plazaAsk
+                )
+            }
+        }
+    }
+
     fun setArticlePage(page: Int) {
         launch {
             articlePageState.page.emit(page)
@@ -46,6 +64,18 @@ class PlazaViewModel : BaseViewModel() {
     fun setArticleRefreshing(isRefresh: Boolean) {
         launch {
             articlePageState.isRefreshing.emit(isRefresh)
+        }
+    }
+
+    fun setAskPage(page: Int) {
+        launch {
+            askPageState.page.emit(page)
+        }
+    }
+
+    fun setAskRefreshing(isRefresh: Boolean) {
+        launch {
+            askPageState.isRefreshing.emit(isRefresh)
         }
     }
 }
