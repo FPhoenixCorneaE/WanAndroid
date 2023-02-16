@@ -33,7 +33,6 @@ class PlazaArticleFragment : BaseFragment<FragmentPlazaArticleBinding>() {
                 it.parseResult(
                     fragment = this@PlazaArticleFragment,
                     onSuccess = {
-                        mViewModel.setArticleRefreshing(false)
                         it?.let {
                             if (it.isEmpty()) {
                                 showEmpty(null)
@@ -48,9 +47,6 @@ class PlazaArticleFragment : BaseFragment<FragmentPlazaArticleBinding>() {
                             }
                         }
                     },
-                    onError = {
-                        mViewModel.setArticleRefreshing(false)
-                    }
                 )
             }
         }

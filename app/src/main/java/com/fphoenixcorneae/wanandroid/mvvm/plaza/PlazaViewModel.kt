@@ -8,6 +8,7 @@ import com.fphoenixcorneae.wanandroid.api.apiService
 import com.fphoenixcorneae.wanandroid.mvvm.home.ArticleBean
 import com.fphoenixcorneae.wanandroid.mvvm.home.PageBean
 import com.fphoenixcorneae.wanandroid.mvvm.home.PageState
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
@@ -39,6 +40,7 @@ class PlazaViewModel : BaseViewModel() {
                     },
                     result = _plazaArticle
                 )
+                setArticleRefreshing(isRefresh = false)
             }
         }
     }
@@ -54,6 +56,7 @@ class PlazaViewModel : BaseViewModel() {
                     },
                     result = _plazaAsk
                 )
+                setAskRefreshing(isRefresh = false)
             }
         }
     }
@@ -66,6 +69,7 @@ class PlazaViewModel : BaseViewModel() {
             },
             result = _plazaSystem
         )
+        setSystemRefreshing(isRefresh = false)
     }
 
     fun setArticlePage(page: Int) {
@@ -76,6 +80,9 @@ class PlazaViewModel : BaseViewModel() {
 
     fun setArticleRefreshing(isRefresh: Boolean) {
         launch {
+            if (!isRefresh) {
+                delay(400)
+            }
             articlePageState.isRefreshing.emit(isRefresh)
         }
     }
@@ -88,12 +95,18 @@ class PlazaViewModel : BaseViewModel() {
 
     fun setAskRefreshing(isRefresh: Boolean) {
         launch {
+            if (!isRefresh) {
+                delay(400)
+            }
             askPageState.isRefreshing.emit(isRefresh)
         }
     }
 
     fun setSystemRefreshing(isRefresh: Boolean) {
         launch {
+            if (!isRefresh) {
+                delay(400)
+            }
             systemPageState.isRefreshing.emit(isRefresh)
         }
     }

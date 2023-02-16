@@ -76,7 +76,7 @@ class HomeViewModel : BaseViewModel() {
      * 首页文章列表
      */
     fun getHomeArticle(isRefresh: Boolean) {
-        setHomeArticleRefreshing(isRefreshing = true)
+        setHomeArticleRefreshing(isRefresh = isRefresh)
         launch {
             (if (isRefresh) 0 else homeArticlePageState.page.first() + 1).also {
                 setHomeArticlePage(it)
@@ -86,8 +86,7 @@ class HomeViewModel : BaseViewModel() {
                     },
                     result = _homeArticle
                 )
-                delay(400)
-                setHomeArticleRefreshing(isRefreshing = false)
+                setHomeArticleRefreshing(isRefresh = false)
             }
         }
     }
@@ -103,7 +102,7 @@ class HomeViewModel : BaseViewModel() {
      * 首页问答列表
      */
     fun getHomeQa(isRefresh: Boolean) {
-        setHomeQaRefreshing(isRefreshing = true)
+        setHomeQaRefreshing(isRefresh = isRefresh)
         launch {
             (if (isRefresh) 0 else homeQaPageState.page.first() + 1).also {
                 setHomeQaPage(it)
@@ -113,8 +112,7 @@ class HomeViewModel : BaseViewModel() {
                     },
                     result = _homeQa
                 )
-                delay(400)
-                setHomeQaRefreshing(isRefreshing = false)
+                setHomeQaRefreshing(isRefresh = false)
             }
         }
     }
@@ -132,9 +130,12 @@ class HomeViewModel : BaseViewModel() {
         }
     }
 
-    fun setHomeArticleRefreshing(isRefreshing: Boolean) {
+    fun setHomeArticleRefreshing(isRefresh: Boolean) {
         launch {
-            homeArticlePageState.isRefreshing.emit(isRefreshing)
+            if (!isRefresh) {
+                delay(400)
+            }
+            homeArticlePageState.isRefreshing.emit(isRefresh)
         }
     }
 
@@ -144,9 +145,12 @@ class HomeViewModel : BaseViewModel() {
         }
     }
 
-    fun setHomeQaRefreshing(isRefreshing: Boolean) {
+    fun setHomeQaRefreshing(isRefresh: Boolean) {
         launch {
-            homeQaPageState.isRefreshing.emit(isRefreshing)
+            if (!isRefresh) {
+                delay(400)
+            }
+            homeQaPageState.isRefreshing.emit(isRefresh)
         }
     }
 }

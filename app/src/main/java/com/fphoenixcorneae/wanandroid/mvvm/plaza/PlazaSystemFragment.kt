@@ -32,12 +32,8 @@ class PlazaSystemFragment : BaseFragment<FragmentPlazaSystemBinding>() {
                 it.parseResult(
                     fragment = this@PlazaSystemFragment,
                     onSuccess = {
-                        mViewModel.setSystemRefreshing(isRefresh = false)
                         mSystemAdapter.submitList(it)
                     },
-                    onError = {
-                        mViewModel.setSystemRefreshing(isRefresh = false)
-                    }
                 )
             }
         }

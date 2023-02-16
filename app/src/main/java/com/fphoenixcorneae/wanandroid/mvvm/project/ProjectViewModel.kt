@@ -8,6 +8,7 @@ import com.fphoenixcorneae.wanandroid.api.apiService
 import com.fphoenixcorneae.wanandroid.mvvm.home.ArticleBean
 import com.fphoenixcorneae.wanandroid.mvvm.home.PageBean
 import com.fphoenixcorneae.wanandroid.mvvm.home.PageState
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
@@ -47,7 +48,7 @@ class ProjectViewModel : BaseViewModel() {
      * 项目数据
      */
     fun getProjectData(isNewest: Boolean, classifyId: Int, isRefresh: Boolean = true) {
-        setRefreshing(isRefreshing = isRefresh)
+        setRefreshing(isRefresh = isRefresh)
         launch {
             (if (isRefresh) 0 else pageState.page.first() + 1).also {
                 setPage(it)
@@ -61,6 +62,7 @@ class ProjectViewModel : BaseViewModel() {
                     },
                     result = _projectData
                 )
+                setRefreshing(isRefresh = false)
             }
         }
     }
@@ -78,9 +80,12 @@ class ProjectViewModel : BaseViewModel() {
         }
     }
 
-    fun setRefreshing(isRefreshing: Boolean) {
+    fun setRefreshing(isRefresh: Boolean) {
         launch {
-            pageState.isRefreshing.emit(isRefreshing)
+            if (!isRefresh) {
+                delay(400)
+            }
+            pageState.isRefreshing.emit(isRefresh)
         }
     }
 }

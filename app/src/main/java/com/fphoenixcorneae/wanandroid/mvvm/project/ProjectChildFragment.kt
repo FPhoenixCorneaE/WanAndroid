@@ -35,7 +35,6 @@ class ProjectChildFragment : BaseFragment<FragmentProjectChildBinding>() {
                 it?.parseResult(
                     fragment = this@ProjectChildFragment,
                     onSuccess = {
-                        setRefreshing(isRefreshing = false)
                         it?.let {
                             if (it.isEmpty()) {
                                 showEmpty(null)
@@ -50,9 +49,6 @@ class ProjectChildFragment : BaseFragment<FragmentProjectChildBinding>() {
                             }
                         }
                     },
-                    onError = {
-                        setRefreshing(isRefreshing = false)
-                    }
                 )
             }
         }

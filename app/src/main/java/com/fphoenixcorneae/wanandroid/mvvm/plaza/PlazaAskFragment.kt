@@ -33,7 +33,6 @@ class PlazaAskFragment : BaseFragment<FragmentPlazaAskBinding>() {
                 it.parseResult(
                     fragment = this@PlazaAskFragment,
                     onSuccess = {
-                        mViewModel.setAskRefreshing(false)
                         it?.let {
                             if (it.isEmpty()) {
                                 showEmpty(null)
@@ -48,9 +47,6 @@ class PlazaAskFragment : BaseFragment<FragmentPlazaAskBinding>() {
                             }
                         }
                     },
-                    onError = {
-                        mViewModel.setAskRefreshing(false)
-                    }
                 )
             }
         }
