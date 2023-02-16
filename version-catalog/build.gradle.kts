@@ -37,10 +37,12 @@ catalog {
         library("fphoenixcorneae-jetpackMvvm", "com.github.FPhoenixCorneaE:JetpackMvvm:3.0.1")
         library("fphoenixcorneae-easyNavigation", "com.github.FPhoenixCorneaE.EasyNavigation:easyNavigation:1.1.0")
         library("fphoenixcorneae-viewPagerAdapter", "com.github.FPhoenixCorneaE:ViewPagerAdapter:1.0.1-beta01")
+        library("fphoenixcorneae-flowLayout", "com.github.FPhoenixCorneaE:FlowLayout:1.0.8")
         bundle("fphoenixcorneae", listOf(
             "fphoenixcorneae-jetpackMvvm",
             "fphoenixcorneae-easyNavigation",
             "fphoenixcorneae-viewPagerAdapter",
+            "fphoenixcorneae-flowLayout",
         ))
 
         // androidx

@@ -5,6 +5,7 @@ import com.fphoenixcorneae.jetpackmvvm.base.viewmodel.BaseViewModel
 import com.fphoenixcorneae.jetpackmvvm.ext.launch
 import com.fphoenixcorneae.jetpackmvvm.ext.request
 import com.fphoenixcorneae.wanandroid.api.apiService
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.first
@@ -75,7 +76,7 @@ class HomeViewModel : BaseViewModel() {
      * 首页文章列表
      */
     fun getHomeArticle(isRefresh: Boolean) {
-        setHomeArticleRefreshing(isRefreshing = isRefresh)
+        setHomeArticleRefreshing(isRefreshing = true)
         launch {
             (if (isRefresh) 0 else homeArticlePageState.page.first() + 1).also {
                 setHomeArticlePage(it)
@@ -85,6 +86,8 @@ class HomeViewModel : BaseViewModel() {
                     },
                     result = _homeArticle
                 )
+                delay(400)
+                setHomeArticleRefreshing(isRefreshing = false)
             }
         }
     }
@@ -100,7 +103,7 @@ class HomeViewModel : BaseViewModel() {
      * 首页问答列表
      */
     fun getHomeQa(isRefresh: Boolean) {
-        setHomeQaRefreshing(isRefreshing = isRefresh)
+        setHomeQaRefreshing(isRefreshing = true)
         launch {
             (if (isRefresh) 0 else homeQaPageState.page.first() + 1).also {
                 setHomeQaPage(it)
@@ -110,6 +113,8 @@ class HomeViewModel : BaseViewModel() {
                     },
                     result = _homeQa
                 )
+                delay(400)
+                setHomeQaRefreshing(isRefreshing = false)
             }
         }
     }

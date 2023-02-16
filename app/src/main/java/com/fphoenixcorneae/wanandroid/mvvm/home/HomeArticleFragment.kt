@@ -44,7 +44,6 @@ class HomeArticleFragment : BaseFragment<FragmentHomeArticleBinding>() {
                 it.parseResult(
                     fragment = this@HomeArticleFragment,
                     onSuccess = {
-                        mViewModel.setHomeArticleRefreshing(false)
                         it?.let {
                             if (it.isEmpty()) {
                                 showEmpty(null)
@@ -64,9 +63,6 @@ class HomeArticleFragment : BaseFragment<FragmentHomeArticleBinding>() {
                             }
                         }
                     },
-                    onError = {
-                        mViewModel.setHomeArticleRefreshing(false)
-                    }
                 )
             }
         }

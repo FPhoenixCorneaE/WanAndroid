@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="system"
+            type="com.fphoenixcorneae.wanandroid.mvvm.plaza.SystemBean" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="32dp"
+        android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/thin_gold"
+                android:maxLines="2"
+                android:text="@{system.nameToHtml()}"
+                android:textColor="@color/color_black_333333"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@tools:sample/last_names" />
+
+            <com.fphoenixcorneae.flowlayout.FlowLayout
+                android:id="@+id/rvSystemChild"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:flowLayoutCornerRadius="8dp"
+                app:flowLayoutHorizontalSpacing="6dp"
+                app:flowLayoutMode="none"
+                app:flowLayoutPaddingBottom="6dp"
+                app:flowLayoutPaddingEnd="10dp"
+                app:flowLayoutPaddingStart="10dp"
+                app:flowLayoutPaddingTop="6dp"
+                app:flowLayoutRandomTextColor="true"
+                app:flowLayoutTextFontFamily="@font/arial"
+                app:flowLayoutTextSize="16sp"
+                app:flowLayoutVerticalSpacing="6dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvName" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>

@@ -2,6 +2,7 @@ package com.fphoenixcorneae.wanandroid.mvvm.plaza
 
 import android.os.Parcelable
 import androidx.annotation.Keep
+import com.fphoenixcorneae.common.ext.toHtml
 import com.fphoenixcorneae.wanandroid.mvvm.project.ClassifyBean
 import kotlinx.parcelize.Parcelize
 
@@ -12,12 +13,15 @@ import kotlinx.parcelize.Parcelize
 @Keep
 @Parcelize
 data class SystemBean(
-    var children: ArrayList<ClassifyBean>,
+    var children: MutableList<ClassifyBean>,
     var courseId: Int,
     var id: Int,
-    var name: String,
+    var name: String?,
     var order: Int,
     var parentChapterId: Int,
     var userControlSetTop: Boolean,
     var visible: Int,
-) : Parcelable
+) : Parcelable {
+
+    fun nameToHtml() = name?.toHtml()
+}

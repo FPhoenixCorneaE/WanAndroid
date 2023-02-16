@@ -62,6 +62,7 @@ dokit-no-op = {group = "io.github.didi.dokit", name = "dokitx-no-op", version.re
 dokit-weex = {group = "io.github.didi.dokit", name = "dokitx-weex", version.ref = "dokit" }
 easyfloat = {group = "com.github.princekin-f", name = "EasyFloat", version = "2.0.4" }
 fphoenixcorneae-easyNavigation = {group = "com.github.FPhoenixCorneaE.EasyNavigation", name = "easyNavigation", version = "1.1.0" }
+fphoenixcorneae-flowLayout = {group = "com.github.FPhoenixCorneaE", name = "FlowLayout", version = "1.0.8" }
 fphoenixcorneae-jetpackMvvm = {group = "com.github.FPhoenixCorneaE", name = "JetpackMvvm", version = "3.0.1" }
 fphoenixcorneae-viewPagerAdapter = {group = "com.github.FPhoenixCorneaE", name = "ViewPagerAdapter", version = "1.0.1-beta01" }
 kotlinx-coroutines-android = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
@@ -101,7 +102,7 @@ androidx-work = ["androidx-work-runtime-ktx", "androidx-work-multiprocess"]
 coil = ["coil", "coil-gif", "coil-svg", "coil-video", "coil-compose"]
 coroutines = ["kotlinx-coroutines-core", "kotlinx-coroutines-android"]
 dokit = ["dokit", "dokit-ft", "dokit-mc", "dokit-weex", "dokit-no-op"]
-fphoenixcorneae = ["fphoenixcorneae-jetpackMvvm", "fphoenixcorneae-easyNavigation", "fphoenixcorneae-viewPagerAdapter"]
+fphoenixcorneae = ["fphoenixcorneae-jetpackMvvm", "fphoenixcorneae-easyNavigation", "fphoenixcorneae-viewPagerAdapter", "fphoenixcorneae-flowLayout"]
 lifecycle = ["lifecycle-viewmodel-ktx", "lifecycle-viewmodel-compose", "lifecycle-livedata-ktx", "lifecycle-runtime-ktx", "lifecycle-viewmodel-savedstate", "lifecycle-common-java8", "lifecycle-service", "lifecycle-process", "lifecycle-reactivestreams-ktx"]
 navigation = ["navigation-fragment-ktx", "navigation-ui-ktx", "navigation-compose"]
 room = ["room-runtime", "room-ktx", "room-paging"]

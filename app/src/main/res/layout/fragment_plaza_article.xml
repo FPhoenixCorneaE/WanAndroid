@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:itemCount="10"
-                tools:listitem="@layout/item_project_child" />
+                tools:listitem="@layout/item_home_article" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </com.fphoenixcorneae.wanandroid.widget.FixDragLayout>
 </layout>

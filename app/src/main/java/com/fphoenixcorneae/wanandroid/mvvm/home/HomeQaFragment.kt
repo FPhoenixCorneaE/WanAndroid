@@ -32,7 +32,6 @@ class HomeQaFragment : BaseFragment<FragmentHomeQaBinding>() {
                 it?.parseResult(
                     fragment = this@HomeQaFragment,
                     onSuccess = {
-                        setHomeQaRefreshing(isRefreshing = false)
                         it?.let {
                             if (it.isEmpty()) {
                                 showEmpty(null)
@@ -47,9 +46,6 @@ class HomeQaFragment : BaseFragment<FragmentHomeQaBinding>() {
                             }
                         }
                     },
-                    onError = {
-                        setHomeQaRefreshing(isRefreshing = false)
-                    }
                 )
             }
         }
