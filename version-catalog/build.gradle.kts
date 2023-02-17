@@ -34,7 +34,7 @@ catalog {
         plugin("kotlin-parcelize", "org.jetbrains.kotlin.plugin.parcelize").versionRef("kotlin")
 
         // FPhoenixCorneaE
-        library("fphoenixcorneae-jetpackMvvm", "com.github.FPhoenixCorneaE:JetpackMvvm:3.0.1")
+        library("fphoenixcorneae-jetpackMvvm", "com.github.FPhoenixCorneaE:JetpackMvvm:3.0.2")
         library("fphoenixcorneae-easyNavigation", "com.github.FPhoenixCorneaE.EasyNavigation:easyNavigation:1.1.0")
         library("fphoenixcorneae-viewPagerAdapter", "com.github.FPhoenixCorneaE:ViewPagerAdapter:1.0.1-beta01")
         library("fphoenixcorneae-flowLayout", "com.github.FPhoenixCorneaE:FlowLayout:1.0.8")

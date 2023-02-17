@@ -26,14 +26,13 @@ data class PageBean<T>(
      */
     fun isFirstPage(): Boolean {
         // WanAndroid 第一页该字段都为0
-        return offset == 0
+        return curPage == 0
     }
 
     /**
      * 是否数据为空
      */
     fun isEmpty(): Boolean {
-        // WanAndroid 第一页该字段都为0
         return isFirstPage() && datas.isNullOrEmpty()
     }
 

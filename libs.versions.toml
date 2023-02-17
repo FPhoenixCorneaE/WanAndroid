@@ -63,7 +63,7 @@ dokit-weex = {group = "io.github.didi.dokit", name = "dokitx-weex", version.ref 
 easyfloat = {group = "com.github.princekin-f", name = "EasyFloat", version = "2.0.4" }
 fphoenixcorneae-easyNavigation = {group = "com.github.FPhoenixCorneaE.EasyNavigation", name = "easyNavigation", version = "1.1.0" }
 fphoenixcorneae-flowLayout = {group = "com.github.FPhoenixCorneaE", name = "FlowLayout", version = "1.0.8" }
-fphoenixcorneae-jetpackMvvm = {group = "com.github.FPhoenixCorneaE", name = "JetpackMvvm", version = "3.0.1" }
+fphoenixcorneae-jetpackMvvm = {group = "com.github.FPhoenixCorneaE", name = "JetpackMvvm", version = "3.0.2" }
 fphoenixcorneae-viewPagerAdapter = {group = "com.github.FPhoenixCorneaE", name = "ViewPagerAdapter", version = "1.0.1-beta01" }
 kotlinx-coroutines-android = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlinx-coroutines-core = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
