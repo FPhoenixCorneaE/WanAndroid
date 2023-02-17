@@ -21,6 +21,7 @@ class PlazaViewModel : BaseViewModel() {
     val articlePageState by lazy { PageState() }
     val askPageState by lazy { PageState() }
     val systemPageState by lazy { PageState() }
+    val navigationPageState by lazy { PageState() }
 
     private val _plazaArticle: MutableStateFlow<Result<PageBean<ArticleBean>>?> = MutableStateFlow(null)
     val plazaArticle = _plazaArticle.asStateFlow()
@@ -28,6 +29,8 @@ class PlazaViewModel : BaseViewModel() {
     val plazaAsk = _plazaAsk.asStateFlow()
     private val _plazaSystem: MutableStateFlow<Result<MutableList<SystemBean>>?> = MutableStateFlow(null)
     val plazaSystem = _plazaSystem.asStateFlow()
+    private val _plazaNavigation: MutableStateFlow<Result<MutableList<NavigationBean>>?> = MutableStateFlow(null)
+    val plazaNavigation = _plazaNavigation.asStateFlow()
 
     fun getArticle(isRefresh: Boolean = true) {
         setArticleRefreshing(isRefresh = isRefresh)
@@ -72,6 +75,17 @@ class PlazaViewModel : BaseViewModel() {
         setSystemRefreshing(isRefresh = false)
     }
 
+    fun getNavigation() {
+        setNavigationRefreshing(isRefresh = true)
+        request(
+            block = {
+                apiService.getPlazaNavigation()
+            },
+            result = _plazaNavigation
+        )
+        setNavigationRefreshing(isRefresh = false)
+    }
+
     fun setArticlePage(page: Int) {
         launch {
             articlePageState.page.emit(page)
@@ -108,6 +122,15 @@ class PlazaViewModel : BaseViewModel() {
                 delay(400)
             }
             systemPageState.isRefreshing.emit(isRefresh)
+        }
+    }
+
+    fun setNavigationRefreshing(isRefresh: Boolean) {
+        launch {
+            if (!isRefresh) {
+                delay(400)
+            }
+            navigationPageState.isRefreshing.emit(isRefresh)
         }
     }
 }

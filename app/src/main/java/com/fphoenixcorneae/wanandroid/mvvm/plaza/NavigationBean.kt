@@ -2,6 +2,7 @@ package com.fphoenixcorneae.wanandroid.mvvm.plaza
 
 import android.os.Parcelable
 import androidx.annotation.Keep
+import com.fphoenixcorneae.common.ext.toHtml
 import com.fphoenixcorneae.wanandroid.mvvm.home.ArticleBean
 import kotlinx.parcelize.Parcelize
 
@@ -12,7 +13,10 @@ import kotlinx.parcelize.Parcelize
 @Keep
 @Parcelize
 data class NavigationBean(
-    var articles: ArrayList<ArticleBean>,
+    var articles: MutableList<ArticleBean>,
     var cid: Int,
-    var name: String,
-) : Parcelable
+    var name: String?,
+) : Parcelable {
+
+    fun nameToHtml() = name?.toHtml()
+}

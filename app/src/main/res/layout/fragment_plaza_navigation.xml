@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.fphoenixcorneae.wanandroid.mvvm.plaza.PlazaViewModel" />
+
+        <variable
+            name="navigationAdapter"
+            type="androidx.recyclerview.widget.RecyclerView.Adapter" />
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srlRefresh"
+        isRefreshing="@{viewModel.navigationPageState.isRefreshing()}"
+        onRefresh="@{() -> viewModel.getNavigation()}"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvNavigation"
+            adapter="@{navigationAdapter}"
+            hasFixedSize="@{true}"
+            itemViewCacheSize="@{200}"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="10"
+            tools:listitem="@layout/item_plaza_system" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>

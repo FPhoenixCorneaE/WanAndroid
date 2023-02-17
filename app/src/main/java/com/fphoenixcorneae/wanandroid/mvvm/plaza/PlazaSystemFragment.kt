@@ -9,7 +9,7 @@ import com.fphoenixcorneae.jetpackmvvm.ext.parseResult
 import com.fphoenixcorneae.wanandroid.databinding.FragmentPlazaSystemBinding
 
 /**
- * @desc：广场每日一问Fragment
+ * @desc：广场体系Fragment
  * @date：2023/01/04 09:23
  */
 class PlazaSystemFragment : BaseFragment<FragmentPlazaSystemBinding>() {

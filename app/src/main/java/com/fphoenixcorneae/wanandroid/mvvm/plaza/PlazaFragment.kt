@@ -7,7 +7,6 @@ import com.fphoenixcorneae.jetpackmvvm.ext.collectWithLifecycle
 import com.fphoenixcorneae.wanandroid.R
 import com.fphoenixcorneae.wanandroid.databinding.FragmentPlazaBinding
 import com.fphoenixcorneae.wanandroid.ext.setNavigator
-import com.fphoenixcorneae.wanandroid.mvvm.home.HomeQaFragment
 import com.fphoenixcorneae.wanandroid.theme.appThemeViewModel
 import com.fphoenixcorneae.widget.viewpager.FragmentPagerItems
 import com.fphoenixcorneae.widget.viewpager.FragmentStatePager2ItemAdapter
@@ -39,7 +38,7 @@ class PlazaFragment : BaseFragment<FragmentPlazaBinding>() {
                         .add(R.string.tab_plaza_article, PlazaArticleFragment::class.java)
                         .add(R.string.tab_plaza_ask, PlazaAskFragment::class.java)
                         .add(R.string.tab_plaza_system, PlazaSystemFragment::class.java)
-                        .add(R.string.tab_plaza_navigation, HomeQaFragment::class.java)
+                        .add(R.string.tab_plaza_navigation, PlazaNavigationFragment::class.java)
                         .create(),
                     viewLifecycleOwner.lifecycle
                 ))
