@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.chad.library.adapter.base.QuickAdapterHelper
+import com.fphoenixcorneae.common.ext.toast
 import com.fphoenixcorneae.jetpackmvvm.base.fragment.BaseFragment
 import com.fphoenixcorneae.jetpackmvvm.ext.collectWithLifecycle
 import com.fphoenixcorneae.jetpackmvvm.ext.parseResult
+import com.fphoenixcorneae.wanandroid.R
 import com.fphoenixcorneae.wanandroid.databinding.FragmentHomeArticleBinding
 
 /**
@@ -59,6 +61,9 @@ class HomeArticleFragment : BaseFragment<FragmentHomeArticleBinding>() {
                                     val oldSize = mArticleAdapter.items.size
                                     mArticleAdapter.addAll(it)
                                     rvArticle.scrollToPosition(oldSize)
+                                }
+                                if (it.isNoMore()) {
+                                    toast(getString(R.string.no_more_data))
                                 }
                             }
                         }

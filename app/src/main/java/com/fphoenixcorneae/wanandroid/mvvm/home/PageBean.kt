@@ -18,7 +18,7 @@ data class PageBean<T>(
     var over: Boolean,
     var pageCount: Int,
     var size: Int,
-    var total: Int
+    var total: Int,
 ) : Parcelable {
 
     /**

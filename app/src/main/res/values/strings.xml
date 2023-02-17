@@ -18,4 +18,5 @@
     <string name="tab_plaza_ask">每日一问</string>
     <string name="tab_plaza_system">体系</string>
     <string name="tab_plaza_navigation">导航</string>
+    <string name="no_more_data">数据已经全部加载完成！</string>
 </resources>

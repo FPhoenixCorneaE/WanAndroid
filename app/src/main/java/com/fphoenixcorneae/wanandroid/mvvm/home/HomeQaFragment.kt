@@ -3,9 +3,11 @@ package com.fphoenixcorneae.wanandroid.mvvm.home
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import com.fphoenixcorneae.common.ext.toast
 import com.fphoenixcorneae.jetpackmvvm.base.fragment.BaseFragment
 import com.fphoenixcorneae.jetpackmvvm.ext.collectWithLifecycle
 import com.fphoenixcorneae.jetpackmvvm.ext.parseResult
+import com.fphoenixcorneae.wanandroid.R
 import com.fphoenixcorneae.wanandroid.databinding.FragmentHomeQaBinding
 
 /**
@@ -42,6 +44,9 @@ class HomeQaFragment : BaseFragment<FragmentHomeQaBinding>() {
                                     val oldSize = mQaAdapter.items.size
                                     mQaAdapter.addAll(it)
                                     rvQa.scrollToPosition(oldSize)
+                                }
+                                if (it.isNoMore()) {
+                                    toast(getString(R.string.no_more_data))
                                 }
                             }
                         }
