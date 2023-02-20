@@ -7,10 +7,6 @@
         <variable
             name="themeViewModel"
             type="com.fphoenixcorneae.wanandroid.theme.AppThemeViewModel" />
-
-        <variable
-            name="projectAdapter"
-            type="androidx.viewpager2.adapter.FragmentStateAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,7 +23,6 @@
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vpProject"
-            adapter="@{projectAdapter}"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"

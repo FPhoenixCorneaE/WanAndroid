@@ -12,6 +12,7 @@ import com.fphoenixcorneae.wanandroid.R
 import com.fphoenixcorneae.wanandroid.databinding.FragmentMainBinding
 import com.fphoenixcorneae.wanandroid.ext.eventViewModel
 import com.fphoenixcorneae.wanandroid.mvvm.home.HomeFragment
+import com.fphoenixcorneae.wanandroid.mvvm.officialaccount.OfficialAccountFragment
 import com.fphoenixcorneae.wanandroid.mvvm.plaza.PlazaFragment
 import com.fphoenixcorneae.wanandroid.mvvm.project.ProjectFragment
 import com.fphoenixcorneae.wanandroid.theme.Theme
@@ -35,6 +36,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                 .add(R.string.homepage, HomeFragment::class.java)
                 .add(R.string.project, ProjectFragment::class.java)
                 .add(R.string.plaza, PlazaFragment::class.java)
+                .add(R.string.official_account, OfficialAccountFragment::class.java)
                 .create(),
             viewLifecycleOwner.lifecycle
         )
@@ -68,9 +70,9 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                         imgRes = R.mipmap.ic_tab_main_plaza
                     ),
                     NavigationItem(
-                        title = getString(R.string.vipcn),
+                        title = getString(R.string.official_account),
                         bgColor = getRandomColor().setColorAlpha(.4f),
-                        imgRes = R.mipmap.ic_tab_main_vipcn
+                        imgRes = R.mipmap.ic_tab_main_official_account
                     ),
                     NavigationItem(
                         title = getString(R.string.mine),
@@ -86,6 +88,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                     0 -> vpMain.setCurrentItem(position, false)
                     1 -> vpMain.setCurrentItem(position, false)
                     2 -> vpMain.setCurrentItem(position, false)
+                    3 -> vpMain.setCurrentItem(position, false)
                     4 -> appThemeViewModel.switchTheme(Theme.DarkBlue)
                 }
             }

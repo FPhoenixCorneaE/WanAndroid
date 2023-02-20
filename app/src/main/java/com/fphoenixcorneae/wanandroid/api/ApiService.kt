@@ -119,4 +119,19 @@ interface ApiService {
      */
     @GET("/navi/json")
     suspend fun getPlazaNavigation(): ApiResponse<MutableList<NavigationBean>>
+
+    /**
+     * 公众号分类
+     */
+    @GET("wxarticle/chapters/json")
+    suspend fun getOfficialAccountClassify(): ApiResponse<MutableList<ClassifyBean>>
+
+    /**
+     * 获取公众号数据
+     */
+    @GET("wxarticle/list/{cid}/{page}/json")
+    suspend fun getOfficialAccountDataByClassifyId(
+        @Path("page") page: Int,
+        @Path("cid") cid: Int,
+    ): ApiResponse<PageBean<ArticleBean>>
 }
