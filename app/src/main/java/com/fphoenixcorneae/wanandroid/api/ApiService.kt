@@ -4,6 +4,7 @@ import com.fphoenixcorneae.wanandroid.constant.UrlConstants
 import com.fphoenixcorneae.wanandroid.mvvm.home.ArticleBean
 import com.fphoenixcorneae.wanandroid.mvvm.home.HomeBannerBean
 import com.fphoenixcorneae.wanandroid.mvvm.home.PageBean
+import com.fphoenixcorneae.wanandroid.mvvm.mine.UserInfoBean
 import com.fphoenixcorneae.wanandroid.mvvm.plaza.NavigationBean
 import com.fphoenixcorneae.wanandroid.mvvm.plaza.SystemBean
 import com.fphoenixcorneae.wanandroid.mvvm.project.ClassifyBean
@@ -134,4 +135,10 @@ interface ApiService {
         @Path("page") page: Int,
         @Path("cid") cid: Int,
     ): ApiResponse<PageBean<ArticleBean>>
+
+    /**
+     * 获取用户信息
+     */
+    @GET("/lg/coin/userinfo/json")
+    fun getUserInfo(): ApiResponse<UserInfoBean>
 }

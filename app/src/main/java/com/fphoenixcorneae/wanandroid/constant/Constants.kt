@@ -19,4 +19,13 @@ object Constants {
         // 最新项目
         const val NEWEST_PROJECT = "newest_project"
     }
+
+    /**
+     * @desc：用户
+     * @date：2023/02/23 11:00
+     */
+    object User {
+        const val LOGIN_STATUS = "login_status"
+        const val USER_INFO = "user_info"
+    }
 }
