@@ -2,8 +2,11 @@ package com.fphoenixcorneae.wanandroid.theme
 
 import com.fphoenixcorneae.jetpackmvvm.base.viewmodel.BaseViewModel
 import com.fphoenixcorneae.jetpackmvvm.ext.launch
+import com.fphoenixcorneae.jetpackmvvm.startup.defaultMMKV
+import com.fphoenixcorneae.wanandroid.constant.Constants
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.firstOrNull
 
 /**
  * @desc：ThemeViewModel
@@ -11,12 +14,30 @@ import kotlinx.coroutines.flow.asStateFlow
  */
 class AppThemeViewModel : BaseViewModel() {
 
-    private val _theme = MutableStateFlow<Theme>(Theme.LightBlue)
+    private val _theme = MutableStateFlow(getThemePreference())
     val theme = _theme.asStateFlow()
 
     fun switchTheme(theme: Theme) {
         launch {
-            _theme.emit(theme)
+            if (_theme.firstOrNull() != theme) {
+                _theme.emit(theme)
+                setThemePreference(theme)
+            }
         }
     }
+
+    fun darkMode() {
+        launch {
+            switchTheme(if (_theme.firstOrNull() == Theme.LightBlue) Theme.DarkBlue else Theme.LightBlue)
+        }
+    }
+
+    fun getThemePreference() = run {
+        when (defaultMMKV.getString(Constants.Preference.THEME, null)) {
+            Theme.DarkBlue.javaClass.simpleName -> Theme.DarkBlue
+            else -> Theme.LightBlue
+        }
+    }
+
+    fun setThemePreference(theme: Theme) = defaultMMKV.putString(Constants.Preference.THEME, theme.javaClass.simpleName)
 }

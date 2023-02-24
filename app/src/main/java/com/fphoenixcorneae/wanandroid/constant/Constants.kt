@@ -14,10 +14,10 @@ object Constants {
      */
     object Key {
         // 分类id
-        const val CLASSIFY_ID = "classify_id"
+        const val CLASSIFY_ID = "key_classify_id"
 
         // 最新项目
-        const val NEWEST_PROJECT = "newest_project"
+        const val NEWEST_PROJECT = "key_newest_project"
     }
 
     /**
@@ -25,7 +25,15 @@ object Constants {
      * @date：2023/02/23 11:00
      */
     object User {
-        const val LOGIN_STATUS = "login_status"
-        const val USER_INFO = "user_info"
+        const val LOGIN_STATUS = "user_login_status"
+        const val USER_INFO = "user_user_info"
+    }
+
+    /**
+     * @desc：偏好
+     * @date：2023/02/24 17:27
+     */
+    object Preference {
+        const val THEME = "preference_theme"
     }
 }

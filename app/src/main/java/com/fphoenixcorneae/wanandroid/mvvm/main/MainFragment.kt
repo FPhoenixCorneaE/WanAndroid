@@ -16,7 +16,6 @@ import com.fphoenixcorneae.wanandroid.mvvm.mine.MineFragment
 import com.fphoenixcorneae.wanandroid.mvvm.officialaccount.OfficialAccountFragment
 import com.fphoenixcorneae.wanandroid.mvvm.plaza.PlazaFragment
 import com.fphoenixcorneae.wanandroid.mvvm.project.ProjectFragment
-import com.fphoenixcorneae.wanandroid.theme.Theme
 import com.fphoenixcorneae.wanandroid.theme.appThemeViewModel
 import com.fphoenixcorneae.widget.viewpager.FragmentPagerItems
 import com.fphoenixcorneae.widget.viewpager.FragmentStatePager2ItemAdapter
@@ -86,14 +85,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             .navigationHeight(navigationHeight = 60.dp)
             .disableShowShadow()
             .onItemClickListener { position ->
-                when (position) {
-                    0 -> vpMain.setCurrentItem(position, false)
-                    1 -> vpMain.setCurrentItem(position, false)
-                    2 -> vpMain.setCurrentItem(position, false)
-                    3 -> vpMain.setCurrentItem(position, false)
-                    4 -> vpMain.setCurrentItem(position, false)
-                    else -> appThemeViewModel.switchTheme(Theme.DarkBlue)
-                }
+                vpMain.setCurrentItem(position, false)
             }
     }
 

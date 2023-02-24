@@ -20,4 +20,6 @@
     <string name="tab_plaza_navigation">导航</string>
     <string name="no_more_data">数据已经全部加载完成！</string>
     <string name="user_has_not_log_in">请先登录~~~</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
 </resources>

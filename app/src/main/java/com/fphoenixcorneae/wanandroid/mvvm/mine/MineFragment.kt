@@ -6,6 +6,7 @@ import androidx.fragment.app.viewModels
 import com.fphoenixcorneae.jetpackmvvm.base.fragment.BaseFragment
 import com.fphoenixcorneae.wanandroid.R
 import com.fphoenixcorneae.wanandroid.databinding.FragmentMineBinding
+import com.fphoenixcorneae.wanandroid.theme.Theme
 import com.fphoenixcorneae.wanandroid.theme.appThemeViewModel
 
 /**
@@ -25,9 +26,17 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
                     MineItemBean(R.drawable.ic_todo_list, "待办清单"),
                     MineItemBean(R.drawable.ic_website, "开源网站"),
                     MineItemBean(R.drawable.ic_join, "加入我们"),
+                    MineItemBean(R.drawable.ic_change_theme, "更换主题"),
                     MineItemBean(R.drawable.ic_setting, "设置"),
                 )
             )
+            setOnItemClickListener { adapter, view, position ->
+                when (position) {
+                    0 -> {}
+                    6 -> appThemeViewModel.darkMode()
+                    else -> {}
+                }
+            }
         }
     }
 

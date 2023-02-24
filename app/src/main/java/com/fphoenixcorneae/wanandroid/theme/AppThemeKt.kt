@@ -1,7 +1,6 @@
 package com.fphoenixcorneae.wanandroid.theme
 
 import android.graphics.Color
-import com.fphoenixcorneae.common.ext.hexString2ColorInt
 import com.fphoenixcorneae.jetpackmvvm.base.application.BaseApplication
 
 /**
@@ -38,36 +37,36 @@ sealed interface Theme {
     val subtitle3: Int
 
     object LightBlue : Theme {
-        override val primary: Int get() = "#3F51B5".hexString2ColorInt()
-        override val primaryVariant: Int get() = "#303F9F".hexString2ColorInt()
-        override val secondary: Int get() = "#80DEEA".hexString2ColorInt()
+        override val primary: Int get() = 0xFF3F51B5.toInt()
+        override val primaryVariant: Int get() = 0xFF303F9F.toInt()
+        override val secondary: Int get() = 0xFF80DEEA.toInt()
         override val secondaryVariant: Int get() = secondary
         override val background: Int get() = Color.WHITE
         override val surface: Int get() = Color.WHITE
-        override val error: Int get() = "#B00020".hexString2ColorInt()
-        override val onPrimary: Int get() = "#6200EE".hexString2ColorInt()
+        override val error: Int get() = 0xFFB00020.toInt()
+        override val onPrimary: Int get() = 0xFF6200EE.toInt()
         override val onSecondary: Int get() = Color.YELLOW
         override val onBackground: Int get() = Color.BLACK
-        override val onSurface: Int get() = "#BB86FC".hexString2ColorInt()
+        override val onSurface: Int get() = 0xFFBB86FC.toInt()
         override val onError: Int get() = error
-        override val body1: Int get() = "#333333".hexString2ColorInt()
-        override val body2: Int get() = "#666666".hexString2ColorInt()
-        override val body3: Int get() = "#999999".hexString2ColorInt()
-        override val button1: Int get() = "#000000".hexString2ColorInt()
-        override val button2: Int get() = "#FFFFFF".hexString2ColorInt()
-        override val button3: Int get() = "#AAAAAA".hexString2ColorInt()
-        override val caption1: Int get() = "#000000".hexString2ColorInt()
-        override val caption2: Int get() = "#222222".hexString2ColorInt()
-        override val caption3: Int get() = "#333333".hexString2ColorInt()
-        override val subtitle1: Int get() = "#666666".hexString2ColorInt()
-        override val subtitle2: Int get() = "#888888".hexString2ColorInt()
-        override val subtitle3: Int get() = "#BBBBBB".hexString2ColorInt()
+        override val body1: Int get() = 0xFF333333.toInt()
+        override val body2: Int get() = 0xFF666666.toInt()
+        override val body3: Int get() = 0xFF999999.toInt()
+        override val button1: Int get() = 0xFF000000.toInt()
+        override val button2: Int get() = 0xFFFFFFFF.toInt()
+        override val button3: Int get() = 0xFFAAAAAA.toInt()
+        override val caption1: Int get() = 0xFF000000.toInt()
+        override val caption2: Int get() = 0xFF222222.toInt()
+        override val caption3: Int get() = 0xFF333333.toInt()
+        override val subtitle1: Int get() = 0xFF666666.toInt()
+        override val subtitle2: Int get() = 0xFF888888.toInt()
+        override val subtitle3: Int get() = 0xFFBBBBBB.toInt()
     }
 
     object DarkBlue : Theme {
-        override val primary: Int get() = "#9FA8DA".hexString2ColorInt()
-        override val primaryVariant: Int get() = "#303F9F".hexString2ColorInt()
-        override val secondary: Int get() = "#80DEEA".hexString2ColorInt()
+        override val primary: Int get() = 0xFF9FA8DA.toInt()
+        override val primaryVariant: Int get() = 0xFF303F9F.toInt()
+        override val secondary: Int get() = 0xFF80DEEA.toInt()
         override val secondaryVariant: Int get() = secondary
         override val background: Int get() = Color.BLACK
         override val surface: Int get() = Color.BLACK
@@ -77,17 +76,17 @@ sealed interface Theme {
         override val onBackground: Int get() = Color.WHITE
         override val onSurface: Int get() = Color.WHITE
         override val onError: Int get() = error
-        override val body1: Int get() = "#333333".hexString2ColorInt()
-        override val body2: Int get() = "#666666".hexString2ColorInt()
-        override val body3: Int get() = "#999999".hexString2ColorInt()
-        override val button1: Int get() = "#000000".hexString2ColorInt()
-        override val button2: Int get() = "#FFFFFF".hexString2ColorInt()
-        override val button3: Int get() = "#AAAAAA".hexString2ColorInt()
-        override val caption1: Int get() = "#000000".hexString2ColorInt()
-        override val caption2: Int get() = "#222222".hexString2ColorInt()
-        override val caption3: Int get() = "#333333".hexString2ColorInt()
-        override val subtitle1: Int get() = "#666666".hexString2ColorInt()
-        override val subtitle2: Int get() = "#888888".hexString2ColorInt()
-        override val subtitle3: Int get() = "#BBBBBB".hexString2ColorInt()
+        override val body1: Int get() = 0xFF333333.toInt()
+        override val body2: Int get() = 0xFF666666.toInt()
+        override val body3: Int get() = 0xFF999999.toInt()
+        override val button1: Int get() = 0xFF000000.toInt()
+        override val button2: Int get() = 0xFFFFFFFF.toInt()
+        override val button3: Int get() = 0xFFAAAAAA.toInt()
+        override val caption1: Int get() = 0xFF000000.toInt()
+        override val caption2: Int get() = 0xFF222222.toInt()
+        override val caption3: Int get() = 0xFF333333.toInt()
+        override val subtitle1: Int get() = 0xFF666666.toInt()
+        override val subtitle2: Int get() = 0xFF888888.toInt()
+        override val subtitle3: Int get() = 0xFFBBBBBB.toInt()
     }
 }
