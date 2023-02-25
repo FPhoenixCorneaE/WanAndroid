@@ -20,7 +20,7 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
         MineAdapter().apply {
             addAll(
                 listOf(
-                    MineItemBean(R.drawable.ic_integral, "我的积分"),
+                    MineItemBean(R.drawable.ic_integral, "我的积分", "8888"),
                     MineItemBean(R.drawable.ic_collect, "我的收藏"),
                     MineItemBean(R.drawable.ic_article, "我的文章"),
                     MineItemBean(R.drawable.ic_todo_list, "待办清单"),

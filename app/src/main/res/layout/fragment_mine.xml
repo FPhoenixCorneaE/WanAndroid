@@ -40,7 +40,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/clUserInfo"
                     android:layout_width="match_parent"
-                    android:layout_height="280dp"
+                    android:layout_height="200dp"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <com.google.android.material.imageview.ShapeableImageView
@@ -48,7 +48,7 @@
                         imgData="@{R.mipmap.ic_avatar_default}"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:layout_marginStart="40dp"
+                        android:layout_marginStart="20dp"
                         android:padding="2dp"
                         android:scaleType="centerCrop"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -124,7 +124,9 @@
                     adapter="@{adapter}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:overScrollMode="never"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:layout_constraintTop_toBottomOf="@id/clUserInfo"
                     app:spanCount="2" />

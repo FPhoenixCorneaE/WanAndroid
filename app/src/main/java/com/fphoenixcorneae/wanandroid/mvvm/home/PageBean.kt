@@ -26,7 +26,7 @@ data class PageBean<T>(
      */
     fun isFirstPage(): Boolean {
         // WanAndroid 第一页该字段都为0
-        return curPage == 0
+        return offset == 0
     }
 
     /**

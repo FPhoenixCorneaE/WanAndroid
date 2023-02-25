@@ -133,14 +133,13 @@
                 tools:text="@tools:sample/lorem/random" />
 
             <TextView
-                android:id="@+id/superChapterName"
+                android:id="@+id/tvSuperChapterName"
                 drawable_radius="@{8}"
                 drawable_solidColor="@{@color/color_black_10000000}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="12dp"
-                android:layout_marginBottom="16dp"
                 android:gravity="center"
                 android:paddingStart="8dp"
                 android:paddingTop="2dp"
@@ -148,14 +147,13 @@
                 android:paddingBottom="2dp"
                 android:text="@{article.superChapterName}"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvTitle"
                 tools:ignore="MissingPrefix"
                 tools:text="@tools:sample/first_names" />
 
             <TextView
-                android:id="@+id/chapterName"
+                android:id="@+id/tvChapterName"
                 drawable_radius="@{8}"
                 drawable_solidColor="@{@color/color_black_10000000}"
                 android:layout_width="wrap_content"
@@ -168,20 +166,33 @@
                 android:paddingBottom="2dp"
                 android:text="@{article.chapterName}"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="@+id/superChapterName"
-                app:layout_constraintStart_toEndOf="@+id/superChapterName"
-                app:layout_constraintTop_toTopOf="@+id/superChapterName"
+                app:layout_constraintBottom_toBottomOf="@+id/tvSuperChapterName"
+                app:layout_constraintStart_toEndOf="@+id/tvSuperChapterName"
+                app:layout_constraintTop_toTopOf="@+id/tvSuperChapterName"
                 tools:ignore="MissingPrefix"
                 tools:text="@tools:sample/last_names" />
 
+            <View
+                android:id="@+id/vDivider"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/color_divider_cccccc"
+                app:layout_constraintTop_toBottomOf="@id/tvSuperChapterName" />
+
             <ImageView
                 android:id="@+id/ivCollect"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:layout_margin="16dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
                 android:src="@{article.collect ? @android:drawable/star_on : @android:drawable/star_off}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/vDivider"
                 tools:ignore="ContentDescription"
                 tools:src="@android:drawable/star_off" />
         </androidx.constraintlayout.widget.ConstraintLayout>

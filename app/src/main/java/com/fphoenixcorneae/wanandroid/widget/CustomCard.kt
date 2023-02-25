@@ -34,11 +34,11 @@ class CustomCard @JvmOverloads constructor(
             setBackgroundColor(getColor(R.color.color_gray_aaeeeeee))
             ivIcon = ImageView {
                 layout_id = "ivIcon"
-                layout_width = 36
-                layout_height = 36
+                layout_width = 28
+                layout_height = 28
                 center_vertical = true
                 start_toStartOf = parent_id
-                margin_start = 30
+                margin_start = 8
             }
             tvName = TextView {
                 layout_id = "tvName"
@@ -46,9 +46,9 @@ class CustomCard @JvmOverloads constructor(
                 layout_height = wrap_content
                 align_vertical_to = "ivIcon"
                 start_toEndOf = "ivIcon"
-                margin_start = 20
+                margin_start = 8
                 textStyle = bold
-                textSize = 16f
+                textSize = 14f
                 textColor = "#000000"
             }
             tvValue = TextView {
@@ -57,10 +57,10 @@ class CustomCard @JvmOverloads constructor(
                 layout_height = wrap_content
                 align_vertical_to = "ivIcon"
                 start_toEndOf = "tvName"
-                margin_start = 20
+                margin_start = 8
                 textStyle = bold
-                textSize = 16f
-                textColor = "#00FFFF"
+                textSize = 14f
+                textColor = "#FFFF00"
             }
         }
         radius = 8.Dp
