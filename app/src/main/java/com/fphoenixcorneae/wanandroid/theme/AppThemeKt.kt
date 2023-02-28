@@ -76,11 +76,11 @@ sealed interface Theme {
         override val onBackground: Int get() = Color.WHITE
         override val onSurface: Int get() = Color.WHITE
         override val onError: Int get() = error
-        override val body1: Int get() = 0xFF333333.toInt()
+        override val body1: Int get() = 0xFFFFFFFF.toInt()
         override val body2: Int get() = 0xFF666666.toInt()
         override val body3: Int get() = 0xFF999999.toInt()
-        override val button1: Int get() = 0xFF000000.toInt()
-        override val button2: Int get() = 0xFFFFFFFF.toInt()
+        override val button1: Int get() = 0xFFFFFFFF.toInt()
+        override val button2: Int get() = 0xFF000000.toInt()
         override val button3: Int get() = 0xFFAAAAAA.toInt()
         override val caption1: Int get() = 0xFF000000.toInt()
         override val caption2: Int get() = 0xFF222222.toInt()
