@@ -4,16 +4,14 @@ import com.fphoenixcorneae.wanandroid.constant.UrlConstants
 import com.fphoenixcorneae.wanandroid.mvvm.home.ArticleBean
 import com.fphoenixcorneae.wanandroid.mvvm.home.HomeBannerBean
 import com.fphoenixcorneae.wanandroid.mvvm.home.PageBean
-import com.fphoenixcorneae.wanandroid.mvvm.mine.UserInfoBean
+import com.fphoenixcorneae.wanandroid.mvvm.login.UserInfoBean
+import com.fphoenixcorneae.wanandroid.mvvm.mine.UserIntegralBean
 import com.fphoenixcorneae.wanandroid.mvvm.plaza.NavigationBean
 import com.fphoenixcorneae.wanandroid.mvvm.plaza.SystemBean
 import com.fphoenixcorneae.wanandroid.mvvm.project.ClassifyBean
 import com.fphoenixcorneae.wanandroid.mvvm.splash.SplashBean
 import me.jessyan.retrofiturlmanager.RetrofitUrlManager
-import retrofit2.http.GET
-import retrofit2.http.Headers
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 
 /**
@@ -137,8 +135,29 @@ interface ApiService {
     ): ApiResponse<PageBean<ArticleBean>>
 
     /**
-     * 获取用户信息
+     * 获取用户积分
      */
     @GET("/lg/coin/userinfo/json")
-    fun getUserInfo(): ApiResponse<UserInfoBean>
+    suspend fun getUserIntegral(): ApiResponse<UserIntegralBean>
+
+    /**
+     * 登录
+     */
+    @FormUrlEncoded
+    @POST("user/login")
+    suspend fun login(
+        @Field("username") userName: String,
+        @Field("password") password: String,
+    ): ApiResponse<UserInfoBean>
+
+    /**
+     * 注册
+     */
+    @FormUrlEncoded
+    @POST("user/register")
+    suspend fun register(
+        @Field("username") userName: String,
+        @Field("password") password: String,
+        @Field("repassword") rePassword: String,
+    ): ApiResponse<Any>
 }

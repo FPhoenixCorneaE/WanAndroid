@@ -6,7 +6,7 @@ import androidx.fragment.app.viewModels
 import com.fphoenixcorneae.jetpackmvvm.base.fragment.BaseFragment
 import com.fphoenixcorneae.wanandroid.R
 import com.fphoenixcorneae.wanandroid.databinding.FragmentMineBinding
-import com.fphoenixcorneae.wanandroid.theme.Theme
+import com.fphoenixcorneae.wanandroid.mvvm.login.LoginDialog
 import com.fphoenixcorneae.wanandroid.theme.appThemeViewModel
 
 /**
@@ -32,7 +32,7 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
             )
             setOnItemClickListener { adapter, view, position ->
                 when (position) {
-                    0 -> {}
+                    0 -> LoginDialog().show(this@MineFragment)
                     6 -> appThemeViewModel.darkMode()
                     else -> {}
                 }
@@ -51,6 +51,6 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
     }
 
     override fun initData(savedInstanceState: Bundle?) {
-        mViewModel.getUserInfo()
+        mViewModel.getUserIntegral()
     }
 }

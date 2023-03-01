@@ -5,6 +5,8 @@ import com.fphoenixcorneae.common.ext.gson.toObject
 import com.fphoenixcorneae.coretrofit.RetrofitFactory
 import com.fphoenixcorneae.jetpackmvvm.startup.defaultMMKV
 import com.fphoenixcorneae.wanandroid.constant.Constants
+import com.fphoenixcorneae.wanandroid.ext.commonViewModel
+import com.fphoenixcorneae.wanandroid.mvvm.login.UserInfoBean
 
 /**
  * @desc：用户信息管理
@@ -18,6 +20,14 @@ object UserManager {
     fun hasLoggedOn(): Boolean = defaultMMKV.getBoolean(Constants.User.LOGIN_STATUS, false)
 
     /**
+     * 登录成功
+     */
+    fun login() = apply {
+        defaultMMKV.putBoolean(Constants.User.LOGIN_STATUS, true)
+        commonViewModel.setLoginStatus(true)
+    }
+
+    /**
      * 用户信息
      */
     fun userInfo(): UserInfoBean? =
@@ -26,7 +36,9 @@ object UserManager {
     /**
      * 保存用户信息
      */
-    fun saveUser(userInfoBean: UserInfoBean?) = defaultMMKV.putString(Constants.User.USER_INFO, userInfoBean.toJson())
+    fun saveUser(userInfoBean: UserInfoBean?) = apply {
+        defaultMMKV.putString(Constants.User.USER_INFO, userInfoBean.toJson())
+    }
 
     /**
      * 退出登录
@@ -36,6 +48,7 @@ object UserManager {
         RetrofitFactory.clearCookies()
         // 清空用户信息
         saveUser(null)
+        commonViewModel.setLoginStatus(false)
         true
     }.getOrDefault(false)
 }

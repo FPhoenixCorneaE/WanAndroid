@@ -23,7 +23,7 @@
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/srlRefresh"
         isRefreshing="@{viewModel.pageState.isRefreshing()}"
-        onRefresh="@{() -> viewModel.getUserInfo(true)}"
+        onRefresh="@{() -> viewModel.getUserIntegral(true)}"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

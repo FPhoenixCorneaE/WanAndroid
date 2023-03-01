@@ -14,24 +14,24 @@ import kotlinx.coroutines.flow.asStateFlow
  * @date：2023/02/20 11:38
  */
 class MineViewModel : BaseViewModel() {
-    private val _userInfo = MutableStateFlow<UserInfoBean?>(null)
-    val userInfo = _userInfo.asStateFlow()
+    private val _userIntegral = MutableStateFlow<UserIntegralBean?>(null)
+    val userIntegral = _userIntegral.asStateFlow()
 
     /** 页面状态 */
     val pageState by lazy { PageState() }
 
     /**
-     * 获取用户信息
+     * 获取用户积分
      */
-    fun getUserInfo(isRefresh: Boolean = false) {
+    fun getUserIntegral(isRefresh: Boolean = false) {
         setRefreshing(isRefresh = isRefresh)
         if (UserManager.hasLoggedOn()) {
             request(
                 block = {
-                    apiService.getUserInfo()
+                    apiService.getUserIntegral()
                 },
                 success = {
-                    launch { _userInfo.emit(it) }
+                    launch { _userIntegral.emit(it) }
                 },
             )
         }

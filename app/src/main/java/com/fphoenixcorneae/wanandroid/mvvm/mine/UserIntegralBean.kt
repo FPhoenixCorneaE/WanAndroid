@@ -5,12 +5,12 @@ import androidx.annotation.Keep
 import kotlinx.parcelize.Parcelize
 
 /**
- * @desc：用户信息
+ * @desc：用户积分
  * @date：2023/02/23 10:54
  */
 @Keep
 @Parcelize
-data class UserInfoBean(
+data class UserIntegralBean(
     /** 当前积分 */
     var coinCount: Int = 0,
     /** 当前级别 */
