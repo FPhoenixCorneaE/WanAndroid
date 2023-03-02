@@ -3,10 +3,11 @@ package com.fphoenixcorneae.wanandroid.mvvm.mine
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import com.fphoenixcorneae.common.ext.toastQQStyle
 import com.fphoenixcorneae.jetpackmvvm.base.fragment.BaseFragment
 import com.fphoenixcorneae.wanandroid.R
 import com.fphoenixcorneae.wanandroid.databinding.FragmentMineBinding
-import com.fphoenixcorneae.wanandroid.mvvm.login.LoginDialog
+import com.fphoenixcorneae.wanandroid.mvvm.login.MustLogin
 import com.fphoenixcorneae.wanandroid.theme.appThemeViewModel
 
 /**
@@ -20,19 +21,20 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
         MineAdapter().apply {
             addAll(
                 listOf(
-                    MineItemBean(R.drawable.ic_integral, "我的积分", "8888"),
-                    MineItemBean(R.drawable.ic_collect, "我的收藏"),
-                    MineItemBean(R.drawable.ic_article, "我的文章"),
-                    MineItemBean(R.drawable.ic_todo_list, "待办清单"),
-                    MineItemBean(R.drawable.ic_website, "开源网站"),
-                    MineItemBean(R.drawable.ic_join, "加入我们"),
-                    MineItemBean(R.drawable.ic_change_theme, "更换主题"),
-                    MineItemBean(R.drawable.ic_setting, "设置"),
+                    MineItemBean(R.drawable.ic_integral, getString(R.string.my_integral), "8888"),
+                    MineItemBean(R.drawable.ic_collect, getString(R.string.my_collection)),
+                    MineItemBean(R.drawable.ic_article, getString(R.string.my_articles)),
+                    MineItemBean(R.drawable.ic_todo_list, getString(R.string.todo_list)),
+                    MineItemBean(R.drawable.ic_website, getString(R.string.open_source_website)),
+                    MineItemBean(R.drawable.ic_join, getString(R.string.join_us)),
+                    MineItemBean(R.drawable.ic_change_theme, getString(R.string.change_theme)),
+                    MineItemBean(R.drawable.ic_setting, getString(R.string.setting)),
                 )
             )
             setOnItemClickListener { adapter, view, position ->
                 when (position) {
-                    0 -> LoginDialog().show(this@MineFragment)
+                    // 我的积分
+                    0 -> go2Integral()
                     6 -> appThemeViewModel.darkMode()
                     else -> {}
                 }
@@ -52,5 +54,10 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
 
     override fun initData(savedInstanceState: Bundle?) {
         mViewModel.getUserIntegral()
+    }
+
+    @MustLogin
+    private fun go2Integral() {
+        toastQQStyle("即将跳转我的积分界面！")
     }
 }

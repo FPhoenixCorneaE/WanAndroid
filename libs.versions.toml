@@ -14,6 +14,7 @@ coil = "2.2.2"
 compileSdk = "33"
 coroutines = "1.6.4"
 dokit = "3.5.0"
+fphoenixcorneae-aspectj = "1.0.7"
 kotlin = "1.7.10"
 lifecycle = "2.5.1"
 minSdk = "21"
@@ -61,6 +62,8 @@ dokit-mc = {group = "io.github.didi.dokit", name = "dokitx-mc", version.ref = "d
 dokit-no-op = {group = "io.github.didi.dokit", name = "dokitx-no-op", version.ref = "dokit" }
 dokit-weex = {group = "io.github.didi.dokit", name = "dokitx-weex", version.ref = "dokit" }
 easyfloat = {group = "com.github.princekin-f", name = "EasyFloat", version = "2.0.4" }
+fphoenixcorneae-aspectj = {group = "com.github.FPhoenixCorneaE.AndroidAspectj", name = "aspectj", version.ref = "fphoenixcorneae-aspectj" }
+fphoenixcorneae-aspectj-compiler = {group = "com.github.FPhoenixCorneaE.AndroidAspectj", name = "aspectj-compiler", version.ref = "fphoenixcorneae-aspectj" }
 fphoenixcorneae-easyNavigation = {group = "com.github.FPhoenixCorneaE.EasyNavigation", name = "easyNavigation", version = "1.1.0" }
 fphoenixcorneae-flowLayout = {group = "com.github.FPhoenixCorneaE", name = "FlowLayout", version = "1.0.8" }
 fphoenixcorneae-jetpackMvvm = {group = "com.github.FPhoenixCorneaE", name = "JetpackMvvm", version = "3.0.2" }
@@ -102,7 +105,7 @@ androidx-work = ["androidx-work-runtime-ktx", "androidx-work-multiprocess"]
 coil = ["coil", "coil-gif", "coil-svg", "coil-video", "coil-compose"]
 coroutines = ["kotlinx-coroutines-core", "kotlinx-coroutines-android"]
 dokit = ["dokit", "dokit-ft", "dokit-mc", "dokit-weex", "dokit-no-op"]
-fphoenixcorneae = ["fphoenixcorneae-jetpackMvvm", "fphoenixcorneae-easyNavigation", "fphoenixcorneae-viewPagerAdapter", "fphoenixcorneae-flowLayout"]
+fphoenixcorneae = ["fphoenixcorneae-jetpackMvvm", "fphoenixcorneae-easyNavigation", "fphoenixcorneae-viewPagerAdapter", "fphoenixcorneae-flowLayout", "fphoenixcorneae-aspectj"]
 lifecycle = ["lifecycle-viewmodel-ktx", "lifecycle-viewmodel-compose", "lifecycle-livedata-ktx", "lifecycle-runtime-ktx", "lifecycle-viewmodel-savedstate", "lifecycle-common-java8", "lifecycle-service", "lifecycle-process", "lifecycle-reactivestreams-ktx"]
 navigation = ["navigation-fragment-ktx", "navigation-ui-ktx", "navigation-compose"]
 room = ["room-runtime", "room-ktx", "room-paging"]
@@ -110,6 +113,9 @@ room = ["room-runtime", "room-ktx", "room-paging"]
 [plugins]
 android-application = {id = "com.android.application", version.ref = "android" }
 android-library = {id = "com.android.library", version.ref = "android" }
+aspectj-tools = {id = "org.aspectj:aspectjtools", version = "1.9.6" }
+fphoenixcorneae-aspectj-aspectj = {id = "com.FPhoenixCorneaE.aspectj", version.ref = "fphoenixcorneae-aspectj" }
+fphoenixcorneae-aspectj-plugin = {id = "com.github.FPhoenixCorneaE.AndroidAspectj:aspectj-plugin", version.ref = "fphoenixcorneae-aspectj" }
 kotlin-android = {id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = {id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 kotlin-kapt = {id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }

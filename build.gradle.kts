@@ -15,6 +15,20 @@ plugins {
     alias(deps.plugins.navigation.safeargs) apply false
 }
 
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        maven("https://jitpack.io")
+    }
+    dependencies {
+        val aspectjtools = deps.plugins.aspectj.tools.get()
+        classpath("${aspectjtools.pluginId}:${aspectjtools.version}")
+        val aspectjplugin = deps.plugins.fphoenixcorneae.aspectj.plugin.get()
+        classpath("${aspectjplugin.pluginId}:${aspectjplugin.version}")
+    }
+}
+
 tasks.create(name = "clean", type = Delete::class) {
     delete = setOf(rootProject.buildDir)
 }

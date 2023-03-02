@@ -38,12 +38,24 @@ catalog {
         library("fphoenixcorneae-easyNavigation", "com.github.FPhoenixCorneaE.EasyNavigation:easyNavigation:1.1.0")
         library("fphoenixcorneae-viewPagerAdapter", "com.github.FPhoenixCorneaE:ViewPagerAdapter:1.0.1-beta01")
         library("fphoenixcorneae-flowLayout", "com.github.FPhoenixCorneaE:FlowLayout:1.0.8")
-        bundle("fphoenixcorneae", listOf(
-            "fphoenixcorneae-jetpackMvvm",
-            "fphoenixcorneae-easyNavigation",
-            "fphoenixcorneae-viewPagerAdapter",
-            "fphoenixcorneae-flowLayout",
-        ))
+        version("fphoenixcorneae-aspectj", "1.0.7")
+        plugin("fphoenixcorneae-aspectj-aspectj", "com.FPhoenixCorneaE.aspectj")
+            .versionRef("fphoenixcorneae-aspectj")
+        plugin("fphoenixcorneae-aspectj-plugin", "com.github.FPhoenixCorneaE.AndroidAspectj:aspectj-plugin")
+            .versionRef("fphoenixcorneae-aspectj")
+        library("fphoenixcorneae-aspectj", "com.github.FPhoenixCorneaE.AndroidAspectj", "aspectj")
+            .versionRef("fphoenixcorneae-aspectj")
+        library("fphoenixcorneae-aspectj-compiler", "com.github.FPhoenixCorneaE.AndroidAspectj", "aspectj-compiler")
+            .versionRef("fphoenixcorneae-aspectj")
+        bundle(
+            "fphoenixcorneae", listOf(
+                "fphoenixcorneae-jetpackMvvm",
+                "fphoenixcorneae-easyNavigation",
+                "fphoenixcorneae-viewPagerAdapter",
+                "fphoenixcorneae-flowLayout",
+                "fphoenixcorneae-aspectj",
+            )
+        )
 
         // androidx
         library("androidx-activity-ktx", "androidx.activity", "activity-ktx").version("1.6.1")
@@ -59,10 +71,12 @@ catalog {
         library("androidx-datastore", "androidx.datastore", "datastore").versionRef("androidx-datastore")
         library("androidx-datastore-preferences", "androidx.datastore", "datastore-preferences")
             .versionRef("androidx-datastore")
-        bundle("androidx-datastore", listOf(
-            "androidx-datastore",
-            "androidx-datastore-preferences"
-        ))
+        bundle(
+            "androidx-datastore", listOf(
+                "androidx-datastore",
+                "androidx-datastore-preferences"
+            )
+        )
 
         version("androidx-fragment", "1.5.4")
         library("androidx-fragment-ktx", "androidx.fragment", "fragment-ktx").versionRef("androidx-fragment")
@@ -86,10 +100,12 @@ catalog {
         library("androidx-work-runtime-ktx", "androidx.work", "work-runtime-ktx").versionRef("androidx-work")
         library("androidx-work-multiprocess", "androidx.work", "work-multiprocess").versionRef("androidx-work")
         library("androidx-work-testing", "androidx.work", "work-testing").versionRef("androidx-work")
-        bundle("androidx-work", listOf(
-            "androidx-work-runtime-ktx",
-            "androidx-work-multiprocess"
-        ))
+        bundle(
+            "androidx-work", listOf(
+                "androidx-work-runtime-ktx",
+                "androidx-work-multiprocess"
+            )
+        )
 
         // material
         library("material", "com.google.android.material", "material").version("1.5.0")
@@ -97,9 +113,11 @@ catalog {
         // lifecycle
         version("lifecycle", "2.5.1")
         library("lifecycle-viewmodel-ktx", "androidx.lifecycle", "lifecycle-viewmodel-ktx").versionRef("lifecycle")
-        library("lifecycle-viewmodel-compose",
+        library(
+            "lifecycle-viewmodel-compose",
             "androidx.lifecycle",
-            "lifecycle-viewmodel-compose").versionRef("lifecycle")
+            "lifecycle-viewmodel-compose"
+        ).versionRef("lifecycle")
         library("lifecycle-livedata-ktx", "androidx.lifecycle", "lifecycle-livedata-ktx").versionRef("lifecycle")
         library("lifecycle-runtime-ktx", "androidx.lifecycle", "lifecycle-runtime-ktx").versionRef("lifecycle")
         library("lifecycle-runtime-testing", "androidx.lifecycle", "lifecycle-runtime-testing").versionRef("lifecycle")
@@ -110,17 +128,19 @@ catalog {
         library("lifecycle-process", "androidx.lifecycle", "lifecycle-process").versionRef("lifecycle")
         library("lifecycle-reactivestreams-ktx", "androidx.lifecycle", "lifecycle-reactivestreams-ktx")
             .versionRef("lifecycle")
-        bundle("lifecycle", listOf(
-            "lifecycle-viewmodel-ktx",
-            "lifecycle-viewmodel-compose",
-            "lifecycle-livedata-ktx",
-            "lifecycle-runtime-ktx",
-            "lifecycle-viewmodel-savedstate",
-            "lifecycle-common-java8",
-            "lifecycle-service",
-            "lifecycle-process",
-            "lifecycle-reactivestreams-ktx",
-        ))
+        bundle(
+            "lifecycle", listOf(
+                "lifecycle-viewmodel-ktx",
+                "lifecycle-viewmodel-compose",
+                "lifecycle-livedata-ktx",
+                "lifecycle-runtime-ktx",
+                "lifecycle-viewmodel-savedstate",
+                "lifecycle-common-java8",
+                "lifecycle-service",
+                "lifecycle-process",
+                "lifecycle-reactivestreams-ktx",
+            )
+        )
 
         // navigation
         version("navigation", "2.5.3")
@@ -133,11 +153,13 @@ catalog {
             .versionRef("navigation")
         library("navigation-testing", "androidx.navigation", "navigation-testing")
             .versionRef("navigation")
-        bundle("navigation", listOf(
-            "navigation-fragment-ktx",
-            "navigation-ui-ktx",
-            "navigation-compose"
-        ))
+        bundle(
+            "navigation", listOf(
+                "navigation-fragment-ktx",
+                "navigation-ui-ktx",
+                "navigation-compose"
+            )
+        )
 
         // coroutines
         version("coroutines", "1.6.4")
@@ -145,10 +167,12 @@ catalog {
             .versionRef("coroutines")
         library("kotlinx-coroutines-android", "org.jetbrains.kotlinx", "kotlinx-coroutines-android")
             .versionRef("coroutines")
-        bundle("coroutines", listOf(
-            "kotlinx-coroutines-core",
-            "kotlinx-coroutines-android"
-        ))
+        bundle(
+            "coroutines", listOf(
+                "kotlinx-coroutines-core",
+                "kotlinx-coroutines-android"
+            )
+        )
 
         // room
         version("room", "2.4.3")
@@ -157,11 +181,13 @@ catalog {
         library("room-compiler", "androidx.room", "room-compiler").versionRef("room")
         library("room-paging", "androidx.room", "room-paging").versionRef("room")
         library("room-testing", "androidx.room", "room-testing").versionRef("room")
-        bundle("room", listOf(
-            "room-runtime",
-            "room-ktx",
-            "room-paging"
-        ))
+        bundle(
+            "room", listOf(
+                "room-runtime",
+                "room-ktx",
+                "room-paging"
+            )
+        )
 
         // coil(https://coil-kt.github.io/coil/getting_started/)
         version("coil", "2.2.2")
@@ -170,13 +196,15 @@ catalog {
         library("coil-svg", "io.coil-kt", "coil-svg").versionRef("coil")
         library("coil-video", "io.coil-kt", "coil-video").versionRef("coil")
         library("coil-compose", "io.coil-kt", "coil-compose").versionRef("coil")
-        bundle("coil", listOf(
-            "coil",
-            "coil-gif",
-            "coil-svg",
-            "coil-video",
-            "coil-compose"
-        ))
+        bundle(
+            "coil", listOf(
+                "coil",
+                "coil-gif",
+                "coil-svg",
+                "coil-video",
+                "coil-compose"
+            )
+        )
 
         // dokit(https://github.com/didi/DoraemonKit)
         version("dokit", "3.5.0")
@@ -185,13 +213,15 @@ catalog {
         library("dokit-mc", "io.github.didi.dokit", "dokitx-mc").versionRef("dokit")
         library("dokit-weex", "io.github.didi.dokit", "dokitx-weex").versionRef("dokit")
         library("dokit-no-op", "io.github.didi.dokit", "dokitx-no-op").versionRef("dokit")
-        bundle("dokit", listOf(
-            "dokit",
-            "dokit-ft",
-            "dokit-mc",
-            "dokit-weex",
-            "dokit-no-op"
-        ))
+        bundle(
+            "dokit", listOf(
+                "dokit",
+                "dokit-ft",
+                "dokit-mc",
+                "dokit-weex",
+                "dokit-no-op"
+            )
+        )
 
         // bugly
         library("bugly", "com.tencent.bugly:crashreport:4.1.9")
@@ -211,6 +241,8 @@ catalog {
         library("bannerviewpager", "com.github.zhpanvip:bannerviewpager:3.5.7")
         // baserecyclerviewadapterhelper
         library("baserecyclerviewadapterhelper", "io.github.cymchad:BaseRecyclerViewAdapterHelper:4.0.0-beta02")
+        // aspectjtools
+        plugin("aspectj-tools", "org.aspectj:aspectjtools").version("1.9.6")
 
         // test
         library("test-core-ktx", "androidx.test:core-ktx:1.4.0")

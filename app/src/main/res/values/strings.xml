@@ -22,4 +22,12 @@
     <string name="user_has_not_log_in">请先登录~~~</string>
     <string name="login">登录</string>
     <string name="register">注册</string>
+    <string name="my_integral">我的积分</string>
+    <string name="my_collection">我的收藏</string>
+    <string name="my_articles">我的文章</string>
+    <string name="todo_list">待办清单</string>
+    <string name="open_source_website">开源网站</string>
+    <string name="join_us">加入我们</string>
+    <string name="change_theme">更换主题</string>
+    <string name="setting">设置</string>
 </resources>

@@ -4,6 +4,7 @@ plugins {
     id(deps.plugins.kotlin.parcelize.get().pluginId)
     id(deps.plugins.kotlin.kapt.get().pluginId)
     id(deps.plugins.navigation.safeargs.get().pluginId)
+    id(deps.plugins.fphoenixcorneae.aspectj.aspectj.get().pluginId)
 }
 
 android {
@@ -92,6 +93,7 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     // FPhoenixCorneaE
     implementation(deps.bundles.fphoenixcorneae)
+    kapt(deps.fphoenixcorneae.aspectj.compiler)
     // androidx
     implementation(deps.androidx.appcompat)
     implementation(deps.androidx.core.ktx)
