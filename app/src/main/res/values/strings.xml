@@ -30,4 +30,5 @@
     <string name="join_us">加入我们</string>
     <string name="change_theme">更换主题</string>
     <string name="setting">设置</string>
+    <string name="logout">退出登录</string>
 </resources>

@@ -20,7 +20,7 @@ import com.fphoenixcorneae.wanandroid.theme.appThemeViewModel
  */
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
-    private val mLoginDialog by lazy { LoginDialog() }
+    private var mLoginDialog: LoginDialog? = null
 
     override fun ActivityMainBinding.initViewBinding() {
         themeViewModel = appThemeViewModel
@@ -45,7 +45,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                         if (UserManager.hasLoggedOn()) {
                             joinPoint.proceed()
                         } else {
-                            mLoginDialog.show(this@MainActivity)
+                            mLoginDialog = LoginDialog()
+                            mLoginDialog?.show(this@MainActivity)
                         }
                     }
                     else -> joinPoint.proceed()
@@ -59,8 +60,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun ActivityMainBinding.initObserver() {
         commonViewModel.hasLoggedOn.collectWithLifecycle(this@MainActivity) {
             if (it) {
-                if (mLoginDialog.dialog?.isShowing == true) {
-                    mLoginDialog.dismiss()
+                if (mLoginDialog?.dialog?.isShowing == true) {
+                    mLoginDialog?.dismissAllowingStateLoss()
+                    mLoginDialog = null
                 }
             }
         }

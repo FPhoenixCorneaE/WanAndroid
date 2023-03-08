@@ -160,4 +160,10 @@ interface ApiService {
         @Field("password") password: String,
         @Field("repassword") rePassword: String,
     ): ApiResponse<Any>
+
+    /**
+     * 注册
+     */
+    @GET("user/logout/json")
+    suspend fun logout(): ApiResponse<Any>
 }

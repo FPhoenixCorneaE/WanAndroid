@@ -48,6 +48,7 @@ object UserManager {
         RetrofitFactory.clearCookies()
         // 清空用户信息
         saveUser(null)
+        defaultMMKV.putBoolean(Constants.User.LOGIN_STATUS, false)
         commonViewModel.setLoginStatus(false)
         true
     }.getOrDefault(false)

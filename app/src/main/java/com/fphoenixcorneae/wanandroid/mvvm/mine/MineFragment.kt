@@ -3,6 +3,7 @@ package com.fphoenixcorneae.wanandroid.mvvm.mine
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import com.fphoenixcorneae.common.ext.navigate
 import com.fphoenixcorneae.common.ext.toastQQStyle
 import com.fphoenixcorneae.jetpackmvvm.base.fragment.BaseFragment
 import com.fphoenixcorneae.wanandroid.R
@@ -35,7 +36,10 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
                 when (position) {
                     // 我的积分
                     0 -> go2Integral()
+                    // 更换主题
                     6 -> appThemeViewModel.darkMode()
+                    // 设置
+                    7 -> navigate(R.id.fragmentSetting)
                     else -> {}
                 }
             }
