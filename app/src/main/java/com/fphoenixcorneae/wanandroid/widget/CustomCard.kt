@@ -49,7 +49,7 @@ class CustomCard @JvmOverloads constructor(
                 margin_start = 8
                 textStyle = bold
                 textSize = 14f
-                textColor = "#000000"
+                textColor = "#FF000000"
             }
             tvValue = TextView {
                 layout_id = "tvValue"
@@ -60,7 +60,7 @@ class CustomCard @JvmOverloads constructor(
                 margin_start = 8
                 textStyle = bold
                 textSize = 14f
-                textColor = "#FFFF00"
+                textColor = "#FFFF00FF"
             }
         }
         radius = 8.Dp

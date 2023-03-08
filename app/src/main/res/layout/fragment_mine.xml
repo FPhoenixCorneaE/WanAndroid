@@ -12,6 +12,10 @@
             type="com.fphoenixcorneae.wanandroid.theme.AppThemeViewModel" />
 
         <variable
+            name="globalViewModel"
+            type="com.fphoenixcorneae.wanandroid.application.CommonViewModel" />
+
+        <variable
             name="viewModel"
             type="com.fphoenixcorneae.wanandroid.mvvm.mine.MineViewModel" />
 
@@ -66,7 +70,7 @@
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="12dp"
                         android:layout_marginEnd="16dp"
-                        android:text="@string/user_has_not_log_in"
+                        android:text="@{globalViewModel.hasLoggedOn ? viewModel.userIntegral.username : @string/user_has_not_log_in}"
                         android:textColor="@{themeViewModel.theme.body1}"
                         android:textSize="18sp"
                         android:textStyle="bold"
@@ -80,7 +84,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
                         android:layout_marginTop="16dp"
-                        android:text="id：--"
+                        android:text="@{globalViewModel.hasLoggedOn ? &quot;id：&quot; + viewModel.userIntegral.userId : &quot;id：--&quot;}"
                         android:textColor="@{themeViewModel.theme.body1}"
                         android:textSize="16sp"
                         app:layout_constraintStart_toEndOf="@+id/ivAvatar"
@@ -92,7 +96,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:text="排名：--"
+                        android:text="@{globalViewModel.hasLoggedOn ? &quot;排名：&quot; + viewModel.userIntegral.rank : &quot;排名：--&quot;}"
                         android:textColor="@{themeViewModel.theme.body1}"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="@+id/tvUserId"
@@ -101,22 +105,41 @@
                         tools:ignore="HardcodedText" />
 
                     <TextView
-                        android:id="@+id/tvUserLevel"
+                        android:id="@+id/tvLevel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:fontFamily="@font/arial"
-                        android:gravity="center"
-                        android:text="1"
+                        android:text="等级："
                         android:textColor="@{themeViewModel.theme.body1}"
-                        android:textSize="20sp"
-                        android:textStyle="bold"
-                        android:visibility="gone"
+                        android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="@+id/tvUserId"
                         app:layout_constraintStart_toEndOf="@+id/tvUserRanking"
                         app:layout_constraintTop_toTopOf="@+id/tvUserId"
-                        tools:drawableStart="@drawable/ic_level"
+                        tools:ignore="HardcodedText" />
+
+                    <ImageView
+                        android:id="@+id/ivLevel"
+                        isVisible="@{globalViewModel.hasLoggedOn}"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_level"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvUserId"
+                        app:layout_constraintStart_toEndOf="@+id/tvLevel"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/tvUserLevel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@{globalViewModel.hasLoggedOn ? viewModel.userIntegral.level + &quot;&quot; : &quot;--&quot;}"
+                        android:textColor="@{themeViewModel.theme.body1}"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvUserId"
+                        app:layout_constraintStart_toEndOf="@+id/ivLevel"
+                        app:layout_constraintTop_toTopOf="@+id/tvUserId"
                         tools:ignore="HardcodedText"
+                        tools:text="1"
                         tools:visibility="visible" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -13,5 +13,5 @@ import kotlinx.parcelize.Parcelize
 data class MineItemBean(
     val iconRes: Int? = null,
     val name: String? = null,
-    val value: String? = null,
+    var value: String? = null,
 ) : Parcelable

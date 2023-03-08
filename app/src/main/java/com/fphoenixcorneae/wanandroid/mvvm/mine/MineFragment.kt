@@ -6,8 +6,10 @@ import androidx.fragment.app.viewModels
 import com.fphoenixcorneae.common.ext.navigate
 import com.fphoenixcorneae.common.ext.toastQQStyle
 import com.fphoenixcorneae.jetpackmvvm.base.fragment.BaseFragment
+import com.fphoenixcorneae.jetpackmvvm.ext.collectWithLifecycle
 import com.fphoenixcorneae.wanandroid.R
 import com.fphoenixcorneae.wanandroid.databinding.FragmentMineBinding
+import com.fphoenixcorneae.wanandroid.ext.commonViewModel
 import com.fphoenixcorneae.wanandroid.mvvm.login.MustLogin
 import com.fphoenixcorneae.wanandroid.theme.appThemeViewModel
 
@@ -22,7 +24,7 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
         MineAdapter().apply {
             addAll(
                 listOf(
-                    MineItemBean(R.drawable.ic_integral, getString(R.string.my_integral), "8888"),
+                    MineItemBean(R.drawable.ic_integral, getString(R.string.my_integral)),
                     MineItemBean(R.drawable.ic_collect, getString(R.string.my_collection)),
                     MineItemBean(R.drawable.ic_article, getString(R.string.my_articles)),
                     MineItemBean(R.drawable.ic_todo_list, getString(R.string.todo_list)),
@@ -48,6 +50,7 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
 
     override fun FragmentMineBinding.initViewBinding() {
         themeViewModel = appThemeViewModel
+        globalViewModel = commonViewModel
         viewModel = mViewModel
         adapter = mAdapter
     }
@@ -56,8 +59,23 @@ class MineFragment : BaseFragment<FragmentMineBinding>() {
         return null
     }
 
+    override fun FragmentMineBinding.initObserver() {
+        commonViewModel.hasLoggedOn.collectWithLifecycle(viewLifecycleOwner) {
+            if (it) {
+                mViewModel.getUserIntegral()
+            }
+        }
+    }
+
     override fun initData(savedInstanceState: Bundle?) {
-        mViewModel.getUserIntegral()
+        with(mViewModel) {
+            userIntegral.collectWithLifecycle(viewLifecycleOwner) {
+                it?.let {
+                    mAdapter.items[0].value = it.coinCount.toString()
+                    mAdapter.notifyItemChanged(0)
+                }
+            }
+        }
     }
 
     @MustLogin
