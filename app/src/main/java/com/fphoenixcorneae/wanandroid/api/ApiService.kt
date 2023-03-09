@@ -141,6 +141,22 @@ interface ApiService {
     suspend fun getUserIntegral(): ApiResponse<UserIntegralBean>
 
     /**
+     * 获取积分排行榜
+     */
+    @GET("/coin/rank/{page}/json")
+    suspend fun getIntegralRanking(
+        @Path("page") page: Int,
+    ): ApiResponse<PageBean<UserIntegralBean>>
+
+    /**
+     * 获取积分记录
+     */
+    @GET("/lg/coin/list/{page}/json")
+    suspend fun getIntegralRecord(
+        @Path("page") page: Int,
+    ): ApiResponse<PageBean<UserIntegralBean>>
+
+    /**
      * 登录
      */
     @FormUrlEncoded

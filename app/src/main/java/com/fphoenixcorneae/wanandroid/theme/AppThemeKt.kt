@@ -48,7 +48,7 @@ sealed interface Theme {
         override val onSecondary: Int get() = Color.YELLOW
         override val onBackground: Int get() = Color.BLACK
         override val onSurface: Int get() = 0xFFBB86FC.toInt()
-        override val onError: Int get() = error
+        override val onError: Int get() = 0xFFD81B60.toInt()
         override val body1: Int get() = 0xFF333333.toInt()
         override val body2: Int get() = 0xFF666666.toInt()
         override val body3: Int get() = 0xFF999999.toInt()
@@ -70,12 +70,12 @@ sealed interface Theme {
         override val secondaryVariant: Int get() = secondary
         override val background: Int get() = Color.BLACK
         override val surface: Int get() = Color.BLACK
-        override val error: Int get() = Color.RED
+        override val error: Int get() = 0xFFB00020.toInt()
         override val onPrimary: Int get() = Color.BLACK
         override val onSecondary: Int get() = Color.YELLOW
         override val onBackground: Int get() = Color.WHITE
         override val onSurface: Int get() = Color.WHITE
-        override val onError: Int get() = error
+        override val onError: Int get() = 0xFFD81B60.toInt()
         override val body1: Int get() = 0xFFFFFFFF.toInt()
         override val body2: Int get() = 0xFF666666.toInt()
         override val body3: Int get() = 0xFF999999.toInt()
